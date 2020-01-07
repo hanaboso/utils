@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "55ed59eba13c615711e4953f0f83c019",
+    "content-hash": "f620f95b5c617f7d7f5482c801b0e37c",
     "packages": [
         {
             "name": "psr/log",
@@ -1899,16 +1899,16 @@
         },
         {
             "name": "hanaboso/php-check-utils",
-            "version": "1.1.5",
+            "version": "1.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hanaboso/php-check-utils.git",
-                "reference": "93ebf0b7b1fca68b33ba9ab2a8bdce0b03ed4b13"
+                "reference": "026b22dd5ffcf7cc667c5e837adadb9f057692af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hanaboso/php-check-utils/zipball/93ebf0b7b1fca68b33ba9ab2a8bdce0b03ed4b13",
-                "reference": "93ebf0b7b1fca68b33ba9ab2a8bdce0b03ed4b13",
+                "url": "https://api.github.com/repos/hanaboso/php-check-utils/zipball/026b22dd5ffcf7cc667c5e837adadb9f057692af",
+                "reference": "026b22dd5ffcf7cc667c5e837adadb9f057692af",
                 "shasum": ""
             },
             "require": {
@@ -1929,6 +1929,7 @@
                 "phpstan/phpstan-symfony": "^0.12",
                 "phpunit/phpunit": "^8.5",
                 "slevomat/coding-standard": "^6.0",
+                "spaze/phpstan-disallowed-calls": "^0.12",
                 "squizlabs/php_codesniffer": "^3.5",
                 "symfony/browser-kit": "^4.4 | ^5.0",
                 "symfony/framework-bundle": "^4.4 | ^5.0",
@@ -1960,7 +1961,7 @@
                 }
             ],
             "description": "Utils for php development - CodeSniffer, PhpStan, PhpStorm",
-            "time": "2020-01-03T14:51:54+00:00"
+            "time": "2020-01-07T12:50:10+00:00"
         },
         {
             "name": "laminas/laminas-code",
@@ -4967,6 +4968,48 @@
             ],
             "description": "Slevomat Coding Standard for PHP_CodeSniffer complements Consistence Coding Standard by providing sniffs with additional checks.",
             "time": "2019-12-19T16:04:26+00:00"
+        },
+        {
+            "name": "spaze/phpstan-disallowed-calls",
+            "version": "v0.12.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spaze/phpstan-disallowed-calls.git",
+                "reference": "8aa127b2026da2730841b4513de91de4f8edd667"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spaze/phpstan-disallowed-calls/zipball/8aa127b2026da2730841b4513de91de4f8edd667",
+                "reference": "8aa127b2026da2730841b4513de91de4f8edd667",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1",
+                "phpstan/phpstan": "^0.12"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^0.12",
+                "phpunit/phpunit": "^7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spaze\\PHPStan\\Rules\\Disallowed\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michal Špaček",
+                    "email": "mail@michalspacek.cz",
+                    "homepage": "https://www.michalspacek.cz"
+                }
+            ],
+            "description": "Disallowed method and function calls plug-in for PHPStan",
+            "time": "2020-01-06T17:27:03+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",

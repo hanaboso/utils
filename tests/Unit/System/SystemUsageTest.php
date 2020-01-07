@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace UtilsTests\Unit\Utils;
+namespace UtilsTests\Unit\System;
 
 use Hanaboso\Utils\System\SystemUsage;
 use PHPUnit\Framework\TestCase;
@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * Class SystemUsageTest
  *
- * @package UtilsTests\Unit\Utils
+ * @package UtilsTests\Unit\System
  */
 final class SystemUsageTest extends TestCase
 {

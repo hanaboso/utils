@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace UtilsTests\Unit\Utils;
+namespace UtilsTests\Unit\String;
 
 use Hanaboso\Utils\String\Strings;
 use PHPUnit\Framework\TestCase;
@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * Class StringsTest
  *
- * @package UtilsTests\Unit\Utils
+ * @package UtilsTests\Unit\String
  */
 final class StringsTest extends TestCase
 {

@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace UtilsTests\Unit\Utils;
+namespace UtilsTests\Unit\System;
 
 use Hanaboso\Utils\System\PipesHeaders;
 use PHPUnit\Framework\TestCase;
@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * Class PipesHeadersTest
  *
- * @package UtilsTests\Unit\Utils
+ * @package UtilsTests\Unit\System
  */
 final class PipesHeadersTest extends TestCase
 {
