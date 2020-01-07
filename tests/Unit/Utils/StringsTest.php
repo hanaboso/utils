@@ -2,7 +2,7 @@
 
 namespace UtilsTests\Unit\Utils;
 
-use Hanaboso\Utils\Utils\Strings;
+use Hanaboso\Utils\String\Strings;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -19,6 +19,8 @@ final class StringsTest extends TestCase
      * @param string $string
      * @param string $assert
      * @param bool   $firstUpper
+     *
+     * @covers       \Hanaboso\Utils\String\Strings::toCamelCase()
      */
     public function testToCamelCase(string $string, string $assert, bool $firstUpper): void
     {
@@ -51,7 +53,7 @@ final class StringsTest extends TestCase
     }
 
     /**
-     *
+     * @covers \Hanaboso\Utils\String\Strings::getShortClassName()
      */
     public function testGetShortClassName(): void
     {

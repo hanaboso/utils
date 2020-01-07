@@ -1,14 +1,15 @@
 <?php declare(strict_types=1);
 
-namespace Hanaboso\Utils\Utils;
+namespace Hanaboso\Utils\System;
 
 use Hanaboso\Utils\Exception\PipesFrameworkException;
+use Hanaboso\Utils\String\Json;
 use Throwable;
 
 /**
  * Class ControllerUtils
  *
- * @package Hanaboso\Utils\Utils
+ * @package Hanaboso\Utils\System
  */
 class ControllerUtils
 {

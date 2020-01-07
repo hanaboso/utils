@@ -1,13 +1,15 @@
 <?php declare(strict_types=1);
 
-namespace Hanaboso\Utils\Utils;
+namespace Hanaboso\Utils\String;
+
+use Throwable;
 
 /**
- * Class TransportFormatter
+ * Class LoggerFormater
  *
- * @package Hanaboso\Utils\Utils
+ * @package Hanaboso\Utils\String
  */
-final class TransportFormatter
+final class LoggerFormater
 {
 
     /**
@@ -70,6 +72,27 @@ final class TransportFormatter
             self::headersToString($headers),
             $body
         );
+    }
+
+    /**
+     * @param Throwable $e
+     * @param mixed[]   $debugInfo
+     *
+     * @return mixed[]
+     */
+    public static function getContextForLogger(?Throwable $e = NULL, array $debugInfo = []): array
+    {
+        if ($e === NULL) {
+            return [];
+        }
+
+        return [
+            'exception' => $e,
+            'message'   => $e->getMessage(),
+            'trace'     => $e->getTraceAsString(),
+            'code'      => $e->getCode(),
+            'debugInfo' => $debugInfo,
+        ];
     }
 
 }

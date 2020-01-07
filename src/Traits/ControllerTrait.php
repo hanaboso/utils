@@ -2,8 +2,8 @@
 
 namespace Hanaboso\Utils\Traits;
 
-use Hanaboso\Utils\Utils\ControllerUtils;
-use Hanaboso\Utils\Utils\Json;
+use Hanaboso\Utils\String\Json;
+use Hanaboso\Utils\System\ControllerUtils;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Throwable;

@@ -2,7 +2,7 @@
 
 namespace UtilsTests\Unit\Utils;
 
-use Hanaboso\Utils\Utils\SystemUsage;
+use Hanaboso\Utils\System\SystemUsage;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -14,7 +14,7 @@ final class SystemUsageTest extends TestCase
 {
 
     /**
-     * @covers \Hanaboso\Utils\Utils\SystemUsage::getCurrentTimestamp()
+     * @covers \Hanaboso\Utils\System\SystemUsage::getCurrentTimestamp()
      */
     public function testGetCurrentTimestamp(): void
     {
@@ -26,7 +26,7 @@ final class SystemUsageTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\Utils\SystemUsage::getCpuTimes()
+     * @covers \Hanaboso\Utils\System\SystemUsage::getCpuTimes()
      */
     public function testGetCpuTimes(): void
     {

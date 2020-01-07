@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Hanaboso\Utils\Utils;
+namespace Hanaboso\Utils\String;
 
 /**
  * Class Base64
  *
- * @package Hanaboso\Utils\Utils
+ * @package Hanaboso\Utils\String
  */
 final class Base64
 {

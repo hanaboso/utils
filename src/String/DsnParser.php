@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace Hanaboso\Utils\Utils;
+namespace Hanaboso\Utils\String;
 
 use InvalidArgumentException;
 
 /**
  * Class DsnParser
  *
- * @package Hanaboso\Utils\Utils
+ * @package Hanaboso\Utils\String
  */
 final class DsnParser
 {

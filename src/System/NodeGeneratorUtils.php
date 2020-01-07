@@ -1,11 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace Hanaboso\Utils\Utils;
+namespace Hanaboso\Utils\System;
+
+use Hanaboso\Utils\String\Strings;
 
 /**
  * Class NodeGeneratorUtils
  *
- * @package Hanaboso\Utils\Utils
+ * @package Hanaboso\Utils\System
  */
 final class NodeGeneratorUtils
 {

@@ -2,7 +2,7 @@
 
 namespace UtilsTests\Unit\Utils;
 
-use Hanaboso\Utils\Utils\DsnParser;
+use Hanaboso\Utils\String\DsnParser;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -14,7 +14,7 @@ final class DsnParserTest extends TestCase
 {
 
     /**
-     * @covers \Hanaboso\Utils\Utils\DsnParser::genericParser
+     * @covers \Hanaboso\Utils\String\DsnParser::genericParser
      */
     public function testGenericParser(): void
     {
@@ -33,7 +33,8 @@ final class DsnParserTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\Utils\DsnParser::rabbitParser
+     * @covers \Hanaboso\Utils\String\DsnParser::rabbitParser
+     * @covers \Hanaboso\Utils\String\DsnParser::getQueryParamsArr
      */
     public function testRabbitParser(): void
     {

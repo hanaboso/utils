@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Hanaboso\Utils\Utils;
+namespace Hanaboso\Utils\Arrays;
 
 /**
  * Class Arrays
  *
- * @package Hanaboso\Utils\Utils
+ * @package Hanaboso\Utils\Arrays
  */
 final class Arrays
 {

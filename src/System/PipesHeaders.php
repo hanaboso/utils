@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Hanaboso\Utils\Utils;
+namespace Hanaboso\Utils\System;
 
 /**
  * Class PipesHeaders
  *
- * @package Hanaboso\Utils\Utils
+ * @package Hanaboso\Utils\System
  */
 class PipesHeaders
 {

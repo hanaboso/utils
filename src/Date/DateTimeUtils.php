@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Hanaboso\Utils\Utils;
+namespace Hanaboso\Utils\Date;
 
 use DateTime;
 use DateTimeZone;
@@ -10,7 +10,7 @@ use Throwable;
 /**
  * Class DateTimeUtils
  *
- * @package Hanaboso\Utils\Utils
+ * @package Hanaboso\Utils\Date
  */
 class DateTimeUtils
 {

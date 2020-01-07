@@ -2,7 +2,7 @@
 
 namespace UtilsTests\Unit\Utils;
 
-use Hanaboso\Utils\Utils\PipesHeaders;
+use Hanaboso\Utils\System\PipesHeaders;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -14,7 +14,7 @@ final class PipesHeadersTest extends TestCase
 {
 
     /**
-     * @covers \Hanaboso\Utils\Utils\PipesHeaders::createKey()
+     * @covers \Hanaboso\Utils\System\PipesHeaders::createKey()
      */
     public function testCreateKey(): void
     {
@@ -22,7 +22,8 @@ final class PipesHeadersTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\Utils\PipesHeaders::clear()
+     * @covers \Hanaboso\Utils\System\PipesHeaders::clear()
+     * @covers \Hanaboso\Utils\System\PipesHeaders::existPrefix()
      */
     public function testClear(): void
     {
@@ -37,7 +38,7 @@ final class PipesHeadersTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\Utils\PipesHeaders::get()
+     * @covers \Hanaboso\Utils\System\PipesHeaders::get()
      */
     public function testGet(): void
     {
@@ -53,7 +54,9 @@ final class PipesHeadersTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\Utils\PipesHeaders::debugInfo()
+     * @covers \Hanaboso\Utils\System\PipesHeaders::debugInfo()
+     * @covers \Hanaboso\Utils\System\PipesHeaders::existPrefix()
+     * @covers \Hanaboso\Utils\System\PipesHeaders::createKey()
      */
     public function testDebugInfo(): void
     {

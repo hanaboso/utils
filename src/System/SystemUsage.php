@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace Hanaboso\Utils\Utils;
+namespace Hanaboso\Utils\System;
 
 use Exception;
 
 /**
  * Class SystemUsage
  *
- * @package Hanaboso\Utils\Utils
+ * @package Hanaboso\Utils\System
  */
 final class SystemUsage
 {
