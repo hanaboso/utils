@@ -1,7 +1,24 @@
 {
     "name": "hanaboso/utils",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "license": "proprietary",
+    "authors": [
+        {
+            "name": "Hanaboso s.r.o.",
+            "role": "Owner",
+            "email": "info@hanaboso.com"
+        },
+        {
+            "name": "Radek Jirsa",
+            "role": "Developer",
+            "email": "jirsa.r@hanaboso.com"
+        },
+        {
+            "name": "Radek Brůha",
+            "role": "Developer",
+            "email": "bruha.r@hanaboso.com"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "Hanaboso\\Utils\\": "src/"
@@ -14,6 +31,7 @@
     },
     "require": {
         "php": "^7.4",
+        "ext-json": "*",
         "psr/log": "^1.1",
         "symfony/http-foundation": "^4.4 | ^5.0"
     },
