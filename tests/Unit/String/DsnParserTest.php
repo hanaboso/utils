@@ -3,6 +3,7 @@
 namespace UtilsTests\Unit\String;
 
 use Hanaboso\Utils\String\DsnParser;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -83,15 +84,26 @@ final class DsnParserTest extends TestCase
             $result
         );
 
-        $result = DsnParser::rabbitParser('amqp://dev.company?heartbeat=10&connection_timeout=10000');
+        $result = DsnParser::rabbitParser('amqp://dev.company:8080/vhost?heartbeat=10&connection_timeout=10000');
         self::assertEquals(
             [
                 'host'               => 'dev.company',
                 'heartbeat'          => 10,
                 'connection_timeout' => 10_000,
+                'port'               => 8_080,
+                'vhost'              => 'vhost',
             ],
             $result
         );
+    }
+
+    /**
+     * @covers \Hanaboso\Utils\String\DsnParser::rabbitParser
+     */
+    public function testRabbitParserError(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        DsnParser::rabbitParser('uri://');
     }
 
 }

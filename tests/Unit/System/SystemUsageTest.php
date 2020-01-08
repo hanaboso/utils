@@ -2,6 +2,7 @@
 
 namespace UtilsTests\Unit\System;
 
+use Hanaboso\PhpCheckUtils\PhpUnit\Traits\PrivateTrait;
 use Hanaboso\Utils\System\SystemUsage;
 use PHPUnit\Framework\TestCase;
 
@@ -12,6 +13,8 @@ use PHPUnit\Framework\TestCase;
  */
 final class SystemUsageTest extends TestCase
 {
+
+    use PrivateTrait;
 
     /**
      * @covers \Hanaboso\Utils\System\SystemUsage::getCurrentTimestamp()
@@ -27,6 +30,7 @@ final class SystemUsageTest extends TestCase
 
     /**
      * @covers \Hanaboso\Utils\System\SystemUsage::getCpuTimes()
+     * @covers \Hanaboso\Utils\System\SystemUsage::getCpuUsage()
      */
     public function testGetCpuTimes(): void
     {
@@ -40,6 +44,24 @@ final class SystemUsageTest extends TestCase
 
         $cpuUsageBefore = SystemUsage::getCpuUsage();
         self::assertGreaterThan(0, $cpuUsageBefore);
+    }
+
+    /**
+     * @covers \Hanaboso\Utils\System\SystemUsage::getCpuUsage
+     */
+    public function testGetCpuUsageErr(): void
+    {
+        runkit_constant_redefine('\Hanaboso\Utils\System\SystemUsage::FILE_PROC_UPTIME', 'aa');
+        self::assertEquals(0, SystemUsage::getCpuUsage());
+    }
+
+    /**
+     * @covers \Hanaboso\Utils\System\SystemUsage::getCpuTimes
+     */
+    public function testGetCpuTimesErr(): void
+    {
+        runkit_constant_redefine('\Hanaboso\Utils\System\SystemUsage::FILE_PROC_STAT', 'aa');
+        self::assertEquals(3, count(SystemUsage::getCpuTimes()));
     }
 
 }

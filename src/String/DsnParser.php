@@ -84,7 +84,7 @@ final class DsnParser
             }
 
             if ((isset($parsedUrl[5]) && !empty($parsedUrl[5])) || (isset($parsedUrl[3]) && !empty($parsedUrl[3]))) {
-                $result['port'] = isset($parsedUrl[5]) && !empty($parsedUrl[5]) ? $parsedUrl[5] : $parsedUrl[2];
+                $result['port'] = (int) isset($parsedUrl[5]) && !empty($parsedUrl[5]) ? $parsedUrl[5] : (int) $parsedUrl[3];
             }
 
             if ((isset($parsedUrl[2]) && !empty($parsedUrl[2])) || (isset($parsedUrl[4]) && !empty($parsedUrl[4]))) {

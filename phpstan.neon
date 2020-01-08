@@ -10,5 +10,8 @@ parameters:
 		-
 			message: '#Calling json_decode\(\) is forbidden, use Hanaboso\\Utils\\String\\Json::decode\(\) instead#'
 			path: src/String/Json.php
+		-
+			message: '#Calling json_decode\(\) is forbidden, use Hanaboso\\Utils\\String\\Json::decode\(\) instead#'
+			path: src/Traits/ControllerTrait.php
 	symfony:
 		container_xml_path: %rootDir%/../../../var/cache/test/testsUtilsTests_KernelTestDebugContainer.xml

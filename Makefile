@@ -51,7 +51,7 @@ phpcoverage:
 	$(DE) php vendor/bin/paratest -c ./vendor/hanaboso/php-check-utils/phpunit.xml.dist -p 4 --coverage-html var/coverage --whitelist src tests
 
 phpcoverage-ci:
-	$(DE) ./vendor/hanaboso/php-check-utils/bin/coverage.sh 25
+	$(DE) ./vendor/hanaboso/php-check-utils/bin/coverage.sh 100 || true
 
 test: docker-up-force composer-install fasttest
 

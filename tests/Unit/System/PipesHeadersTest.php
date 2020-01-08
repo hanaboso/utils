@@ -47,7 +47,7 @@ final class PipesHeadersTest extends TestCase
             PipesHeaders::get(
                 'token',
                 [
-                    'content-type' => 'application/json', 'pfp-node-id' => '123', 'pf-token' => '456',
+                    'content-type' => 'application/json', 'pfp-node-id' => '123', 'pf-token' => ['456'],
                 ]
             )
         );

@@ -2,6 +2,7 @@
 
 namespace UtilsTests\Unit\String;
 
+use Exception;
 use Hanaboso\Utils\String\LoggerFormater;
 use PHPUnit\Framework\TestCase;
 
@@ -58,6 +59,25 @@ final class LoggerFormaterTest extends TestCase
                 '{"data":[]}'
             )
         );
+    }
+
+    /**
+     * @covers \Hanaboso\Utils\String\LoggerFormater::getContextForLogger
+     */
+    public function testGetContextForLogger(): void
+    {
+        self::assertEquals(
+            'Ups, something went wrong',
+            LoggerFormater::getContextForLogger(new Exception('Ups, something went wrong', 400))['message']
+        );
+    }
+
+    /**
+     * @covers \Hanaboso\Utils\String\LoggerFormater::getContextForLogger
+     */
+    public function testGetContextForLoggerNull(): void
+    {
+        self::assertEmpty(LoggerFormater::getContextForLogger(NULL));
     }
 
 }
