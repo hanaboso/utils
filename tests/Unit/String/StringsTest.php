@@ -81,7 +81,6 @@ final class StringsTest extends TestCase
     /**
      * @covers \Hanaboso\Utils\String\Strings::webalize
      * @covers \Hanaboso\Utils\String\Strings::toAscii
-     * @covers \Hanaboso\Utils\String\Strings::iconv
      */
     public function testWebalize(): void
     {
@@ -99,7 +98,21 @@ final class StringsTest extends TestCase
         $method  = $strings->getMethod('glibc');
         $method->setAccessible(TRUE);
 
-        self::assertEquals('Nas produkt', $method->invokeArgs(NULL, ['Náš produkt']));
+        self::assertEquals('Nas produkt', $method->invokeArgs(NULL, ['Naš produkt']));
+    }
+
+    /**
+     * @covers \Hanaboso\Utils\String\Strings::iconv
+     *
+     * @throws ReflectionException
+     */
+    public function testIconv(): void
+    {
+        $strings = new ReflectionClass(Strings::class);
+        $method  = $strings->getMethod('iconv');
+        $method->setAccessible(TRUE);
+
+        self::assertEquals('Nas produkt', $method->invokeArgs(NULL, ['Naš produkt']));
     }
 
 }
