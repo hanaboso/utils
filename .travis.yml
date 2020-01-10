@@ -3,11 +3,12 @@ language: php
 before_install:
     - phpenv config-rm xdebug.ini || return 0
     - pecl install pcov
+    - echo "extension=mongodb.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
     - pear config-set preferred_state alpha
     - pecl install runkit7
 
 install:
-    - travis_retry composer install --no-progress --prefer-dist --ignore-platform-reqs
+    - travis_retry composer install --no-progress --prefer-dist
     - tests/testApp/bin/console cache:warmup --env=test
 
 script:
