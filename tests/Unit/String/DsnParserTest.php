@@ -82,6 +82,26 @@ final class DsnParserTest extends TestCase
 
     /**
      * @covers \Hanaboso\Utils\String\DsnParser::rabbitParser
+     * @covers \Hanaboso\Utils\String\DsnParser::isValidRabbitDsn
+     * @covers \Hanaboso\Utils\String\DsnParser::regExWithoutUsersCredentials
+     */
+    public function testRabbitParserEnv(): void
+    {
+        $result = DsnParser::rabbitParser('amqp://env_RABBITMQ_USER_000:env_RABBITMQ_PASS_111@env_RABBITMQ_HOST_222:env_RABBITMQ_PORT_333/env_RABBITMQ_VHOST_444');
+        self::assertEquals(
+            [
+                'user'     => 'env_RABBITMQ_USER_000',
+                'password' => 'env_RABBITMQ_PASS_111',
+                'host'     => 'env_RABBITMQ_HOST_222',
+                'port'     => 'env_RABBITMQ_PORT_333',
+                'vhost'    => 'env_RABBITMQ_VHOST_444',
+            ],
+            $result
+        );
+    }
+
+    /**
+     * @covers \Hanaboso\Utils\String\DsnParser::rabbitParser
      */
     public function testRabbitParserError(): void
     {
@@ -120,6 +140,7 @@ final class DsnParserTest extends TestCase
     }
 
     /**
+     * @covers \Hanaboso\Utils\String\DsnParser::isValidRabbitDsn
      * @covers \Hanaboso\Utils\String\DsnParser::regExWithUsersCredentials
      */
     public function test3IsValidDsn(): void
@@ -161,7 +182,7 @@ final class DsnParserTest extends TestCase
     /**
      * @covers \Hanaboso\Utils\String\DsnParser::isValidRabbitDsn
      */
-    public function test7IsValidDsn(): void
+    public function test8IsValidDsn(): void
     {
         $this->expectException(InvalidArgumentException::class);
         DsnParser::isValidRabbitDsn('uri://');

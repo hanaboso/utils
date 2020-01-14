@@ -35,8 +35,8 @@ final class DsnParser
         if (strpos($dsn, '@')) {
             $parsedUrl = self::regExWithUsersCredentials($dsn);
 
-            if (isset($parsedUrl[8])) {
-                $queryArr = self::getQueryParamsArr($parsedUrl[8]);
+            if (isset($parsedUrl[7])) {
+                $queryArr = self::getQueryParamsArr($parsedUrl[7]);
             }
 
             $result = [
@@ -49,20 +49,20 @@ final class DsnParser
                 $result = array_merge($result, $queryArr);
             }
 
-            if ((isset($parsedUrl[7]) && !empty($parsedUrl[7])) || (isset($parsedUrl[5]) && !empty($parsedUrl[5]))) {
-                $result['port'] = isset($parsedUrl[7]) && !empty($parsedUrl[7]) ? $parsedUrl[7] : $parsedUrl[5];
+            if ((isset($parsedUrl[6]) && !empty($parsedUrl[6])) || (isset($parsedUrl[4]) && !empty($parsedUrl[4]))) {
+                $result['port'] = isset($parsedUrl[6]) && !empty($parsedUrl[6]) ? $parsedUrl[6] : $parsedUrl[4];
             }
 
-            if ((isset($parsedUrl[6]) && !empty($parsedUrl[6])) || (isset($parsedUrl[4]) && !empty($parsedUrl[4]))) {
-                $result['vhost'] = isset($parsedUrl[6]) && !empty($parsedUrl[6]) ? $parsedUrl[6] : $parsedUrl[4];
+            if (isset($parsedUrl[5]) && !empty($parsedUrl[5])) {
+                $result['vhost'] = $parsedUrl[5];
             }
 
             return $result;
         } else {
             $parsedUrl = self::regExWithoutUsersCredentials($dsn);
 
-            if (isset($parsedUrl[6])) {
-                $queryArr = self::getQueryParamsArr($parsedUrl[6]);
+            if (isset($parsedUrl[5])) {
+                $queryArr = self::getQueryParamsArr($parsedUrl[5]);
             }
 
             $result = [
@@ -73,12 +73,12 @@ final class DsnParser
                 $result = array_merge($result, $queryArr);
             }
 
-            if ((isset($parsedUrl[5]) && !empty($parsedUrl[5])) || (isset($parsedUrl[3]) && !empty($parsedUrl[3]))) {
-                $result['port'] = (int) isset($parsedUrl[5]) && !empty($parsedUrl[5]) ? $parsedUrl[5] : (int) $parsedUrl[3];
+            if ((isset($parsedUrl[2]) && !empty($parsedUrl[2]))) {
+                $result['port'] = $parsedUrl[2];
             }
 
-            if ((isset($parsedUrl[2]) && !empty($parsedUrl[2])) || (isset($parsedUrl[4]) && !empty($parsedUrl[4]))) {
-                $result['vhost'] = isset($parsedUrl[2]) && !empty($parsedUrl[2]) ? $parsedUrl[2] : $parsedUrl[4];
+            if ((isset($parsedUrl[3]) && !empty($parsedUrl[3]))) {
+                $result['vhost'] = $parsedUrl[3];
             }
 
             return $result;
@@ -99,17 +99,17 @@ final class DsnParser
         if (strpos($dsn, '@')) {
             $parsedUrl = self::regExWithUsersCredentials($dsn);
 
-            if (!isset($parsedUrl[3]) || empty($parsedUrl[3])) {
+            if (empty($parsedUrl[3])) {
                 throw new InvalidArgumentException('Host was not provided.');
             }
 
-            if (empty($parsedUrl[7]) && empty($parsedUrl[5])) {
+            if (empty($parsedUrl[4]) && empty($parsedUrl[6])) {
                 throw new InvalidArgumentException('Port was not provided.');
             }
         } else {
             $parsedUrl = self::regExWithoutUsersCredentials($dsn);
 
-            if (!isset($parsedUrl[1]) || empty($parsedUrl[1])) {
+            if (empty($parsedUrl[1])) {
                 throw new InvalidArgumentException('Host was not provided');
             }
 
@@ -148,7 +148,7 @@ final class DsnParser
     private static function regExWithUsersCredentials(string $dsn): array
     {
         preg_match(
-            '/amqp:\/{2}([A-z, 0-9, .]+):(.*)@(?:([A-z, 0-9, .]+)|)(?:\/([A-z, 0-9, .]+)|:(?:([0-9]+)|)\/(?:([A-z, 0-9, .]+))|:(?:([0-9]+))|)(?:\?(.*)|)/',
+            '/amqp:\/{2}([A-z, 0-9, .]+):(.*)@(?:([A-z, 0-9, .]+)|)(?:\/(?:[A-z, 0-9, .]+)|:((?:[0-9]+)|(?:env_.+))\/(?:([A-z, 0-9, .]+))|:(?:([0-9]+))|)(?:\?(.*)|)/',
             $dsn,
             $parsedUrl
         );
@@ -164,7 +164,7 @@ final class DsnParser
     private static function regExWithoutUsersCredentials(string $dsn): array
     {
         preg_match(
-            '/amqp:\/{2}(?:([A-z, 0-9, .]+)|)(?:\/([A-z, 0-9, .]+)|:(?:([0-9]+)|)\/(?:([A-z, 0-9, .]+))|:(?:([0-9]+))|)(?:\?(.*)|)/',
+            '/amqp:\/{2}(?:([A-z, 0-9, .]+)|)(?:\/(?:[A-z, 0-9, .]+)|:((?:[0-9]+)|(?:env_.+))\/(?:([A-z, 0-9, .]+))|:(?:([0-9]+))|)(?:\?(.*)|)/',
             $dsn,
             $parsedUrl
         );
