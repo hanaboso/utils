@@ -73,8 +73,8 @@ final class DsnParser
                 $result = array_merge($result, $queryArr);
             }
 
-            if ((isset($parsedUrl[2]) && !empty($parsedUrl[2]))) {
-                $result['port'] = $parsedUrl[2];
+            if ((isset($parsedUrl[2]) && !empty($parsedUrl[2])) || (isset($parsedUrl[4]) && !empty($parsedUrl[4]))) {
+                $result['port'] = isset($parsedUrl[2]) && !empty($parsedUrl[2]) ? $parsedUrl[2] : $parsedUrl[4];
             }
 
             if ((isset($parsedUrl[3]) && !empty($parsedUrl[3]))) {
@@ -113,7 +113,7 @@ final class DsnParser
                 throw new InvalidArgumentException('Host was not provided');
             }
 
-            if (empty($parsedUrl[5]) && empty($parsedUrl[3])) {
+            if (empty($parsedUrl[4]) && empty($parsedUrl[3])) {
                 throw new InvalidArgumentException('Port was not provided.');
             }
         }

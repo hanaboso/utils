@@ -78,6 +78,15 @@ final class DsnParserTest extends TestCase
             ],
             $result
         );
+
+        $result = DsnParser::rabbitParser('amqp://rabbitmq:5672');
+        self::assertEquals(
+            [
+                'host' => 'rabbitmq',
+                'port' => 5_672,
+            ],
+            $result
+        );
     }
 
     /**
