@@ -28,7 +28,7 @@ final class FilesTest extends TestCase
         $this
             ->getFunctionMock('Hanaboso\Utils\File', 'file_put_contents')
             ->expects(self::any())
-            ->willReturnCallback(fn() => FALSE);
+            ->willReturnCallback(static fn() => FALSE);
 
         self::expectException(LogicException::class);
         File::putContent(self::PUT_NAME, 'awdad');
