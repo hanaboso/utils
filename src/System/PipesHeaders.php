@@ -67,7 +67,7 @@ class PipesHeaders
      * @param string  $key
      * @param mixed[] $headers
      *
-     * @return string|null
+     * @return string|NULL
      */
     public static function get(string $key, array $headers): ?string
     {

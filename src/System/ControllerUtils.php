@@ -46,7 +46,7 @@ class ControllerUtils
 
     /**
      * @param mixed[]        $headers
-     * @param Throwable|null $e
+     * @param Throwable|NULL $e
      *
      * @return mixed[]
      */

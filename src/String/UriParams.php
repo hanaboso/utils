@@ -11,7 +11,7 @@ final class UriParams
 {
 
     /**
-     * @param string|null $orderBy
+     * @param string|NULL $orderBy
      *
      * @return mixed[]
      */
