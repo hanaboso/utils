@@ -16,6 +16,7 @@ final class DsnParserTest extends TestCase
 
     /**
      * @covers \Hanaboso\Utils\String\DsnParser::genericParser
+     * @covers \Hanaboso\Utils\String\DsnParser::regExWithUsersCredentials
      */
     public function testGenericParser(): void
     {
@@ -36,6 +37,8 @@ final class DsnParserTest extends TestCase
     /**
      * @covers \Hanaboso\Utils\String\DsnParser::rabbitParser
      * @covers \Hanaboso\Utils\String\DsnParser::getQueryParamsArr
+     * @covers \Hanaboso\Utils\String\DsnParser::regExWithoutUsersCredentials
+     * @covers \Hanaboso\Utils\String\DsnParser::regExWithUsersCredentials
      */
     public function testRabbitParser(): void
     {
@@ -51,28 +54,7 @@ final class DsnParserTest extends TestCase
             $result
         );
 
-        $result = DsnParser::rabbitParser('amqp://guest:heslo@dev.company/sss.qa');
-        self::assertEquals(
-            [
-                'user'     => 'guest',
-                'password' => 'heslo',
-                'host'     => 'dev.company',
-                'vhost'    => 'sss.qa',
-            ],
-            $result
-        );
-
-        $result = DsnParser::rabbitParser('amqp://guest:heslo@dev.company');
-        self::assertEquals(
-            [
-                'user'     => 'guest',
-                'password' => 'heslo',
-                'host'     => 'dev.company',
-            ],
-            $result
-        );
-
-        $result = DsnParser::rabbitParser('amqp://guest:heslo@dev.company?heartbeat=10&connection_timeout=10000');
+        $result = DsnParser::rabbitParser('amqp://guest:heslo@dev.company:1001?heartbeat=10&connection_timeout=10000');
         self::assertEquals(
             [
                 'user'               => 'guest',
@@ -80,6 +62,7 @@ final class DsnParserTest extends TestCase
                 'host'               => 'dev.company',
                 'heartbeat'          => 10,
                 'connection_timeout' => 10_000,
+                'port'               => 1_001,
             ],
             $result
         );
@@ -104,6 +87,84 @@ final class DsnParserTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         DsnParser::rabbitParser('uri://');
+    }
+
+    /**
+     * @covers \Hanaboso\Utils\String\DsnParser::isValidRabbitDsn
+     * @covers \Hanaboso\Utils\String\DsnParser::regExWithUsersCredentials
+     * @covers \Hanaboso\Utils\String\DsnParser::regExWithoutUsersCredentials
+     */
+    public function test1IsValidDsn(): void
+    {
+        $result = DsnParser::isValidRabbitDsn('amqp://guest:heslo@dev.company:1000/sss.qa');
+        self::assertTrue($result);
+
+        $result = DsnParser::isValidRabbitDsn('amqp://dev.company:8080/vhost?heartbeat=10&connection_timeout=10000');
+        self::assertTrue($result);
+
+        $result = DsnParser::isValidRabbitDsn('amqp://host:101/vhost');
+        self::assertTrue($result);
+
+        self::expectException(InvalidArgumentException::class);
+        DsnParser::isValidRabbitDsn('amqp://guest:heslo@dev.company/sss.qa');
+    }
+
+    /**
+     * @covers \Hanaboso\Utils\String\DsnParser::isValidRabbitDsn
+     * @covers \Hanaboso\Utils\String\DsnParser::regExWithUsersCredentials
+     */
+    public function test2IsValidDsn(): void
+    {
+        self::expectException(InvalidArgumentException::class);
+        DsnParser::isValidRabbitDsn('amqp://guest:heslo@dev.company');
+    }
+
+    /**
+     * @covers \Hanaboso\Utils\String\DsnParser::regExWithUsersCredentials
+     */
+    public function test3IsValidDsn(): void
+    {
+        self::expectException(InvalidArgumentException::class);
+        DsnParser::isValidRabbitDsn('amqp://guest:heslo@dev.company?heartbeat=10&connection_timeout=10000');
+    }
+
+    /**
+     * @covers \Hanaboso\Utils\String\DsnParser::isValidRabbitDsn
+     * @covers \Hanaboso\Utils\String\DsnParser::regExWithUsersCredentials
+     */
+    public function test4IsValidDsn(): void
+    {
+        self::expectException(InvalidArgumentException::class);
+        DsnParser::isValidRabbitDsn('amqp://guest:heslo@:600');
+    }
+
+    /**
+     * @covers \Hanaboso\Utils\String\DsnParser::isValidRabbitDsn
+     * @covers \Hanaboso\Utils\String\DsnParser::regExWithoutUsersCredentials
+     */
+    public function test5IsValidDsn(): void
+    {
+        self::expectException(InvalidArgumentException::class);
+        DsnParser::isValidRabbitDsn('amqp://:600');
+    }
+
+    /**
+     * @covers \Hanaboso\Utils\String\DsnParser::isValidRabbitDsn
+     * @covers \Hanaboso\Utils\String\DsnParser::regExWithoutUsersCredentials
+     */
+    public function test6IsValidDsn(): void
+    {
+        self::expectException(InvalidArgumentException::class);
+        DsnParser::isValidRabbitDsn('amqp://host');
+    }
+
+    /**
+     * @covers \Hanaboso\Utils\String\DsnParser::isValidRabbitDsn
+     */
+    public function test7IsValidDsn(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        DsnParser::isValidRabbitDsn('uri://');
     }
 
 }
