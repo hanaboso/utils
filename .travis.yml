@@ -6,6 +6,7 @@ before_install:
     - echo "extension=mongodb.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
     - pear config-set preferred_state alpha
     - pecl install runkit7
+    - export KERNEL_CLASS="UtilsTests\Kernel"
 
 install:
     - travis_retry composer install --no-progress --prefer-dist
