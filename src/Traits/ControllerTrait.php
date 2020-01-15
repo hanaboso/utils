@@ -4,7 +4,6 @@ namespace Hanaboso\Utils\Traits;
 
 use Hanaboso\Utils\String\Json;
 use Hanaboso\Utils\System\ControllerUtils;
-use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Throwable;
 
@@ -16,18 +15,7 @@ use Throwable;
 trait ControllerTrait
 {
 
-    /**
-     * @var LoggerInterface|NULL
-     */
-    protected ?LoggerInterface $logger;
-
-    /**
-     * @param LoggerInterface $logger
-     */
-    public function setLogger(LoggerInterface $logger): void
-    {
-        $this->logger = $logger;
-    }
+    use LoggerTrait;
 
     /**
      * @param mixed   $data
@@ -67,9 +55,7 @@ trait ControllerTrait
         $msg     = ControllerUtils::createExceptionData($e, $status);
         $headers = ControllerUtils::createHeaders($headers, $e);
 
-        if ($this->logger) {
-            $this->logger->error($msg, ['exception' => $e]);
-        }
+        $this->logger->error($msg, ['exception' => $e]);
 
         return $this->getResponse($msg, $code, $headers);
     }
