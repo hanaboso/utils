@@ -2,17 +2,16 @@
 
 namespace UtilsTests\Unit\Cron;
 
-use Hanaboso\Utils\Cron\CronExpression;
 use Hanaboso\Utils\Cron\CronParser;
 use LogicException;
-use PHPUnit\Framework\TestCase;
+use UtilsTests\KernelTestCaseAbstract;
 
 /**
  * Class CronParserTest
  *
  * @package UtilsTests\Unit\Cron
  */
-final class CronParserTest extends TestCase
+final class CronParserTest extends KernelTestCaseAbstract
 {
 
     /**
@@ -64,8 +63,8 @@ final class CronParserTest extends TestCase
             self::expectException(LogicException::class);
         }
 
-        $c = CronParser::parse($expr);
-        self::assertInstanceOf(CronExpression::class, $c);
+        CronParser::parse($expr);
+        self::assertFake();
     }
 
     /**

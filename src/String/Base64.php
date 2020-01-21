@@ -27,7 +27,7 @@ final class Base64
      */
     public static function base64UrlDecode(string $inputStr): string
     {
-        return (string) base64_decode(strtr($inputStr, '-_,', '+/='));
+        return (string) base64_decode(strtr($inputStr, '-_,', '+/='), TRUE);
     }
 
 }

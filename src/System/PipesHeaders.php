@@ -58,7 +58,8 @@ class PipesHeaders
     {
         return array_filter(
             $headers,
-            static fn($key) => self::existPrefix(self::PF_PREFIX, $key) || in_array(strtolower($key), self::WHITE_LIST),
+            static fn($key) => self::existPrefix(self::PF_PREFIX, $key) ||
+                in_array(strtolower($key), self::WHITE_LIST, TRUE),
             ARRAY_FILTER_USE_KEY
         );
     }
@@ -91,7 +92,7 @@ class PipesHeaders
         $debugInfo = array_filter(
             $headers,
             static fn($key) => self::existPrefix(self::PF_PREFIX, $key) &&
-                in_array($key, [self::createKey(self::CORRELATION_ID), self::createKey(self::NODE_ID)]),
+                in_array($key, [self::createKey(self::CORRELATION_ID), self::createKey(self::NODE_ID)], TRUE),
             ARRAY_FILTER_USE_KEY
         );
 

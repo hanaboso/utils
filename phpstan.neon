@@ -14,4 +14,4 @@ parameters:
 			message: '#Calling json_decode\(\) is forbidden, use Hanaboso\\Utils\\String\\Json::decode\(\) instead#'
 			path: src/Traits/ControllerTrait.php
 	symfony:
-		container_xml_path: %rootDir%/../../../var/cache/test/testsUtilsTests_KernelTestDebugContainer.xml
+		container_xml_path: %rootDir%/../../../var/cache/test/UtilsTests_KernelTestDebugContainer.xml

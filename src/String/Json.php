@@ -17,7 +17,7 @@ final class Json
      */
     public static function encode($data): string
     {
-        return (string) json_encode($data, JSON_THROW_ON_ERROR);
+        return json_encode($data, JSON_THROW_ON_ERROR);
     }
 
     /**

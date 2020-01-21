@@ -22,7 +22,7 @@ final class SystemUsageTest extends TestCase
     public function testGetCurrentTimestamp(): void
     {
         $ts = SystemUsage::getCurrentTimestamp();
-        self::assertTrue(is_numeric($ts));
+        self::assertGreaterThan(0, $ts);
 
         $ts2 = SystemUsage::getCurrentTimestamp();
         self::assertGreaterThanOrEqual($ts, $ts2);

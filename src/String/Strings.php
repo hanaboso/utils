@@ -94,13 +94,13 @@ final class Strings
     public static function toAscii(string $s): string
     {
         $t = NULL;
-        if ($t === NULL && class_exists('Transliterator', FALSE)) {
+        if (class_exists('Transliterator', FALSE)) {
             $t = Transliterator::create('Any-Latin; Latin-ASCII');
         }
 
         $s = preg_replace('#[^\x09\x0A\x0D\x20-\x7E\xA0-\x{2FF}\x{370}-\x{10FFFF}]#u', '', $s) ?: '';
         $s = strtr($s, '`\'"^~?', "\x01\x02\x03\x04\x05\x06");
-        $s = (string) str_replace(
+        $s = str_replace(
             ["\u{201E}", "\u{201C}", "\u{201D}", "\u{201A}", "\u{2018}", "\u{2019}", "\u{B0}"],
             ["\x03", "\x03", "\x03", "\x02", "\x02", "\x02", "\x04"],
             $s
@@ -121,7 +121,7 @@ final class Strings
      */
     private static function glibc(string $s): string
     {
-        $s = (string) str_replace(
+        $s = str_replace(
             ["\u{BB}", "\u{AB}", "\u{2026}", "\u{2122}", "\u{A9}", "\u{AE}"],
             ['>>', '<<', '...', 'TM', '(c)', '(R)'],
             $s
