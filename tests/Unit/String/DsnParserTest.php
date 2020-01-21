@@ -10,6 +10,8 @@ use PHPUnit\Framework\TestCase;
  * Class DsnParserTest
  *
  * @package UtilsTests\Unit\String
+ *
+ * @covers  \Hanaboso\Utils\String\DsnParser
  */
 final class DsnParserTest extends TestCase
 {
@@ -197,6 +199,97 @@ final class DsnParserTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         DsnParser::isValidRabbitDsn('uri://');
+    }
+
+    /**
+     * @covers       \Hanaboso\Utils\String\DsnParser::parseRedisDsn
+     *
+     * @dataProvider parseRedisDsnProvider
+     *
+     * @param string  $dsn
+     * @param mixed[] $exp
+     */
+    public function testParseRedisDsn(string $dsn, array $exp): void
+    {
+        $res = DsnParser::parseRedisDsn($dsn);
+        self::assertEquals($exp, $res);
+    }
+
+    /**
+     * @return mixed[]
+     */
+    public function parseRedisDsnProvider(): array
+    {
+        return [
+            [
+                'redis://localhost:6379/5',
+                [
+                    DsnParser::TLS      => FALSE,
+                    DsnParser::DATABASE => 5,
+                    DsnParser::HOST     => 'localhost',
+                    DsnParser::PORT     => 6_379,
+                ],
+            ],
+            [
+                'redis://pw@[::1]:63790/10',
+                [
+                    DsnParser::TLS      => FALSE,
+                    DsnParser::PASSWORD => 'pw',
+                    DsnParser::DATABASE => 10,
+                    DsnParser::HOST     => '::1',
+                    DsnParser::PORT     => 63_790,
+                ],
+            ],
+            [
+                'redis://%redis_pass%@%redis_host%:%redis_port%/%redis_db%',
+                [
+                    DsnParser::TLS      => FALSE,
+                    DsnParser::PASSWORD => '%redis_pass%',
+                    DsnParser::DATABASE => '%redis_db%',
+                    DsnParser::HOST     => '%redis_host%',
+                    DsnParser::PORT     => '%redis_port%',
+                ],
+            ],
+            [
+                'redis://p:pw@[::1]:63790/10',
+                [
+                    DsnParser::TLS      => FALSE,
+                    DsnParser::PASSWORD => 'pw',
+                    DsnParser::DATABASE => 10,
+                    DsnParser::HOST     => '::1',
+                    DsnParser::PORT     => 63_790,
+                ],
+            ],
+            [
+                'redis://pw@/var/run/redis/redis-1.sock:63790/10',
+                [
+                    DsnParser::TLS      => FALSE,
+                    DsnParser::PASSWORD => 'pw',
+                    DsnParser::DATABASE => 10,
+                    DsnParser::SOCKET   => '/var/run/redis/redis-1.sock',
+                ],
+            ],
+            [
+                'redis://pw@/redis.sock/10?weight=8&alias=master',
+                [
+                    DsnParser::TLS      => FALSE,
+                    DsnParser::PASSWORD => 'pw',
+                    DsnParser::WEIGHT   => 8,
+                    DsnParser::ALIAS    => 'master',
+                    DsnParser::DATABASE => 10,
+                    DsnParser::SOCKET   => '/redis.sock',
+                ],
+            ],
+            [
+                'rediss://pw@/redis.sock/10?asd=',
+                [
+                    DsnParser::TLS      => TRUE,
+                    DsnParser::PASSWORD => 'pw',
+                    DsnParser::DATABASE => 10,
+                    DsnParser::SOCKET   => '/redis.sock',
+                ],
+            ],
+        ];
     }
 
 }
