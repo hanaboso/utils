@@ -22,6 +22,10 @@ final class DsnParser
     public const SOCKET   = 'socket';
     public const WEIGHT   = 'weight';
     public const ALIAS    = 'alias';
+    public const QUERY    = 'query';
+    public const PATH     = 'path';
+    public const SERVERS  = 'servers';
+    public const USERNAME = 'username';
 
     /**
      * @param string $dsn
@@ -196,6 +200,113 @@ final class DsnParser
         }
 
         return $result;
+    }
+
+    /**
+     * @param string $dsn
+     *
+     * @return mixed[]
+     */
+    public static function parseElasticDsn(string $dsn): array
+    {
+        $servers  = [];
+        $query    = [];
+        $hosts    = [];
+        $username = NULL;
+        $password = NULL;
+
+        if (mb_strpos($dsn, 'elasticsearch:') !== 0) {
+            throw new InvalidArgumentException(
+                sprintf('Invalid Elasticsearch DSN: %s does not start with "elasticsearch:"', $dsn)
+            );
+        }
+        $params = preg_replace_callback(
+            '#^elasticsearch:(//)?(?:([^@]*+)@)?#',
+            static function ($m) use (&$username, &$password): string {
+                if (!empty($m[2])) {
+                    [$username, $password] = explode(':', $m[2], 2) + [1 => NULL];
+                }
+
+                return sprintf('file:%s', $m[1] ?? '');
+            },
+            $dsn
+        );
+        $params = (array) parse_url((string) $params);
+
+        if (isset($params[self::QUERY])) {
+            parse_str($params[self::QUERY], $query);
+
+            if (isset($query[self::HOST])) {
+                $hosts = $query[self::HOST];
+                if (!is_array($hosts)) {
+                    throw new InvalidArgumentException(sprintf('Invalid Elasticsearch DSN: %s', $dsn));
+                }
+                foreach (array_keys($hosts) as $host) {
+                    $port = mb_strrpos($host, ':');
+                    if ($port === FALSE) {
+                        $hosts[$host] = [self::HOST => $host, self::PORT => 9_200];
+                    } else {
+                        $hosts[$host] = [
+                            self::HOST => mb_substr($host, 0, $port), self::PORT => (int) mb_substr($host, 1 + $port),
+                        ];
+                    }
+                }
+                $hosts = array_values($hosts);
+                unset($query[self::HOST]);
+            }
+            if (!isset($params[self::HOST], $params[self::PATH])) {
+
+                $servers = array_merge($servers, $hosts);
+
+                $config = [self::SERVERS => $servers];
+                if ($username !== NULL) {
+                    $config[self::USERNAME] = $username;
+                }
+                if ($password !== NULL) {
+                    $config[self::PASSWORD] = $password;
+                }
+
+                return $config;
+            }
+        }
+
+        if (!isset($params[self::HOST]) && !isset($params[self::PATH])) {
+            throw new InvalidArgumentException(sprintf('Invalid Elasticsearch DSN: %s', $dsn));
+        }
+
+        if (isset($params[self::PATH]) && preg_match('#/(\d+)$#', $params[self::PATH], $m)) {
+            $params[self::PATH] = mb_substr($params['path'], 0, -mb_strlen($m[0]));
+        }
+
+        if (isset($params[self::PATH]) && preg_match('#:(\d+)$#', $params[self::PATH], $m)) {
+            $params[self::HOST] = mb_substr($params[self::PATH], 0, -mb_strlen($m[0]));
+            $params[self::PORT] = $m[1];
+            unset($params[self::PATH]);
+        }
+
+        $params += [
+            self::HOST => $params[self::HOST] ?? $params[self::PATH] ?? NULL,
+            self::PORT => !isset($params[self::PORT]) ? 9_200 : NULL,
+        ];
+        if ($query) {
+            $params += $query;
+        }
+
+        $servers[] = [self::HOST => $params[self::HOST], self::PORT => $params[self::PORT]];
+
+        if ($hosts) {
+            $servers = array_merge($servers, $hosts);
+        }
+
+        $config = [self::SERVERS => $servers];
+        if ($username !== NULL) {
+            $config[self::USERNAME] = $username;
+        }
+        if ($password !== NULL) {
+            $config[self::PASSWORD] = $password;
+        }
+
+        return $config;
     }
 
     /**

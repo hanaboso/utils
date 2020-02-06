@@ -25,12 +25,12 @@ final class DsnParserTest extends TestCase
         $result = DsnParser::genericParser('http://guest:heslo@dev.company:1000/sss.qa');
         self::assertEquals(
             [
-                'scheme' => 'http',
-                'host'   => 'dev.company',
-                'port'   => 1_000,
-                'user'   => 'guest',
-                'pass'   => 'heslo',
-                'path'   => '/sss.qa',
+                'scheme'        => 'http',
+                DsnParser::HOST => 'dev.company',
+                DsnParser::PORT => 1_000,
+                DsnParser::USER => 'guest',
+                'pass'          => 'heslo',
+                'path'          => '/sss.qa',
             ],
             $result
         );
@@ -47,11 +47,11 @@ final class DsnParserTest extends TestCase
         $result = DsnParser::rabbitParser('amqp://guest:heslo@dev.company:1000/sss.qa');
         self::assertEquals(
             [
-                'user'     => 'guest',
-                'password' => 'heslo',
-                'host'     => 'dev.company',
-                'port'     => 1_000,
-                'vhost'    => 'sss.qa',
+                DsnParser::USER     => 'guest',
+                DsnParser::PASSWORD => 'heslo',
+                DsnParser::HOST     => 'dev.company',
+                DsnParser::PORT     => 1_000,
+                DsnParser::VHOST    => 'sss.qa',
             ],
             $result
         );
@@ -59,12 +59,12 @@ final class DsnParserTest extends TestCase
         $result = DsnParser::rabbitParser('amqp://guest:heslo@dev.company:1001?heartbeat=10&connection_timeout=10000');
         self::assertEquals(
             [
-                'user'               => 'guest',
-                'password'           => 'heslo',
-                'host'               => 'dev.company',
+                DsnParser::USER      => 'guest',
+                DsnParser::PASSWORD  => 'heslo',
+                DsnParser::HOST      => 'dev.company',
                 'heartbeat'          => 10,
                 'connection_timeout' => 10_000,
-                'port'               => 1_001,
+                DsnParser::PORT      => 1_001,
             ],
             $result
         );
@@ -72,11 +72,11 @@ final class DsnParserTest extends TestCase
         $result = DsnParser::rabbitParser('amqp://dev.company:8080/vhost?heartbeat=10&connection_timeout=10000');
         self::assertEquals(
             [
-                'host'               => 'dev.company',
+                DsnParser::HOST      => 'dev.company',
                 'heartbeat'          => 10,
                 'connection_timeout' => 10_000,
-                'port'               => 8_080,
-                'vhost'              => 'vhost',
+                DsnParser::PORT      => 8_080,
+                DsnParser::VHOST     => DsnParser::VHOST,
             ],
             $result
         );
@@ -84,8 +84,8 @@ final class DsnParserTest extends TestCase
         $result = DsnParser::rabbitParser('amqp://rabbitmq:5672');
         self::assertEquals(
             [
-                'host' => 'rabbitmq',
-                'port' => 5_672,
+                DsnParser::HOST => 'rabbitmq',
+                DsnParser::PORT => 5_672,
             ],
             $result
         );
@@ -103,11 +103,11 @@ final class DsnParserTest extends TestCase
         );
         self::assertEquals(
             [
-                'user'     => 'env_RABBITMQ_USER_000',
-                'password' => 'env_RABBITMQ_PASS_111',
-                'host'     => 'env_RABBITMQ_HOST_222',
-                'port'     => 'env_RABBITMQ_PORT_333',
-                'vhost'    => 'env_RABBITMQ_VHOST_444',
+                DsnParser::USER     => 'env_RABBITMQ_USER_000',
+                DsnParser::PASSWORD => 'env_RABBITMQ_PASS_111',
+                DsnParser::HOST     => 'env_RABBITMQ_HOST_222',
+                DsnParser::PORT     => 'env_RABBITMQ_PORT_333',
+                DsnParser::VHOST    => 'env_RABBITMQ_VHOST_444',
             ],
             $result
         );
@@ -287,6 +287,151 @@ final class DsnParserTest extends TestCase
                     DsnParser::PASSWORD => 'pw',
                     DsnParser::DATABASE => 10,
                     DsnParser::SOCKET   => '/redis.sock',
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * @covers       \Hanaboso\Utils\String\DsnParser::parseElasticDsn
+     *
+     * @dataProvider parseElasticDsnProvider
+     *
+     * @param string  $dsn
+     * @param mixed[] $exp
+     */
+    public function testParseElasticDsn($dsn, $exp): void
+    {
+        $res = DsnParser::parseElasticDsn($dsn);
+        self::assertEquals($exp, $res);
+    }
+
+    /**
+     * @covers \Hanaboso\Utils\String\DsnParser::parseElasticDsn
+     */
+    public function testParseElasticWrongDsn(): void
+    {
+        self::expectException(InvalidArgumentException::class);
+        DsnParser::parseElasticDsn('elastic:localhost');
+    }
+
+    /**
+     * @covers \Hanaboso\Utils\String\DsnParser::parseElasticDsn
+     */
+    public function testParseElasticDsnHostsNotArray(): void
+    {
+        self::expectException(InvalidArgumentException::class);
+        DsnParser::parseElasticDsn('elasticsearch:?host');
+    }
+
+    /**
+     * @covers \Hanaboso\Utils\String\DsnParser::parseElasticDsn
+     */
+    public function testParseElasticDsnErr(): void
+    {
+        self::expectException(InvalidArgumentException::class);
+        DsnParser::parseElasticDsn('elasticsearch://?[localhost]&host[localhost:9201]&host[127.0.0.1:9202]');
+    }
+
+    /**
+     * @return mixed[]
+     */
+    public function parseElasticDsnProvider(): array
+    {
+        return [
+            [
+                'elasticsearch:localhost',
+                [
+                    DsnParser::SERVERS => [[DsnParser::HOST => 'localhost', DsnParser::PORT => 9_200]],
+                ],
+            ],
+            [
+                'elasticsearch://localhost',
+                [
+                    DsnParser::SERVERS => [[DsnParser::HOST => 'localhost', DsnParser::PORT => 9_200]],
+                ],
+            ],
+            [
+                'elasticsearch://example.com',
+                [
+                    DsnParser::SERVERS => [[DsnParser::HOST => 'example.com', DsnParser::PORT => 9_200]],
+                ],
+            ],
+            [
+                'elasticsearch://localhost:1234',
+                [
+                    DsnParser::SERVERS => [[DsnParser::HOST => 'localhost', DsnParser::PORT => 1_234]],
+                ],
+            ],
+            [
+                'elasticsearch://foo:bar@localhost:1234',
+                [
+                    DsnParser::USERNAME => 'foo',
+                    DsnParser::PASSWORD => 'bar',
+                    DsnParser::SERVERS  => [[DsnParser::HOST => 'localhost', DsnParser::PORT => 1_234]],
+                ],
+            ],
+            [
+                'elasticsearch:?host[localhost]&host[localhost:9201]&host[127.0.0.1:9202]',
+                [
+                    DsnParser::SERVERS => [
+                        [DsnParser::HOST => 'localhost', DsnParser::PORT => 9_200],
+                        [DsnParser::HOST => 'localhost', DsnParser::PORT => 9_201],
+                        [DsnParser::HOST => '127.0.0.1', DsnParser::PORT => 9_202],
+                    ],
+                ],
+            ],
+            [
+                'elasticsearch:localhost:1234',
+                [
+                    DsnParser::SERVERS => [[DsnParser::HOST => 'localhost', DsnParser::PORT => 1_234]],
+                ],
+            ],
+            [
+                'elasticsearch:foo:bar@?host[localhost:9201]',
+                [
+                    DsnParser::USERNAME => 'foo',
+                    DsnParser::PASSWORD => 'bar',
+                    DsnParser::SERVERS  => [[DsnParser::HOST => 'localhost', DsnParser::PORT => 9_201]],
+                ],
+            ],
+            [
+                'elasticsearch://localhost:9201',
+                [
+                    DsnParser::SERVERS => [[DsnParser::HOST => 'localhost', DsnParser::PORT => 9_201,]],
+                ],
+            ],
+            [
+                'elasticsearch://localhost/path?host[localhost]&host[localhost:9201]&host[127.0.0.1:9202]',
+                [
+                    DsnParser::SERVERS => [
+                        [DsnParser::HOST => 'localhost', DsnParser::PORT => 9_200],
+                        [DsnParser::HOST => 'localhost', DsnParser::PORT => 9_200],
+                        [DsnParser::HOST => 'localhost', DsnParser::PORT => 9_201],
+                        [DsnParser::HOST => '127.0.0.1', DsnParser::PORT => 9_202],
+                    ],
+                ],
+            ],
+            [
+                'elasticsearch://localhost/path?host[localhost]&host[localhost:9201]&host[127.0.0.1:9202]&something[localhost]',
+                [
+                    DsnParser::SERVERS => [
+                        [DsnParser::HOST => 'localhost', DsnParser::PORT => 9_200],
+                        [DsnParser::HOST => 'localhost', DsnParser::PORT => 9_200],
+                        [DsnParser::HOST => 'localhost', DsnParser::PORT => 9_201],
+                        [DsnParser::HOST => '127.0.0.1', DsnParser::PORT => 9_202],
+                    ],
+                ],
+            ],
+            [
+                'elasticsearch://localhost/path/1?host[localhost]&host[localhost:9201]&host[127.0.0.1:9202]&something[localhost]',
+                [
+                    DsnParser::SERVERS => [
+                        [DsnParser::HOST => 'localhost', DsnParser::PORT => 9_200],
+                        [DsnParser::HOST => 'localhost', DsnParser::PORT => 9_200],
+                        [DsnParser::HOST => 'localhost', DsnParser::PORT => 9_201],
+                        [DsnParser::HOST => '127.0.0.1', DsnParser::PORT => 9_202],
+                    ],
                 ],
             ],
         ];
