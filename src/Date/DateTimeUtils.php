@@ -28,7 +28,7 @@ class DateTimeUtils
     public static function getUtcDateTime(string $dateTime = 'NOW'): DateTime
     {
         try {
-            return new DateTime($dateTime, new DateTimeZone('UTC'));
+            return (new DateTime($dateTime))->setTimezone(new DateTimeZone('UTC'));
         } catch (Throwable $t) {
             throw new DateTimeException($t->getMessage(), $t->getCode(), $t);
         }
