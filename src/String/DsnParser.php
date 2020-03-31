@@ -189,7 +189,8 @@ final class DsnParser
                 '#^\[([^\]]+)](:(\d+))?$#',
                 $dsn,
                 $matches
-            )) { // parse enclosed IPv6 address and optional port
+            )) {
+                // parse enclosed IPv6 address and optional port
                 if (!empty($matches[1])) {
                     $result[self::HOST] = $matches[1];
                 }
