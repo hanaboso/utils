@@ -89,6 +89,28 @@ final class DsnParserTest extends TestCase
             ],
             $result
         );
+
+        $result = DsnParser::rabbitParser('amqp://dev-company-rabbit.cz:5672/dev-company');
+        self::assertEquals(
+            [
+                DsnParser::HOST     => 'dev-company-rabbit.cz',
+                DsnParser::PORT     => '5672',
+                DsnParser::VHOST    => 'dev-company',
+            ],
+            $result
+        );
+
+        $result = DsnParser::rabbitParser('amqp://dev-company:pass@dev-company-rabbit.cz:5672/dev-company');
+        self::assertEquals(
+            [
+                DsnParser::HOST     => 'dev-company-rabbit.cz',
+                DsnParser::PORT     => '5672',
+                DsnParser::USER     => 'dev-company',
+                DsnParser::PASSWORD => 'pass',
+                DsnParser::VHOST    => 'dev-company',
+            ],
+            $result
+        );
     }
 
     /**

@@ -337,7 +337,7 @@ final class DsnParser
     private static function regExWithUsersCredentials(string $dsn): array
     {
         preg_match(
-            '/amqp:\/{2}([A-z, 0-9, .]+):(.*)@(?:([A-z, 0-9, .]+)|)(?:\/(?:[A-z, 0-9, .]+)|:((?:[0-9]+)|(?:env_.+))\/(?:([A-z, 0-9, .]+))|:(?:([0-9]+))|)(?:\?(.*)|)/',
+            '/amqp:\/{2}([A-z, 0-9, ., -]+):(.*)@(?:([A-z, 0-9, ., -]+)|)(?:\/(?:[A-z, 0-9, ., -]+)|:((?:[0-9]+)|(?:env_.+))\/(?:([A-z, 0-9, ., -]+))|:(?:([0-9]+))|)(?:\?(.*)|)/',
             $dsn,
             $parsedUrl
         );
@@ -353,7 +353,7 @@ final class DsnParser
     private static function regExWithoutUsersCredentials(string $dsn): array
     {
         preg_match(
-            '/amqp:\/{2}(?:([A-z, 0-9, .]+)|)(?:\/(?:[A-z, 0-9, .]+)|:((?:[0-9]+)|(?:env_.+))\/(?:([A-z, 0-9, .]+))|:(?:([0-9]+))|)(?:\?(.*)|)/',
+            '/amqp:\/{2}(?:([A-z, 0-9, ., -]+)|)(?:\/(?:[A-z, 0-9, ., -]+)|:((?:[0-9]+)|(?:env_.+))\/(?:([A-z, 0-9, ., -]+))|:(?:([0-9]+))|)(?:\?(.*)|)/',
             $dsn,
             $parsedUrl
         );
