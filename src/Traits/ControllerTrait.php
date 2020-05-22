@@ -28,10 +28,6 @@ trait ControllerTrait
     {
         if (!is_string($data)) {
             $data = Json::encode($data);
-        } else {
-            if (!json_decode($data)) {
-                $data = Json::encode($data);
-            }
         }
 
         return new Response($data, $code, $headers);

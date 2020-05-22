@@ -26,15 +26,6 @@ final class ControllerTraitTest extends TestCase
     }
 
     /**
-     * @covers \UtilsTests\Unit\Traits\TestTraits::getResponse
-     */
-    public function testGetResponseJson(): void
-    {
-        $test = new TestTraits();
-        self::assertEquals('"body"', $test->getResponseForTest('body')->getContent());
-    }
-
-    /**
      * @covers \UtilsTests\Unit\Traits\TestTraits::getErrorResponse
      * @covers \UtilsTests\Unit\Traits\TestTraits::setLogger
      */
