@@ -1,24 +1,34 @@
 {
     "name": "hanaboso/utils",
-    "version": "1.0.19",
+    "version": "1.0.20",
     "license": "proprietary",
     "authors": [
         {
             "name": "Hanaboso s.r.o.",
-            "role": "Owner",
-            "email": "info@hanaboso.com"
+            "email": "info@hanaboso.com",
+            "role": "Owner"
         },
         {
             "name": "Radek Jirsa",
-            "role": "Developer",
-            "email": "jirsa.r@hanaboso.com"
+            "email": "jirsa.r@hanaboso.com",
+            "role": "Developer"
         },
         {
             "name": "Radek Brůha",
-            "role": "Developer",
-            "email": "bruha.r@hanaboso.com"
+            "email": "bruha.r@hanaboso.com",
+            "role": "Developer"
         }
     ],
+    "require": {
+        "php": "^7.4",
+        "ext-json": "*",
+        "psr/log": "^1.1",
+        "symfony/http-foundation": "^5.1"
+    },
+    "require-dev": {
+        "hanaboso/php-check-utils": "^1.1",
+        "symfony/yaml": "^5.1"
+    },
     "autoload": {
         "psr-4": {
             "Hanaboso\\Utils\\": "src/"
@@ -28,15 +38,5 @@
         "psr-4": {
             "UtilsTests\\": "tests/"
         }
-    },
-    "require": {
-        "php": "^7.4",
-        "ext-json": "*",
-        "psr/log": "^1.1",
-        "symfony/http-foundation": "^5.0"
-    },
-    "require-dev": {
-        "hanaboso/php-check-utils": "^1.1",
-        "symfony/yaml": "^5.0"
     }
 }

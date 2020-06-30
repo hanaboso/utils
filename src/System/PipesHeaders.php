@@ -92,7 +92,16 @@ class PipesHeaders
         $debugInfo = array_filter(
             $headers,
             static fn($key) => self::existPrefix(self::PF_PREFIX, $key) &&
-                in_array($key, [self::createKey(self::CORRELATION_ID), self::createKey(self::NODE_ID)], TRUE),
+                in_array(
+                    $key,
+                    [
+                        self::createKey(self::CORRELATION_ID),
+                        self::createKey(self::NODE_ID),
+                        self::createKey(self::TOPOLOGY_ID),
+                        self::createKey(self::TOPOLOGY_NAME),
+                    ],
+                    TRUE
+                ),
             ARRAY_FILTER_USE_KEY
         );
 
