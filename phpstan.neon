@@ -13,5 +13,19 @@ parameters:
 		-
 			message: '#Calling json_decode\(\) is forbidden, use Hanaboso\\Utils\\String\\Json::decode\(\) instead#'
 			path: src/Traits/ControllerTrait.php
+		-
+			message: '#Error suppression via "@" should not be used.#'
+			path:  src/File/File.php
 	symfony:
 		container_xml_path: %rootDir%/../../../var/cache/test/UtilsTests_KernelTestDebugContainer.xml
+	ergebnis:
+		classesNotRequiredToBeAbstractOrFinal:
+			- Hanaboso\Utils\Date\DateTimeUtils
+			- Hanaboso\Utils\Exception\PipesFrameworkException
+			- Hanaboso\Utils\System\ControllerUtils
+			- Hanaboso\Utils\System\PipesHeaders
+		classesAllowedToBeExtended:
+			- Hanaboso\Utils\Enum\EnumAbstract
+			- Hanaboso\Utils\Exception\PipesFrameworkExceptionAbstract
+			- PHPStan\Testing\TestCase
+			- UtilsTests\KernelTestCaseAbstract
