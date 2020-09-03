@@ -185,11 +185,7 @@ final class DsnParser
                 $result[self::PORT] = is_numeric($matches[3]) ? (int) $matches[3] : $matches[3];
             }
         } else {
-            if (preg_match(
-                '#^\[([^\]]+)](:(\d+))?$#',
-                $dsn,
-                $matches
-            )) {
+            if (preg_match('#^\[([^\]]+)](:(\d+))?$#', $dsn, $matches)) {
                 // parse enclosed IPv6 address and optional port
                 if (!empty($matches[1])) {
                     $result[self::HOST] = $matches[1];

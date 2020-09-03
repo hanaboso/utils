@@ -1,7 +1,7 @@
 {
     "name": "hanaboso/utils",
-    "version": "1.0.21",
-    "license": "proprietary",
+    "version": "1.0.22",
+    "license": "Apache-2.0",
     "authors": [
         {
             "name": "Hanaboso s.r.o.",
