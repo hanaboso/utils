@@ -42,19 +42,19 @@ clear-cache:
 init-dev: docker-up-force composer-install
 
 codesniffer:
-	$(DE) ./vendor/bin/phpcs --standard=./ruleset.xml --colors -p src/ tests/
+	$(DE) ./vendor/bin/phpcs --parallel=$$(nproc) --standard=./ruleset.xml --colors -p src/ tests/
 
 phpstan:
 	$(DE) ./vendor/bin/phpstan analyse -c ./phpstan.neon -l 8 src/ tests/
 
 phpunit:
-	$(DE) ./vendor/bin/paratest -c ./vendor/hanaboso/php-check-utils/phpunit.xml.dist -p 4 tests/Unit
+	$(DE) ./vendor/bin/paratest -c ./vendor/hanaboso/php-check-utils/phpunit.xml.dist -p $$(nproc) tests/Unit
 
 phpcoverage:
-	$(DE) php vendor/bin/paratest -c ./vendor/hanaboso/php-check-utils/phpunit.xml.dist -p 4 --coverage-html var/coverage --whitelist src tests
+	$(DE) php vendor/bin/paratest -c ./vendor/hanaboso/php-check-utils/phpunit.xml.dist -p $$(nproc) --coverage-html var/coverage --whitelist src tests
 
 phpcoverage-ci:
-	$(DE) ./vendor/hanaboso/php-check-utils/bin/coverage.sh
+	$(DE) ./vendor/hanaboso/php-check-utils/bin/coverage.sh -p $$(nproc)
 
 test: docker-up-force composer-install fasttest
 
