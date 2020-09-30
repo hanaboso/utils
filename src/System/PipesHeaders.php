@@ -99,6 +99,8 @@ class PipesHeaders
                         self::createKey(self::NODE_ID),
                         self::createKey(self::TOPOLOGY_ID),
                         self::createKey(self::TOPOLOGY_NAME),
+                        self::createKey(self::USER),
+                        self::createKey(self::APPLICATION),
                     ],
                     TRUE
                 ),
