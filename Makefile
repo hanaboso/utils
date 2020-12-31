@@ -21,11 +21,11 @@ docker-down-clean: .env
 
 # Composer
 composer-install:
-	$(DE) composer install --no-suggest
+	$(DE) composer install
 	$(DE) composer update --dry-run roave/security-advisories
 
 composer-update:
-	$(DE) composer update --no-suggest
+	$(DE) composer update
 	$(DE) composer normalize
 	$(DE) composer update --dry-run roave/security-advisories
 
@@ -54,7 +54,7 @@ phpcoverage:
 	$(DE) php vendor/bin/paratest -c ./vendor/hanaboso/php-check-utils/phpunit.xml.dist -p $$(nproc) --coverage-html var/coverage --whitelist src tests
 
 phpcoverage-ci:
-	$(DE) ./vendor/hanaboso/php-check-utils/bin/coverage.sh -p $$(nproc)
+	$(DE) ./vendor/hanaboso/php-check-utils/bin/coverage.sh -p $$(nproc) -c 98
 
 test: docker-up-force composer-install fasttest
 

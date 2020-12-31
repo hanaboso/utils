@@ -78,7 +78,7 @@ class PipesHeaders
             $header = reset($header);
         }
 
-        return $header;
+        return !is_null($header) ? (string) $header : NULL;
     }
 
     /**

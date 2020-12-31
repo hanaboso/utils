@@ -46,22 +46,4 @@ final class SystemUsageTest extends TestCase
         self::assertGreaterThan(0, $cpuUsageBefore);
     }
 
-    /**
-     * @covers \Hanaboso\Utils\System\SystemUsage::getCpuUsage
-     */
-    public function testGetCpuUsageErr(): void
-    {
-        runkit_constant_redefine('\Hanaboso\Utils\System\SystemUsage::FILE_PROC_UPTIME', 'aa');
-        self::assertEquals(0, SystemUsage::getCpuUsage());
-    }
-
-    /**
-     * @covers \Hanaboso\Utils\System\SystemUsage::getCpuTimes
-     */
-    public function testGetCpuTimesErr(): void
-    {
-        runkit_constant_redefine('\Hanaboso\Utils\System\SystemUsage::FILE_PROC_STAT', 'aa');
-        self::assertEquals(3, count(SystemUsage::getCpuTimes()));
-    }
-
 }

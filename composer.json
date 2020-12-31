@@ -1,6 +1,6 @@
 {
     "name": "hanaboso/utils",
-    "version": "1.0.23",
+    "version": "1.0.24",
     "license": "Apache-2.0",
     "authors": [
         {
@@ -23,11 +23,11 @@
         "php": "^7.4",
         "ext-json": "*",
         "psr/log": "^1.1",
-        "symfony/http-foundation": "^5.1"
+        "symfony/http-foundation": "^5.2"
     },
     "require-dev": {
         "hanaboso/php-check-utils": "^1.1",
-        "symfony/yaml": "^5.1"
+        "symfony/yaml": "^5.2"
     },
     "autoload": {
         "psr-4": {
