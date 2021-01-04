@@ -2,6 +2,7 @@
 
 namespace Hanaboso\Utils\Validations;
 
+use Hanaboso\Utils\String\Json;
 use LogicException;
 
 /**
@@ -15,10 +16,9 @@ final class Validations
     /**
      * @param mixed[] $params
      * @param mixed[] $data
-     *
-     * @throws LogicException
+     * @param bool    $logBody
      */
-    public static function checkParams(array $params, array $data): void
+    public static function checkParams(array $params, array $data, bool $logBody = FALSE): void
     {
         foreach ($params as $key => $param) {
             if (is_array($param)) {
@@ -28,7 +28,11 @@ final class Validations
             }
             if (!array_key_exists($param, $data)) {
                 throw new LogicException(
-                    sprintf('Missing required parameter [%s]', $param)
+                    sprintf(
+                        'Missing required parameter [%s]%s',
+                        $param,
+                        $logBody ? sprintf(', received: [%s]', Json::encode($data)) : ''
+                    )
                 );
             }
         }
@@ -37,8 +41,9 @@ final class Validations
     /**
      * @param mixed[] $params
      * @param mixed[] $data
+     * @param bool    $logBody
      */
-    public static function checkParamsAny(array $params, array $data): void
+    public static function checkParamsAny(array $params, array $data, bool $logBody = FALSE): void
     {
         $found    = FALSE;
         $searched = [];
@@ -59,7 +64,11 @@ final class Validations
 
         if (!$found) {
             throw new LogicException(
-                sprintf('Missing at least one of required parameters [%s]', implode(', ', $searched))
+                sprintf(
+                    'Missing at least one of required parameters [%s]%s',
+                    implode(', ', $searched),
+                    $logBody ? sprintf(', received: [%s]', Json::encode($data)) : ''
+                )
             );
         }
     }
