@@ -24,7 +24,7 @@ final class SafePathGenerator
         $res      = '';
         $filename = base_convert(bin2hex(random_bytes(16)), 16, 36);
 
-        $chunks = (array) str_split($filename, $segment);
+        $chunks = str_split($filename, $segment);
         for ($i = 0; $i < $levels; $i++) {
             $res .= sprintf('%s%s', array_shift($chunks), DIRECTORY_SEPARATOR);
         }

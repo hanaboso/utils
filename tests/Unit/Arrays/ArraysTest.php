@@ -21,4 +21,62 @@ final class ArraysTest extends TestCase
         self::assertTrue(Arrays::isList(['a', 'b', 'c']));
     }
 
+    /**
+     * @covers \Hanaboso\Utils\Arrays\Arrays::diff
+     * @covers \Hanaboso\Utils\Arrays\Arrays::getCreatedKeys
+     * @covers \Hanaboso\Utils\Arrays\Arrays::getUpdatedKeys
+     * @covers \Hanaboso\Utils\Arrays\Arrays::getRemovedKeys
+     */
+    public function testDiff(): void
+    {
+        self::assertEquals(
+            [
+                'created' => [
+                    'c' => 'c',
+                ],
+                'updated' => [
+                    'b' => [
+                        'created' => [],
+                        'updated' => [
+                            [
+                                'created' => [],
+                                'updated' => [
+                                    'b' => [
+                                        'old' => 'b1',
+                                        'new' => 'b2',
+                                    ],
+                                ],
+                                'deleted' => [],
+                            ],
+                        ],
+                        'deleted' => [],
+                    ],
+                ],
+                'deleted' => [
+                    'a' => 'a',
+                ],
+            ],
+            Arrays::diff(
+                [
+                    'a' => 'a',
+                    'b' => [
+                        [
+                            'a' => 'a',
+                            'b' => 'b1',
+                        ],
+                    ],
+                ],
+                [
+                    'b' => [
+                        [
+                            'a' => 'a',
+                            'b' => 'b2',
+                        ],
+                    ],
+                    'c' => 'c',
+                ]
+            )
+        );
+    }
+
 }
