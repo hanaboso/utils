@@ -1,6 +1,6 @@
 {
     "name": "hanaboso/utils",
-    "version": "1.0.25",
+    "version": "1.0.26",
     "license": "Apache-2.0",
     "authors": [
         {
@@ -20,7 +20,8 @@
         }
     ],
     "require": {
-        "php": "^7.4",
+        "php": "^7.4 || ^8.0",
+        "ext-intl": "*",
         "ext-json": "*",
         "psr/log": "^1.1",
         "symfony/http-foundation": "^5.2"
