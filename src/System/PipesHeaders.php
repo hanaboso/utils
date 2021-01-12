@@ -29,6 +29,10 @@ class PipesHeaders
     public const REPEAT_INTERVAL     = 'repeat-interval';
     public const REPEAT_MAX_HOPS     = 'repeat-max-hops';
     public const REPEAT_HOPS         = 'repeat-hops';
+    public const LIMIT_KEY           = 'limit-key';
+    public const LIMIT_TIME          = 'limit-time';
+    public const LIMIT_VALUE         = 'limit-value';
+    public const LIMIT_LAST_UPDATE   = 'limit-last-update';
     public const CONTENT_TYPE        = 'content-type';
     public const PF_STOP             = 'stop';
     public const APPLICATION         = 'application';

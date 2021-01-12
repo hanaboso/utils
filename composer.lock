@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b073a1093a03aa58dffe5c8a4113e7fe",
+    "content-hash": "0976e948edfb758b22e103c90060287d",
     "packages": [
         {
             "name": "psr/log",
@@ -932,26 +932,26 @@
         },
         {
             "name": "hanaboso/php-check-utils",
-            "version": "1.1.40",
+            "version": "1.1.41",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hanaboso/php-check-utils.git",
-                "reference": "f2f4772bb38d86ea275ac88db8c84002685d2401"
+                "reference": "42a17fdf3f0833ff7eaf513ac57fb042c921f3c8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hanaboso/php-check-utils/zipball/f2f4772bb38d86ea275ac88db8c84002685d2401",
-                "reference": "f2f4772bb38d86ea275ac88db8c84002685d2401",
+                "url": "https://api.github.com/repos/hanaboso/php-check-utils/zipball/42a17fdf3f0833ff7eaf513ac57fb042c921f3c8",
+                "reference": "42a17fdf3f0833ff7eaf513ac57fb042c921f3c8",
                 "shasum": ""
             },
             "require": {
                 "brianium/paratest": "^v6.1",
                 "dg/bypass-finals": "^v1.3",
-                "ergebnis/composer-normalize": "^2.11",
+                "ergebnis/composer-normalize": "^2.13",
                 "ergebnis/phpstan-rules": "^0.15",
                 "ext-json": "*",
                 "ext-pcov": "*",
-                "php": ">=7.4",
+                "php": ">=7.4 || >=8.0",
                 "php-mock/php-mock-phpunit": "^2.6",
                 "phpstan/phpstan": "^0.12",
                 "phpstan/phpstan-doctrine": "^0.12",
@@ -962,9 +962,9 @@
                 "slevomat/coding-standard": "^6.4",
                 "spaze/phpstan-disallowed-calls": "^v1.1",
                 "squizlabs/php_codesniffer": "^3.5",
-                "symfony/browser-kit": "^5.2",
-                "symfony/framework-bundle": "^5.2",
-                "symfony/security-core": "^5.2"
+                "symfony/browser-kit": "^v5.2",
+                "symfony/framework-bundle": "^v5.2",
+                "symfony/security-core": "^v5.2"
             },
             "require-dev": {
                 "doctrine/mongodb-odm": "^2.1",
@@ -1008,9 +1008,9 @@
             "description": "Utils for php development - CodeSniffer, PhpStan, PhpUnit, PhpStorm",
             "support": {
                 "issues": "https://github.com/hanaboso/php-check-utils/issues",
-                "source": "https://github.com/hanaboso/php-check-utils/tree/1.1.40"
+                "source": "https://github.com/hanaboso/php-check-utils/tree/1.1.41"
             },
-            "time": "2020-12-07T07:21:54+00:00"
+            "time": "2021-01-11T11:31:14+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
@@ -1837,16 +1837,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "0.12.65",
+            "version": "0.12.66",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "1c7658668b28f8d647a8b874372acf14c4352688"
+                "reference": "4110a2425c6bd53acbdfcda07885e87b66e9ba3e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/1c7658668b28f8d647a8b874372acf14c4352688",
-                "reference": "1c7658668b28f8d647a8b874372acf14c4352688",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/4110a2425c6bd53acbdfcda07885e87b66e9ba3e",
+                "reference": "4110a2425c6bd53acbdfcda07885e87b66e9ba3e",
                 "shasum": ""
             },
             "require": {
@@ -1877,7 +1877,7 @@
             "description": "PHPStan - PHP Static Analysis Tool",
             "support": {
                 "issues": "https://github.com/phpstan/phpstan/issues",
-                "source": "https://github.com/phpstan/phpstan/tree/0.12.65"
+                "source": "https://github.com/phpstan/phpstan/tree/0.12.66"
             },
             "funding": [
                 {
@@ -1893,7 +1893,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-01-06T16:51:10+00:00"
+            "time": "2021-01-11T16:43:15+00:00"
         },
         {
             "name": "phpstan/phpstan-doctrine",
@@ -2019,21 +2019,21 @@
         },
         {
             "name": "phpstan/phpstan-strict-rules",
-            "version": "0.12.7",
+            "version": "0.12.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan-strict-rules.git",
-                "reference": "03807e3410747ec18cd5f05a6342384adcc423bf"
+                "reference": "ee0009302ff5312ca6b92a7330a6b66da0c70f12"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan-strict-rules/zipball/03807e3410747ec18cd5f05a6342384adcc423bf",
-                "reference": "03807e3410747ec18cd5f05a6342384adcc423bf",
+                "url": "https://api.github.com/repos/phpstan/phpstan-strict-rules/zipball/ee0009302ff5312ca6b92a7330a6b66da0c70f12",
+                "reference": "ee0009302ff5312ca6b92a7330a6b66da0c70f12",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.1 || ^8.0",
-                "phpstan/phpstan": "^0.12.60"
+                "phpstan/phpstan": "^0.12.66"
             },
             "require-dev": {
                 "phing/phing": "^2.16.3",
@@ -2064,9 +2064,9 @@
             "description": "Extra strict and opinionated rules for PHPStan",
             "support": {
                 "issues": "https://github.com/phpstan/phpstan-strict-rules/issues",
-                "source": "https://github.com/phpstan/phpstan-strict-rules/tree/0.12.7"
+                "source": "https://github.com/phpstan/phpstan-strict-rules/tree/0.12.8"
             },
-            "time": "2020-12-13T13:27:14+00:00"
+            "time": "2021-01-11T13:36:23+00:00"
         },
         {
             "name": "phpstan/phpstan-symfony",
