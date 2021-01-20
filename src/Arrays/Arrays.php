@@ -30,11 +30,24 @@ final class Arrays
      */
     public static function diff(array $old, array $new): array
     {
-        return [
-            'created' => self::getCreatedKeys($old, $new),
-            'updated' => self::getUpdatedKeys($old, $new),
-            'deleted' => self::getRemovedKeys($old, $new),
-        ];
+        $res     = [];
+        $created = self::getCreatedKeys($old, $new);
+        $updated = self::getUpdatedKeys($old, $new);
+        $deleted = self::getRemovedKeys($old, $new);
+
+        if (!empty($created)) {
+            $res['created'] = $created;
+        }
+
+        if (!empty($updated)) {
+            $res['updated'] = $updated;
+        }
+
+        if (!empty($deleted)) {
+            $res['deleted'] = $deleted;
+        }
+
+        return $res;
     }
 
     /**

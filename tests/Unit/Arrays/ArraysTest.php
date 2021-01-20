@@ -36,20 +36,16 @@ final class ArraysTest extends TestCase
                 ],
                 'updated' => [
                     'b' => [
-                        'created' => [],
                         'updated' => [
                             [
-                                'created' => [],
                                 'updated' => [
                                     'b' => [
                                         'old' => 'b1',
                                         'new' => 'b2',
                                     ],
                                 ],
-                                'deleted' => [],
                             ],
                         ],
-                        'deleted' => [],
                     ],
                 ],
                 'deleted' => [
