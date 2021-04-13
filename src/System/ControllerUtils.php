@@ -37,7 +37,7 @@ class ControllerUtils
         $output = [
             'status'     => $status,
             'error_code' => $e->getCode(),
-            'type'       => get_class($e),
+            'type'       => $e::class,
             'message'    => $e->getMessage(),
         ];
 

@@ -24,7 +24,7 @@ trait ControllerTrait
      *
      * @return Response
      */
-    protected function getResponse($data, int $code = 200, array $headers = []): Response
+    protected function getResponse(mixed $data, int $code = 200, array $headers = []): Response
     {
         if (!is_string($data)) {
             $data = Json::encode($data);

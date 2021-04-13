@@ -33,7 +33,7 @@ final class CronParser
     {
         try {
             self::parse($expression);
-        } catch (LogicException $e) {
+        } catch (LogicException) {
             return FALSE;
         }
 

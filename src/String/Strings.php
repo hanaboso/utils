@@ -53,9 +53,9 @@ final class Strings
      *
      * @return string
      */
-    public static function getShortClassName($object): string
+    public static function getShortClassName(mixed $object): string
     {
-        return substr((string) strrchr(get_class($object), '\\'), 1);
+        return substr((string) strrchr($object::class, '\\'), 1);
     }
 
     /**
@@ -66,7 +66,7 @@ final class Strings
      */
     public static function endsWith(string $haystack, string $needle): bool
     {
-        return $needle === '' || substr($haystack, -strlen($needle)) === $needle;
+        return $needle === '' || str_ends_with($haystack, $needle);
     }
 
     /**

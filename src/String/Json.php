@@ -2,8 +2,6 @@
 
 namespace Hanaboso\Utils\String;
 
-use JsonException;
-
 /**
  * Class Json
  *
@@ -18,7 +16,7 @@ final class Json
      *
      * @return string
      */
-    public static function encode($data, int $options = JSON_THROW_ON_ERROR): string
+    public static function encode(mixed $data, int $options = JSON_THROW_ON_ERROR): string
     {
         return json_encode($data, $options) ?: '';
     }
@@ -28,7 +26,6 @@ final class Json
      * @param int    $options
      *
      * @return mixed[]
-     * @throws JsonException
      */
     public static function decode(string $data, int $options = JSON_THROW_ON_ERROR): array
     {

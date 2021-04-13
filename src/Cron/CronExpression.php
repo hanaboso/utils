@@ -106,7 +106,7 @@ final class CronExpression
      */
     private function setMinute(string $minute): void
     {
-        if (!(bool) preg_match('/^[\*,\/\-0-9]+$/', $minute)) {
+        if (!(bool) preg_match('/^[*,\/\-0-9]+$/', $minute)) {
             throw new LogicException(sprintf('"%s" is not valid for minute part.', $minute));
         }
 
@@ -118,7 +118,7 @@ final class CronExpression
      */
     private function setHour(string $hour): void
     {
-        if (!(bool) preg_match('/^[\*,\/\-0-9]+$/', $hour)) {
+        if (!(bool) preg_match('/^[*,\/\-0-9]+$/', $hour)) {
             throw new LogicException(sprintf('"%s" is not valid for hour part.', $hour));
         }
 
@@ -182,14 +182,14 @@ final class CronExpression
         }
 
         // If you only contain numbers and are within 1-31
-        if ((bool) preg_match('/^\d{1,2}$/', $day) && ($day >= 1 && $day <= 31)) {
+        if (preg_match('/^\d{1,2}$/', $day) && ($day >= 1 && $day <= 31)) {
             return TRUE;
         }
 
         // If you have a -, we will deal with each of your chunks
-        if ((bool) preg_match('/-/', $day)) {
+        if (preg_match('/-/', $day)) {
             // We cannot have a range within a list or vice versa
-            if ((bool) preg_match('/,/', $day)) {
+            if (preg_match('/,/', $day)) {
                 return FALSE;
             }
 
@@ -197,12 +197,12 @@ final class CronExpression
         }
 
         // If you have a comma, we will deal with each value
-        if ((bool) preg_match('/,/', $day)) {
+        if (preg_match('/,/', $day)) {
             return self::isValidChunk($day, ',');
         }
 
         // If you contain a /, we'll deal with it
-        if ((bool) preg_match('/\//', $day)) {
+        if (preg_match('/\//', $day)) {
             return self::isValidChunk($day, '/');
         }
 

@@ -1,6 +1,7 @@
 {
     "name": "hanaboso/utils",
-    "version": "1.0.28",
+    "description": "Hanaboso - utils",
+    "version": "1.1.0",
     "license": "Apache-2.0",
     "authors": [
         {
@@ -20,15 +21,15 @@
         }
     ],
     "require": {
-        "php": "^7.4 || ^8.0",
+        "php": "^8.0",
         "ext-intl": "*",
         "ext-json": "*",
         "psr/log": "^1.1",
-        "symfony/http-foundation": "^5.2"
+        "symfony/http-foundation": "^v5.2"
     },
     "require-dev": {
-        "hanaboso/php-check-utils": "^1.1",
-        "symfony/yaml": "^5.2"
+        "hanaboso/php-check-utils": "^1.2",
+        "symfony/yaml": "^v5.2"
     },
     "autoload": {
         "psr-4": {

@@ -75,8 +75,8 @@ final class LoggerFormater
     }
 
     /**
-     * @param Throwable $e
-     * @param mixed[]   $debugInfo
+     * @param Throwable|null $e
+     * @param mixed[]        $debugInfo
      *
      * @return mixed[]
      */

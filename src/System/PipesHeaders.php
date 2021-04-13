@@ -62,8 +62,7 @@ class PipesHeaders
     {
         return array_filter(
             $headers,
-            static fn($key) => self::existPrefix(self::PF_PREFIX, $key) ||
-                in_array(strtolower($key), self::WHITE_LIST, TRUE),
+            static fn($key) => self::existPrefix($key) || in_array(strtolower($key), self::WHITE_LIST, TRUE),
             ARRAY_FILTER_USE_KEY
         );
     }
@@ -95,7 +94,7 @@ class PipesHeaders
         // Find debug header
         $debugInfo = array_filter(
             $headers,
-            static fn($key) => self::existPrefix(self::PF_PREFIX, $key) &&
+            static fn($key) => self::existPrefix($key) &&
                 in_array(
                     $key,
                     [
@@ -121,14 +120,13 @@ class PipesHeaders
     }
 
     /**
-     * @param string $prefix
      * @param string $key
      *
      * @return bool
      */
-    private static function existPrefix(string $prefix, string $key): bool
+    private static function existPrefix(string $key): bool
     {
-        return strpos($key, $prefix) === 0;
+        return str_starts_with($key, self::PF_PREFIX);
     }
 
 }

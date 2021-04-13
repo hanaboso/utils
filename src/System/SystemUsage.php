@@ -40,7 +40,7 @@ final class SystemUsage
             $f         = $totalTime / self::HERTZ / $seconds;
 
             return 100 * $f;
-        } catch (Exception $e) {
+        } catch (Exception) {
             return 0;
         }
     }
@@ -67,7 +67,7 @@ final class SystemUsage
                 self::CPU_TIME_KERNEL => $sTime + $csTime,
                 self::CPU_START_TIME  => $startTime,
             ];
-        } catch (Exception $e) {
+        } catch (Exception) {
             return [
                 self::CPU_TIME_USER   => 0,
                 self::CPU_TIME_KERNEL => 0,
@@ -81,7 +81,7 @@ final class SystemUsage
      */
     public static function getCurrentTimestamp(): int
     {
-        return (int) round(microtime(TRUE) * 1_000, 0);
+        return (int) round(microtime(TRUE) * 1_000);
     }
 
 }

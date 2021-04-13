@@ -32,7 +32,7 @@ final class DsnParser
      *
      * @return mixed
      */
-    public static function genericParser(string $dsn)
+    public static function genericParser(string $dsn): mixed
     {
         return parse_url($dsn);
     }
@@ -72,7 +72,6 @@ final class DsnParser
                 $result[self::VHOST] = $parsedUrl[5];
             }
 
-            return $result;
         } else {
             $parsedUrl = self::regExWithoutUsersCredentials($dsn);
 
@@ -96,8 +95,9 @@ final class DsnParser
                 $result[self::VHOST] = $parsedUrl[3];
             }
 
-            return $result;
         }
+
+        return $result;
     }
 
     /**
@@ -107,7 +107,7 @@ final class DsnParser
      */
     public static function isValidRabbitDsn(string $dsn): bool
     {
-        if (strpos($dsn, 'amqp://') === FALSE) {
+        if (!str_contains($dsn, 'amqp://')) {
             throw new InvalidArgumentException(sprintf('The given AMQP DSN "%s" is invalid.', $dsn));
         }
 
@@ -144,7 +144,7 @@ final class DsnParser
     public static function parseRedisDsn(string $dsn): array
     {
         $result = [
-            self::TLS => strpos($dsn, 'rediss://') === 0,
+            self::TLS => str_starts_with($dsn, 'rediss://'),
         ];
 
         $dsn = preg_replace('#rediss?://#', '', $dsn) ?: '';
@@ -185,7 +185,7 @@ final class DsnParser
                 $result[self::PORT] = is_numeric($matches[3]) ? (int) $matches[3] : $matches[3];
             }
         } else {
-            if (preg_match('#^\[([^\]]+)](:(\d+))?$#', $dsn, $matches)) {
+            if (preg_match('#^\[([^]]+)](:(\d+))?$#', $dsn, $matches)) {
                 // parse enclosed IPv6 address and optional port
                 if (!empty($matches[1])) {
                     $result[self::HOST] = $matches[1];
@@ -333,7 +333,7 @@ final class DsnParser
     private static function regExWithUsersCredentials(string $dsn): array
     {
         preg_match(
-            '/amqp:\/{2}([A-z, 0-9, ., -]+):(.*)@(?:([A-z, 0-9, ., -]+)|)(?:\/(?:[A-z, 0-9, ., -]+)|:((?:[0-9]+)|(?:env_.+))\/(?:([A-z, 0-9, ., -]+))|:(?:([0-9]+))|)(?:\?(.*)|)/',
+            '/amqp:\/{2}([A-z, 0-9.-]+):(.*)@(?:([A-z, 0-9.-]+)|)(?:\/[A-z, 0-9.-]+|:([0-9]+|env_.+)\/([A-z, 0-9.-]+)|:([0-9]+)|)(?:\?(.*)|)/',
             $dsn,
             $parsedUrl
         );
@@ -349,7 +349,7 @@ final class DsnParser
     private static function regExWithoutUsersCredentials(string $dsn): array
     {
         preg_match(
-            '/amqp:\/{2}(?:([A-z, 0-9, ., -]+)|)(?:\/(?:[A-z, 0-9, ., -]+)|:((?:[0-9]+)|(?:env_.+))\/(?:([A-z, 0-9, ., -]+))|:(?:([0-9]+))|)(?:\?(.*)|)/',
+            '/amqp:\/{2}(?:([A-z, 0-9.-]+)|)(?:\/[A-z, 0-9.-]+|:([0-9]+|env_.+)\/([A-z, 0-9.-]+)|:([0-9]+)|)(?:\?(.*)|)/',
             $dsn,
             $parsedUrl
         );
@@ -360,10 +360,8 @@ final class DsnParser
     /**
      * @param string[] $matches
      * @param string[] $result
-     *
-     * @return string
      */
-    private static function parseRedisParameters(array $matches, array &$result): string
+    private static function parseRedisParameters(array $matches, array &$result): void
     {
         parse_str($matches[1], $params);
 
@@ -382,8 +380,6 @@ final class DsnParser
                     break;
             }
         }
-
-        return '';
     }
 
 }

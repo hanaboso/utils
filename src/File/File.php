@@ -18,7 +18,7 @@ final class File
      *
      * @return int
      */
-    public static function putContent(string $filename, $data): int
+    public static function putContent(string $filename, mixed $data): int
     {
         $res = @file_put_contents($filename, $data);
         if ($res === FALSE) {
