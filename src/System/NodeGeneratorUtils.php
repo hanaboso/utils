@@ -67,7 +67,7 @@ final class NodeGeneratorUtils
         return sprintf(
             'pipes.%s.%s',
             $topologyId,
-            self::createNormalizedServiceName($nodeId, $nodeName)
+            self::createNormalizedServiceName($nodeId, $nodeName),
         );
     }
 
@@ -83,7 +83,7 @@ final class NodeGeneratorUtils
         return sprintf(
             'pipes.%s.%s',
             $topology,
-            self::createNormalizedServiceName($nodeId, $nodeName)
+            self::createNormalizedServiceName($nodeId, $nodeName),
         );
     }
 

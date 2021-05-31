@@ -21,7 +21,7 @@ final class UrlBuilderTraitTest extends TestCase
         $test->setHost('http://localhost');
         self::assertEquals(
             'http://localhost/first/second/third',
-            $test->getUrlForTest('first/%s/%s', 'second', 'third')
+            $test->getUrlForTest('first/%s/%s', 'second', 'third'),
         );
     }
 

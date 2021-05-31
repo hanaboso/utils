@@ -20,7 +20,7 @@ final class StaticClassTraitTest extends TestCase
     {
         self::expectException(LogicException::class);
         self::expectExceptionMessage(
-            sprintf('Class %s is static and cannot be instantiated.', TestStaticTraits::class)
+            sprintf('Class %s is static and cannot be instantiated.', TestStaticTraits::class),
         );
 
         new TestStaticTraits();

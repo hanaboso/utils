@@ -110,7 +110,7 @@ final class ValidationsTest extends KernelTestCaseAbstract
                 ],
                 'f' => 'f',
             ],
-            $data
+            $data,
         );
     }
 

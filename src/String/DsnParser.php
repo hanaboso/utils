@@ -214,7 +214,7 @@ final class DsnParser
 
         if (mb_strpos($dsn, 'elasticsearch:') !== 0) {
             throw new InvalidArgumentException(
-                sprintf('Invalid Elasticsearch DSN: %s does not start with "elasticsearch:"', $dsn)
+                sprintf('Invalid Elasticsearch DSN: %s does not start with "elasticsearch:"', $dsn),
             );
         }
         $params = preg_replace_callback(
@@ -226,7 +226,7 @@ final class DsnParser
 
                 return sprintf('file:%s', $m[1] ?? '');
             },
-            $dsn
+            $dsn,
         );
         $params = (array) parse_url((string) $params);
 
@@ -335,7 +335,7 @@ final class DsnParser
         preg_match(
             '/amqp:\/{2}([A-z, 0-9.-]+):(.*)@(?:([A-z, 0-9.-]+)|)(?:\/[A-z, 0-9.-]+|:([0-9]+|env_.+)\/([A-z, 0-9.-]+)|:([0-9]+)|)(?:\?(.*)|)/',
             $dsn,
-            $parsedUrl
+            $parsedUrl,
         );
 
         return $parsedUrl;
@@ -351,7 +351,7 @@ final class DsnParser
         preg_match(
             '/amqp:\/{2}(?:([A-z, 0-9.-]+)|)(?:\/[A-z, 0-9.-]+|:([0-9]+|env_.+)\/([A-z, 0-9.-]+)|:([0-9]+)|)(?:\?(.*)|)/',
             $dsn,
-            $parsedUrl
+            $parsedUrl,
         );
 
         return $parsedUrl;

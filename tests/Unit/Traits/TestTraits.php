@@ -55,7 +55,7 @@ final class TestTraits
         Throwable $e,
         int $code = 500,
         string $status = ControllerUtils::INTERNAL_SERVER_ERROR,
-        array $headers = []
+        array $headers = [],
     ): Response
     {
         return $this->getErrorResponse($e, $code, $status, $headers);

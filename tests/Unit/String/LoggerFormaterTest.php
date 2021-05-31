@@ -24,8 +24,8 @@ final class LoggerFormaterTest extends TestCase
             LoggerFormater::headersToString(
                 [
                     'content-type' => ['application/json', 'application/js'], 'pf_token' => '123',
-                ]
-            )
+                ],
+            ),
         );
     }
 
@@ -40,8 +40,8 @@ final class LoggerFormaterTest extends TestCase
                 'get',
                 'http://localhost',
                 ['content-type' => 'application/json'],
-                '{"data":[]}'
-            )
+                '{"data":[]}',
+            ),
         );
     }
 
@@ -56,8 +56,8 @@ final class LoggerFormaterTest extends TestCase
                 400,
                 'Bad Request',
                 ['content-type' => 'application/json'],
-                '{"data":[]}'
-            )
+                '{"data":[]}',
+            ),
         );
     }
 
@@ -68,7 +68,7 @@ final class LoggerFormaterTest extends TestCase
     {
         self::assertEquals(
             'Ups, something went wrong',
-            LoggerFormater::getContextForLogger(new Exception('Ups, something went wrong', 400))['message']
+            LoggerFormater::getContextForLogger(new Exception('Ups, something went wrong', 400))['message'],
         );
     }
 
@@ -77,7 +77,7 @@ final class LoggerFormaterTest extends TestCase
      */
     public function testGetContextForLoggerNull(): void
     {
-        self::assertEmpty(LoggerFormater::getContextForLogger(NULL));
+        self::assertEmpty(LoggerFormater::getContextForLogger());
     }
 
 }

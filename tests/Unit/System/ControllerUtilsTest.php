@@ -22,7 +22,7 @@ final class ControllerUtilsTest extends TestCase
     {
         self::assertEquals(
             '{"status":"INTERNAL_SERVER_ERROR","error_code":400,"type":"Exception","message":"Ups, something went wrong"}',
-            ControllerUtils::createExceptionData(new Exception('Ups, something went wrong', 400))
+            ControllerUtils::createExceptionData(new Exception('Ups, something went wrong', 400)),
         );
     }
 
@@ -37,7 +37,7 @@ final class ControllerUtilsTest extends TestCase
                 'Accept-Language' => 'en-us',
                 'content-type'    => 'text/html',
             ],
-            new Exception('Ups, something went wrong', 400)
+            new Exception('Ups, something went wrong', 400),
         );
         $headers['pf-result-detail'] = 'detail';
         self::assertEquals(
@@ -47,7 +47,7 @@ final class ControllerUtilsTest extends TestCase
                 'pf-result-detail'  => 'detail',
                 'content-type'      => 'text/html',
             ],
-            $headers
+            $headers,
         );
     }
 

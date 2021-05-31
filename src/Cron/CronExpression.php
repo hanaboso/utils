@@ -145,7 +145,7 @@ final class CronExpression
         $month = str_ireplace(
             ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
             range(1, 12),
-            $month
+            $month,
         );
 
         if (!(bool) preg_match('/^[*,\/\-0-9]+$/', $month)) {

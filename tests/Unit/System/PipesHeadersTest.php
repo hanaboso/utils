@@ -32,8 +32,8 @@ final class PipesHeadersTest extends TestCase
             PipesHeaders::clear(
                 [
                     'content-type' => 'application/json', 'pfp-node-id' => '123', 'pf-token' => '456',
-                ]
-            )
+                ],
+            ),
         );
     }
 
@@ -48,8 +48,8 @@ final class PipesHeadersTest extends TestCase
                 'token',
                 [
                     'content-type' => 'application/json', 'pfp-node-id' => '123', 'pf-token' => ['456'],
-                ]
-            )
+                ],
+            ),
         );
     }
 
@@ -71,8 +71,8 @@ final class PipesHeadersTest extends TestCase
                     'pf-node-id'        => '123',
                     'pf-token'          => '456',
                     'pf-correlation-id' => '456',
-                ]
-            )
+                ],
+            ),
         );
     }
 

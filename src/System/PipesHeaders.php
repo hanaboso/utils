@@ -63,7 +63,7 @@ class PipesHeaders
         return array_filter(
             $headers,
             static fn($key) => self::existPrefix($key) || in_array(strtolower($key), self::WHITE_LIST, TRUE),
-            ARRAY_FILTER_USE_KEY
+            ARRAY_FILTER_USE_KEY,
         );
     }
 
@@ -105,9 +105,9 @@ class PipesHeaders
                         self::createKey(self::USER),
                         self::createKey(self::APPLICATION),
                     ],
-                    TRUE
+                    TRUE,
                 ),
-            ARRAY_FILTER_USE_KEY
+            ARRAY_FILTER_USE_KEY,
         );
 
         // remove prefix from header

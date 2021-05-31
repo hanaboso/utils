@@ -46,7 +46,7 @@ final class LoggerFormater
             strtoupper($method),
             $url,
             self::headersToString($headers),
-            $body
+            $body,
         );
     }
 
@@ -62,7 +62,7 @@ final class LoggerFormater
         int $statusCode,
         string $reasonPhrase,
         array $headers = [],
-        string $body = ''
+        string $body = '',
     ): string
     {
         return sprintf(
@@ -70,7 +70,7 @@ final class LoggerFormater
             $statusCode,
             $reasonPhrase,
             self::headersToString($headers),
-            $body
+            $body,
         );
     }
 

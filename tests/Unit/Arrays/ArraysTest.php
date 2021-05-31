@@ -70,8 +70,8 @@ final class ArraysTest extends TestCase
                         ],
                     ],
                     'c' => 'c',
-                ]
-            )
+                ],
+            ),
         );
     }
 

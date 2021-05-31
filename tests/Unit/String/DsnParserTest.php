@@ -32,7 +32,7 @@ final class DsnParserTest extends TestCase
                 'pass'          => 'heslo',
                 'path'          => '/sss.qa',
             ],
-            $result
+            $result,
         );
     }
 
@@ -53,7 +53,7 @@ final class DsnParserTest extends TestCase
                 DsnParser::PORT     => 1_000,
                 DsnParser::VHOST    => 'sss.qa',
             ],
-            $result
+            $result,
         );
 
         $result = DsnParser::rabbitParser('amqp://guest:heslo@dev.company:1001?heartbeat=10&connection_timeout=10000');
@@ -66,7 +66,7 @@ final class DsnParserTest extends TestCase
                 'connection_timeout' => 10_000,
                 DsnParser::PORT      => 1_001,
             ],
-            $result
+            $result,
         );
 
         $result = DsnParser::rabbitParser('amqp://dev.company:8080/vhost?heartbeat=10&connection_timeout=10000');
@@ -78,7 +78,7 @@ final class DsnParserTest extends TestCase
                 DsnParser::PORT      => 8_080,
                 DsnParser::VHOST     => DsnParser::VHOST,
             ],
-            $result
+            $result,
         );
 
         $result = DsnParser::rabbitParser('amqp://rabbitmq:5672');
@@ -87,7 +87,7 @@ final class DsnParserTest extends TestCase
                 DsnParser::HOST => 'rabbitmq',
                 DsnParser::PORT => 5_672,
             ],
-            $result
+            $result,
         );
 
         $result = DsnParser::rabbitParser('amqp://dev-company-rabbit.cz:5672/dev-company');
@@ -97,7 +97,7 @@ final class DsnParserTest extends TestCase
                 DsnParser::PORT     => '5672',
                 DsnParser::VHOST    => 'dev-company',
             ],
-            $result
+            $result,
         );
 
         $result = DsnParser::rabbitParser('amqp://dev-company:pass@dev-company-rabbit.cz:5672/dev-company');
@@ -109,7 +109,7 @@ final class DsnParserTest extends TestCase
                 DsnParser::PASSWORD => 'pass',
                 DsnParser::VHOST    => 'dev-company',
             ],
-            $result
+            $result,
         );
     }
 
@@ -121,7 +121,7 @@ final class DsnParserTest extends TestCase
     public function testRabbitParserEnv(): void
     {
         $result = DsnParser::rabbitParser(
-            'amqp://env_RABBITMQ_USER_000:env_RABBITMQ_PASS_111@env_RABBITMQ_HOST_222:env_RABBITMQ_PORT_333/env_RABBITMQ_VHOST_444'
+            'amqp://env_RABBITMQ_USER_000:env_RABBITMQ_PASS_111@env_RABBITMQ_HOST_222:env_RABBITMQ_PORT_333/env_RABBITMQ_VHOST_444',
         );
         self::assertEquals(
             [
@@ -131,7 +131,7 @@ final class DsnParserTest extends TestCase
                 DsnParser::PORT     => 'env_RABBITMQ_PORT_333',
                 DsnParser::VHOST    => 'env_RABBITMQ_VHOST_444',
             ],
-            $result
+            $result,
         );
     }
 

@@ -31,8 +31,8 @@ final class Validations
                     sprintf(
                         'Missing required parameter [%s]%s',
                         $param,
-                        $logBody ? sprintf(', received: [%s]', Json::encode($data)) : ''
-                    )
+                        $logBody ? sprintf(', received: [%s]', Json::encode($data)) : '',
+                    ),
                 );
             }
         }
@@ -67,8 +67,8 @@ final class Validations
                 sprintf(
                     'Missing at least one of required parameters [%s]%s',
                     implode(', ', $searched),
-                    $logBody ? sprintf(', received: [%s]', Json::encode($data)) : ''
-                )
+                    $logBody ? sprintf(', received: [%s]', Json::encode($data)) : '',
+                ),
             );
         }
     }

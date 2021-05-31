@@ -83,7 +83,7 @@ final class Arrays
         $changed = array_filter(
             $new,
             static fn($newItem, $key): bool => array_key_exists($key, $old) && $old[$key] !== $newItem,
-            ARRAY_FILTER_USE_BOTH
+            ARRAY_FILTER_USE_BOTH,
         );
 
         array_walk(
@@ -97,7 +97,7 @@ final class Arrays
                         'new' => $changedItem,
                     ];
                 }
-            }
+            },
         );
 
         return $changed;

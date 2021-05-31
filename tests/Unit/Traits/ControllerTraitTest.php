@@ -21,7 +21,7 @@ final class ControllerTraitTest extends TestCase
     {
         self::assertEquals(
             '{"first":"1st","second":"2nd"}',
-            (new TestTraits())->getResponseForTest(['first' => '1st', 'second' => '2nd'])->getContent()
+            (new TestTraits())->getResponseForTest(['first' => '1st', 'second' => '2nd'])->getContent(),
         );
     }
 
@@ -35,7 +35,7 @@ final class ControllerTraitTest extends TestCase
         $test->setLogger(new Logger());
         self::assertEquals(
             '{"status":"INTERNAL_SERVER_ERROR","error_code":0,"type":"Exception","message":""}',
-            $test->getErrorResponseForTest(new Exception())->getContent()
+            $test->getErrorResponseForTest(new Exception())->getContent(),
         );
     }
 

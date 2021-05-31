@@ -83,7 +83,7 @@ class ControllerUtils
             if (!isset($data[$parameter])) {
                 throw new PipesFrameworkException(
                     sprintf('Required parameter \'%s\' not found', $parameter),
-                    PipesFrameworkException::REQUIRED_PARAMETER_NOT_FOUND
+                    PipesFrameworkException::REQUIRED_PARAMETER_NOT_FOUND,
                 );
             }
         }

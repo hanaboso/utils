@@ -45,7 +45,7 @@ trait ControllerTrait
         Throwable $e,
         int $code = 500,
         string $status = ControllerUtils::INTERNAL_SERVER_ERROR,
-        array $headers = []
+        array $headers = [],
     ): Response
     {
         $msg     = ControllerUtils::createExceptionData($e, $status);

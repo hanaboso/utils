@@ -44,7 +44,7 @@ final class NodeGeneratorUtilsTest extends TestCase
     {
         self::assertEquals(
             'pipes.topology.node-nas-pro',
-            NodeGeneratorUtils::generateQueueNameFromStrings('topology', 'node', 'Náše produkty')
+            NodeGeneratorUtils::generateQueueNameFromStrings('topology', 'node', 'Náše produkty'),
         );
     }
 
