@@ -3,6 +3,7 @@
 namespace UtilsTests\Unit\Date;
 
 use DateTime;
+use DateTimeImmutable;
 use Hanaboso\Utils\Date\DateTimeUtils;
 use Hanaboso\Utils\Exception\DateTimeException;
 use PHPUnit\Framework\TestCase;
@@ -42,6 +43,27 @@ final class DateTimeUtilsTest extends TestCase
     public function testGetUtcDateTimeFromTimeStamp(): void
     {
         self::assertEquals(new DateTime('1.1.2020'), DateTimeUtils::getUtcDateTimeFromTimeStamp(1_577_836_800));
+    }
+
+    /**
+     * @covers \Hanaboso\Utils\Date\DateTimeUtils::getUtcDateTimeImmutable
+     *
+     * @throws DateTimeException
+     */
+    public function testGetUtcDateTimeImmutable(): void
+    {
+        self::assertEquals(new DateTimeImmutable('1.1.2020'), DateTimeUtils::getUtcDateTimeImmutable('1.1.2020'));
+    }
+
+    /**
+     * @covers \Hanaboso\Utils\Date\DateTimeUtils::getUtcDateTimeImmutable
+     *
+     * @throws DateTimeException
+     */
+    public function testGetUtcDateTimeImmutableError(): void
+    {
+        $this->expectException(DateTimeException::class);
+        DateTimeUtils::getUtcDateTimeImmutable('-');
     }
 
 }
