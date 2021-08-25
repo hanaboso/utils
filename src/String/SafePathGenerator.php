@@ -13,8 +13,8 @@ final class SafePathGenerator
 {
 
     /**
-     * @param int $levels
-     * @param int $segment
+     * @param int         $levels
+     * @param int<1, max> $segment
      *
      * @return string
      * @throws Exception
