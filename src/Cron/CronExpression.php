@@ -210,14 +210,14 @@ final class CronExpression
     }
 
     /**
-     * @param string $day
-     * @param string $delimiter
+     * @param string           $day
+     * @param non-empty-string $delimiter
      *
      * @return bool
      */
     private static function isValidChunk(string $day, string $delimiter): bool
     {
-        $chunks = explode($delimiter, $day) ?: [];
+        $chunks = explode($delimiter, $day);
         foreach ($chunks as $chunk) {
             if (!self::isValidDayOfMonth($chunk)) {
                 return FALSE;

@@ -3,6 +3,7 @@
 namespace Hanaboso\Utils\System;
 
 use Exception;
+use Hanaboso\Utils\File\File;
 
 /**
  * Class SystemUsage
@@ -31,7 +32,7 @@ final class SystemUsage
     public static function getCpuUsage(): float
     {
         try {
-            $upTimeContent = (string) file_get_contents(self::FILE_PROC_UPTIME);
+            $upTimeContent = File::getContent(self::FILE_PROC_UPTIME);
             $upTime        = (float) explode(' ', $upTimeContent)[0];
 
             $cpuTimes  = self::getCpuTimes();
@@ -53,7 +54,7 @@ final class SystemUsage
         try {
             $pid         = getmypid();
             $statFile    = sprintf(self::FILE_PROC_STAT, $pid);
-            $statContent = (string) file_get_contents($statFile);
+            $statContent = File::getContent($statFile);
             $stats       = explode(' ', $statContent);
 
             $uTime     = (float) $stats[13];
