@@ -30,9 +30,9 @@ final class DsnParser
     /**
      * @param string $dsn
      *
-     * @return string|int|bool|array|null
+     * @return mixed
      */
-    public static function genericParser(string $dsn): string|int|bool|array|null
+    public static function genericParser(string $dsn): mixed
     {
         return parse_url($dsn);
     }
