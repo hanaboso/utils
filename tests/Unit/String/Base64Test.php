@@ -3,7 +3,7 @@
 namespace UtilsTests\Unit\String;
 
 use Hanaboso\Utils\String\Base64;
-use PHPStan\Testing\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class Base64Test

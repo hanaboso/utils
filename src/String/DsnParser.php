@@ -30,9 +30,9 @@ final class DsnParser
     /**
      * @param string $dsn
      *
-     * @return mixed
+     * @return string|int|bool|array|null
      */
-    public static function genericParser(string $dsn): mixed
+    public static function genericParser(string $dsn): string|int|bool|array|null
     {
         return parse_url($dsn);
     }
@@ -315,11 +315,9 @@ final class DsnParser
     {
         $queryArr   = [];
         $queryParam = explode('&', $queryString);
-        if (!empty($queryParam)) {
-            foreach ($queryParam as $item) {
-                $query               = explode('=', $item);
-                $queryArr[$query[0]] = (int) $query[1];
-            }
+        foreach ($queryParam as $item) {
+            $query               = explode('=', $item);
+            $queryArr[$query[0]] = (int) $query[1];
         }
 
         return $queryArr;

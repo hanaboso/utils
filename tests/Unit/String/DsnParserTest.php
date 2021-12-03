@@ -315,7 +315,7 @@ final class DsnParserTest extends TestCase
     }
 
     /**
-     * @covers       \Hanaboso\Utils\String\DsnParser::parseElasticDsn
+     * @covers \Hanaboso\Utils\String\DsnParser::parseElasticDsn
      *
      * @dataProvider parseElasticDsnProvider
      *
