@@ -161,8 +161,10 @@ final class DsnParser
             $dsn = substr($dsn, $pos + 1) ?: '';
         }
 
-        $callback = static function (array $args) use (&$result): void {
+        $callback = static function (array $args) use (&$result): string {
             self::parseRedisParameters($args, $result);
+
+            return '';
         };
 
         $dsn = preg_replace_callback('/\?(.*)$/', $callback, $dsn) ?: '';
