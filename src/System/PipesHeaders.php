@@ -13,30 +13,35 @@ class PipesHeaders
     public const PF_PREFIX = 'pf-';
 
     // Framework headers
-    public const CORRELATION_ID      = 'correlation-id';
-    public const PROCESS_ID          = 'process-id';
-    public const PARENT_ID           = 'parent-id';
-    public const SEQUENCE_ID         = 'sequence-id';
-    public const NODE_ID             = 'node-id';
-    public const NODE_NAME           = 'node-name';
-    public const TOPOLOGY_ID         = 'topology-id';
-    public const TOPOLOGY_NAME       = 'topology-name';
-    public const TOPOLOGY_DELETE_URL = 'topology-delete-url';
-    public const RESULT_CODE         = 'result-code';
-    public const RESULT_MESSAGE      = 'result-message';
-    public const RESULT_DETAIL       = 'result-detail';
-    public const REPEAT_QUEUE        = 'repeat-queue';
-    public const REPEAT_INTERVAL     = 'repeat-interval';
-    public const REPEAT_MAX_HOPS     = 'repeat-max-hops';
-    public const REPEAT_HOPS         = 'repeat-hops';
-    public const LIMIT_KEY           = 'limit-key';
-    public const LIMIT_TIME          = 'limit-time';
-    public const LIMIT_VALUE         = 'limit-value';
-    public const LIMIT_LAST_UPDATE   = 'limit-last-update';
-    public const CONTENT_TYPE        = 'content-type';
-    public const PF_STOP             = 'stop';
-    public const APPLICATION         = 'application';
-    public const USER                = 'user';
+    public const CORRELATION_ID     = 'correlation-id';
+    public const PROCESS_ID         = 'process-id';
+    public const PARENT_ID          = 'parent-id';
+    public const SEQUENCE_ID        = 'sequence-id';
+    public const NODE_ID            = 'node-id';
+    public const NODE_NAME          = 'node-name';
+    public const TOPOLOGY_ID        = 'topology-id';
+    public const TOPOLOGY_NAME      = 'topology-name';
+    public const APPLICATION        = 'application';
+    public const USER               = 'user';
+    public const WORKER_FOLLOWERS   = 'worker-followers';
+    public const FORCE_TARGET_QUEUE = 'force-target-queue';
+
+    // Result headers
+    public const RESULT_CODE    = 'result-code';
+    public const RESULT_MESSAGE = 'result-message';
+    public const RESULT_DETAIL  = 'result-detail';
+
+    // Repeater headers
+    public const REPEAT_QUEUE    = 'repeat-queue';
+    public const REPEAT_INTERVAL = 'repeat-interval';
+    public const REPEAT_MAX_HOPS = 'repeat-max-hops';
+    public const REPEAT_HOPS     = 'repeat-hops';
+
+    // Limiter headers
+    public const LIMITER_KEY = 'limiter-key';
+
+    // Batch headers
+    public const BATCH_CURSOR = 'cursor';
 
     // --- MicroTimestamp because Bunny
     public const TIMESTAMP = 'published-timestamp';
