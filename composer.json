@@ -2,7 +2,7 @@
     "name": "hanaboso/utils",
     "description": "Hanaboso - utils",
     "license": "Apache-2.0",
-    "version": "1.1.8",
+    "version": "1.1.9",
     "authors": [
         {
             "name": "Hanaboso s.r.o.",
@@ -25,7 +25,7 @@
         "ext-iconv": "*",
         "ext-intl": "*",
         "ext-json": "*",
-        "psr/log": "^2",
+        "psr/log": "^3",
         "symfony/http-foundation": "^v6.1"
     },
     "require-dev": {
