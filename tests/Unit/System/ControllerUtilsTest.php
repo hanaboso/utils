@@ -3,6 +3,7 @@
 namespace UtilsTests\Unit\System;
 
 use Exception;
+use Hanaboso\PhpCheckUtils\PhpUnit\Traits\CustomAssertTrait;
 use Hanaboso\Utils\Exception\PipesFrameworkException;
 use Hanaboso\Utils\System\ControllerUtils;
 use PHPUnit\Framework\TestCase;
@@ -14,6 +15,8 @@ use PHPUnit\Framework\TestCase;
  */
 final class ControllerUtilsTest extends TestCase
 {
+
+    use CustomAssertTrait;
 
     /**
      * @covers \Hanaboso\Utils\System\ControllerUtils::createExceptionData
@@ -68,7 +71,7 @@ final class ControllerUtilsTest extends TestCase
     public function testCheckParameters(): void
     {
         ControllerUtils::checkParameters(['name', 'detail'], ['name' => 'name', 'detail' => 'detail']);
-        self::assertTrue(TRUE);
+        self::assertFake();
     }
 
 }

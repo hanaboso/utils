@@ -2,6 +2,7 @@
 
 namespace UtilsTests\Unit\Validations;
 
+use Hanaboso\PhpCheckUtils\PhpUnit\Traits\CustomAssertTrait;
 use Hanaboso\Utils\Validations\Validations;
 use LogicException;
 use UtilsTests\KernelTestCaseAbstract;
@@ -15,6 +16,8 @@ use UtilsTests\KernelTestCaseAbstract;
  */
 final class ValidationsTest extends KernelTestCaseAbstract
 {
+
+    use CustomAssertTrait;
 
     /**
      * @covers       \Hanaboso\Utils\Validations\Validations::checkParams
@@ -32,7 +35,7 @@ final class ValidationsTest extends KernelTestCaseAbstract
         }
 
         Validations::checkParams($params, $data);
-        self::assertTrue(TRUE);
+        self::assertFake();
     }
 
     /**
@@ -67,7 +70,7 @@ final class ValidationsTest extends KernelTestCaseAbstract
         }
 
         Validations::checkParamsAny($params, $data);
-        self::assertTrue(TRUE);
+        self::assertFake();
     }
 
     /**
