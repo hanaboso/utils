@@ -34,7 +34,7 @@ final class ControllerUtilsTest extends TestCase
      */
     public function testCreateHeader(): void
     {
-        $headers                     = ControllerUtils::createHeaders(
+        $headers                  = ControllerUtils::createHeaders(
             [
                 'Accept'          => 'text/html',
                 'Accept-Language' => 'en-us',
@@ -42,13 +42,15 @@ final class ControllerUtilsTest extends TestCase
             ],
             new Exception('Ups, something went wrong', 400),
         );
-        $headers['pf-result-detail'] = 'detail';
+        $headers['result-detail'] = 'detail';
         self::assertEquals(
             [
-                'pf-result-code'    => 400,
-                'pf-result-message' => 'Ups, something went wrong',
-                'pf-result-detail'  => 'detail',
+                'result-code'    => 400,
+                'result-message' => 'Ups, something went wrong',
+                'result-detail'  => 'detail',
                 'content-type'      => 'text/html',
+                'Accept'          => 'text/html',
+                'Accept-Language' => 'en-us',
             ],
             $headers,
         );
