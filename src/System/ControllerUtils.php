@@ -68,7 +68,7 @@ class ControllerUtils
             PipesHeaders::RESULT_DETAIL  => $detail,
         ];
 
-        return array_merge($array, PipesHeaders::clear($headers));
+        return array_merge($array, $headers);
     }
 
     /**

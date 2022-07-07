@@ -44,22 +44,6 @@ class PipesHeaders
     // --- MicroTimestamp because Bunny
     public const TIMESTAMP = 'published-timestamp';
 
-    private const WHITE_LIST = ['content-type'];
-
-    /**
-     * @param mixed[] $headers
-     *
-     * @return mixed[]
-     */
-    public static function clear(array $headers): array
-    {
-        return array_filter(
-            $headers,
-            static fn($key) => in_array(strtolower($key), self::WHITE_LIST, TRUE),
-            ARRAY_FILTER_USE_KEY,
-        );
-    }
-
     /**
      * @param string  $key
      * @param mixed[] $headers

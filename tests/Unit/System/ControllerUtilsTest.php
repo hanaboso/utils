@@ -49,6 +49,8 @@ final class ControllerUtilsTest extends TestCase
                 'result-message' => 'Ups, something went wrong',
                 'result-detail'  => 'detail',
                 'content-type'      => 'text/html',
+                'Accept'          => 'text/html',
+                'Accept-Language' => 'en-us',
             ],
             $headers,
         );

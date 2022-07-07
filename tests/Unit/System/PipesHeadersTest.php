@@ -14,21 +14,6 @@ final class PipesHeadersTest extends TestCase
 {
 
     /**
-     * @covers \Hanaboso\Utils\System\PipesHeaders::clear()
-     */
-    public function testClear(): void
-    {
-        self::assertSame(
-            ['content-type' => 'application/json'],
-            PipesHeaders::clear(
-                [
-                    'content-type' => 'application/json', 'node-id' => '123', 'token' => '456',
-                ],
-            ),
-        );
-    }
-
-    /**
      * @covers \Hanaboso\Utils\System\PipesHeaders::get()
      */
     public function testGet(): void
