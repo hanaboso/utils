@@ -63,9 +63,9 @@ class ControllerUtils
         }
 
         $array = [
-            PipesHeaders::createKey(PipesHeaders::RESULT_CODE)    => $code,
-            PipesHeaders::createKey(PipesHeaders::RESULT_MESSAGE) => $message,
-            PipesHeaders::createKey(PipesHeaders::RESULT_DETAIL)  => $detail,
+            PipesHeaders::RESULT_CODE    => $code,
+            PipesHeaders::RESULT_MESSAGE => $message,
+            PipesHeaders::RESULT_DETAIL  => $detail,
         ];
 
         return array_merge($array, PipesHeaders::clear($headers));

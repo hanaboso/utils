@@ -10,8 +10,6 @@ namespace Hanaboso\Utils\System;
 class PipesHeaders
 {
 
-    public const PF_PREFIX = 'pf-';
-
     // Framework headers
     public const CORRELATION_ID     = 'correlation-id';
     public const PROCESS_ID         = 'process-id';
@@ -49,16 +47,6 @@ class PipesHeaders
     private const WHITE_LIST = ['content-type'];
 
     /**
-     * @param string $key
-     *
-     * @return string
-     */
-    public static function createKey(string $key): string
-    {
-        return sprintf('%s%s', self::PF_PREFIX, $key);
-    }
-
-    /**
      * @param mixed[] $headers
      *
      * @return mixed[]
@@ -67,7 +55,7 @@ class PipesHeaders
     {
         return array_filter(
             $headers,
-            static fn($key) => self::existPrefix($key) || in_array(strtolower($key), self::WHITE_LIST, TRUE),
+            static fn($key) => in_array(strtolower($key), self::WHITE_LIST, TRUE),
             ARRAY_FILTER_USE_KEY,
         );
     }
@@ -80,7 +68,7 @@ class PipesHeaders
      */
     public static function get(string $key, array $headers): ?string
     {
-        $header = $headers[sprintf('%s%s', self::PF_PREFIX, $key)] ?? NULL;
+        $header = $headers[$key] ?? NULL;
 
         if (is_array($header)) {
             $header = reset($header);
@@ -99,39 +87,22 @@ class PipesHeaders
         // Find debug header
         $debugInfo = array_filter(
             $headers,
-            static fn($key) => self::existPrefix($key) &&
-                in_array(
-                    $key,
-                    [
-                        self::createKey(self::CORRELATION_ID),
-                        self::createKey(self::NODE_ID),
-                        self::createKey(self::TOPOLOGY_ID),
-                        self::createKey(self::TOPOLOGY_NAME),
-                        self::createKey(self::USER),
-                        self::createKey(self::APPLICATION),
-                    ],
-                    TRUE,
-                ),
+            static fn($key) => in_array(
+                $key,
+                [
+                    self::CORRELATION_ID,
+                    self::NODE_ID,
+                    self::TOPOLOGY_ID,
+                    self::TOPOLOGY_NAME,
+                    self::USER,
+                    self::APPLICATION,
+                ],
+                TRUE,
+            ),
             ARRAY_FILTER_USE_KEY,
         );
 
-        // remove prefix from header
-        foreach ($debugInfo as $key => $value) {
-            $debugInfo[str_replace('-', '_', substr($key, strlen(self::PF_PREFIX)))] = $value;
-            unset($debugInfo[$key]);
-        }
-
         return $debugInfo;
-    }
-
-    /**
-     * @param string $key
-     *
-     * @return bool
-     */
-    private static function existPrefix(string $key): bool
-    {
-        return str_starts_with($key, self::PF_PREFIX);
     }
 
 }
