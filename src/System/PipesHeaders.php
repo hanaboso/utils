@@ -69,7 +69,7 @@ class PipesHeaders
     public static function debugInfo(array $headers): array
     {
         // Find debug header
-        $debugInfo = array_filter(
+        return array_filter(
             $headers,
             static fn($key) => in_array(
                 $key,
@@ -85,15 +85,15 @@ class PipesHeaders
             ),
             ARRAY_FILTER_USE_KEY,
         );
-
-        return $debugInfo;
     }
 
     /**
      * @param string $key
+     *
      * @return string
      */
-    public static function decorateLimitKey(string $key): string {
+    public static function decorateLimitKey(string $key): string
+    {
         if (!str_contains($key, '|')) {
             return sprintf('%s|', $key);
         }
@@ -106,7 +106,8 @@ class PipesHeaders
      *
      * @return mixed[]
      */
-    public static function parseLimitKey(?string $limitKey): array {
+    public static function parseLimitKey(?string $limitKey): array
+    {
         if (!$limitKey) {
             return [];
         }
@@ -114,8 +115,8 @@ class PipesHeaders
         $split = explode(';', $limitKey);
 
         $parsedLimits = [];
-        for ($i=0; $i < count($split); $i+=3) {
-            $parsedLimits[$split[$i]] = sprintf('%s;%s;%s', $split[$i], $split[$i+1], $split[$i+2]);
+        for ($i = 0; $i < count($split); $i += 3) {
+            $parsedLimits[$split[$i]] = sprintf('%s;%s;%s', $split[$i], $split[$i + 1], $split[$i + 2]);
         }
 
         return $parsedLimits;
@@ -128,7 +129,8 @@ class PipesHeaders
      *
      * @return string
      */
-    public static function getLimiterKey(string $key, int $time, int $value): string {
+    public static function getLimiterKey(string $key, int $time, int $value): string
+    {
         return sprintf('%s;%s;%s', self::decorateLimitKey($key), $time, $value);
     }
 

@@ -152,7 +152,7 @@ final class DsnParser
         if ($pos !== FALSE) {
             $password = substr($dsn, 0, $pos);
 
-            if (strstr($password, ':')) {
+            if (str_contains($password, ':')) {
                 [, $password] = explode(':', $password, 2);
             }
 
