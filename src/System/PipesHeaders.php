@@ -89,4 +89,77 @@ class PipesHeaders
         return $debugInfo;
     }
 
+    /**
+     * @param string $key
+     * @return string
+     */
+    public static function decorateLimitKey(string $key): string {
+        if (!str_contains($key, '|')) {
+            return sprintf('%s|', $key);
+        }
+
+        return $key;
+    }
+
+    /**
+     * @param string|null $limitKey
+     *
+     * @return mixed[]
+     */
+    public static function parseLimitKey(?string $limitKey): array {
+        if (!$limitKey) {
+            return [];
+        }
+
+        $split = explode(';', $limitKey);
+
+        $parsedLimits = [];
+        for ($i=0; $i < count($split); $i+=3) {
+            $parsedLimits[$split[$i]] = sprintf('%s;%s;%s', $split[$i], $split[$i+1], $split[$i+2]);
+        }
+
+        return $parsedLimits;
+    }
+
+    /**
+     * @param string $key
+     * @param int    $time
+     * @param int    $value
+     *
+     * @return string
+     */
+    public static function getLimiterKey(string $key, int $time, int $value): string {
+        return sprintf('%s;%s;%s', self::decorateLimitKey($key), $time, $value);
+    }
+
+    /**
+     * @param string $key
+     * @param int    $time
+     * @param int    $amount
+     * @param string $groupKey
+     * @param int    $groupTime
+     * @param int    $groupAmount
+     *
+     * @return string
+     */
+    public static function getLimiterKeyWithGroup(
+        string $key,
+        int $time,
+        int $amount,
+        string $groupKey,
+        int $groupTime,
+        int $groupAmount,
+    ): string
+    {
+        return sprintf(
+            '%s;%s;%s;%s;%s;%s',
+            self::decorateLimitKey($key),
+            $time,
+            $amount,
+            self::decorateLimitKey($groupKey),
+            $groupTime,
+            $groupAmount,
+        );
+    }
+
 }
