@@ -38,7 +38,7 @@ final class TestTraits
      *
      * @return Response
      */
-    public function getResponseForTest($data, int $code = 200, array $headers = []): Response
+    public function getResponseForTest(mixed $data, int $code = 200, array $headers = []): Response
     {
         return $this->getResponse($data, $code, $headers);
     }

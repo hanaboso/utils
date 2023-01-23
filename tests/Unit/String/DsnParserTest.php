@@ -22,10 +22,10 @@ final class DsnParserTest extends TestCase
      */
     public function testGenericParser(): void
     {
-        $result = DsnParser::genericParser('http://guest:heslo@dev.company:1000/sss.qa');
+        $result = DsnParser::genericParser('https://guest:heslo@dev.company:1000/sss.qa');
         self::assertEquals(
             [
-                'scheme'        => 'http',
+                'scheme'        => 'https',
                 DsnParser::HOST => 'dev.company',
                 DsnParser::PORT => 1_000,
                 DsnParser::USER => 'guest',
@@ -322,7 +322,7 @@ final class DsnParserTest extends TestCase
      * @param string  $dsn
      * @param mixed[] $exp
      */
-    public function testParseElasticDsn($dsn, $exp): void
+    public function testParseElasticDsn(string $dsn, array $exp): void
     {
         $res = DsnParser::parseElasticDsn($dsn);
         self::assertEquals($exp, $res);
