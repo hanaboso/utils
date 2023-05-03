@@ -35,10 +35,10 @@ class ControllerUtils
     public static function createExceptionData(Throwable $e, string $status = self::INTERNAL_SERVER_ERROR): string
     {
         $output = [
-            'status'     => $status,
             'error_code' => $e->getCode(),
-            'type'       => $e::class,
             'message'    => $e->getMessage(),
+            'status'     => $status,
+            'type'       => $e::class,
         ];
 
         return Json::encode($output);
@@ -64,8 +64,8 @@ class ControllerUtils
 
         $array = [
             PipesHeaders::RESULT_CODE    => $code,
-            PipesHeaders::RESULT_MESSAGE => $message,
             PipesHeaders::RESULT_DETAIL  => $detail,
+            PipesHeaders::RESULT_MESSAGE => $message,
         ];
 
         return array_merge($array, $headers);

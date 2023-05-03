@@ -108,7 +108,7 @@ final class Strings
         if ($t !== NULL) {
             $s = $t->transliterate($s) ?: '';
         }
-        $s = ICONV_IMPL === 'glibc' ? Strings::glibc($s) : Strings::iconv($s);
+        $s = ICONV_IMPL === 'glibc' ? self::glibc($s) : self::iconv($s);
         $s = str_replace(['`', "'", '"', '^', '~', '?'], '', $s);
 
         return strtr($s, "\x01\x02\x03\x04\x05\x06", '`\'"^~?');

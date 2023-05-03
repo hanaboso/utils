@@ -22,9 +22,9 @@ final class TestTraits
     /**
      * @param string $host
      *
-     * @return TestTraits
+     * @return self
      */
-    public function setHost(string $host): TestTraits
+    public function setHost(string $host): self
     {
         $this->host = $host;
 

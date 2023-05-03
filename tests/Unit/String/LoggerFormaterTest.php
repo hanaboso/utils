@@ -15,7 +15,7 @@ final class LoggerFormaterTest extends TestCase
 {
 
     /**
-     * @covers \Hanaboso\Utils\String\LoggerFormater::headersToString()
+     * @covers \Hanaboso\Utils\String\LoggerFormater::headersToString
      */
     public function testHeadersToString(): void
     {
@@ -30,7 +30,7 @@ final class LoggerFormaterTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\String\LoggerFormater::requestToString()
+     * @covers \Hanaboso\Utils\String\LoggerFormater::requestToString
      */
     public function testRequestToString(): void
     {
@@ -46,7 +46,7 @@ final class LoggerFormaterTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\String\LoggerFormater::responseToString()
+     * @covers \Hanaboso\Utils\String\LoggerFormater::responseToString
      */
     public function testResponseToString(): void
     {

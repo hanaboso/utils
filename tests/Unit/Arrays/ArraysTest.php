@@ -34,22 +34,22 @@ final class ArraysTest extends TestCase
                 'created' => [
                     'c' => 'c',
                 ],
+                'deleted' => [
+                    'a' => 'a',
+                ],
                 'updated' => [
                     'b' => [
                         'updated' => [
                             [
                                 'updated' => [
                                     'b' => [
-                                        'old' => 'b1',
                                         'new' => 'b2',
+                                        'old' => 'b1',
                                     ],
                                 ],
                             ],
                         ],
                     ],
-                ],
-                'deleted' => [
-                    'a' => 'a',
                 ],
             ],
             Arrays::diff(

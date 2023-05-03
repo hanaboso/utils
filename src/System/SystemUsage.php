@@ -64,15 +64,15 @@ final class SystemUsage
             $startTime = $stats[21];
 
             return [
-                self::CPU_TIME_USER   => $uTime + $cuTime,
-                self::CPU_TIME_KERNEL => $sTime + $csTime,
                 self::CPU_START_TIME  => $startTime,
+                self::CPU_TIME_KERNEL => $sTime + $csTime,
+                self::CPU_TIME_USER   => $uTime + $cuTime,
             ];
         } catch (Exception) {
             return [
-                self::CPU_TIME_USER   => 0,
-                self::CPU_TIME_KERNEL => 0,
                 self::CPU_START_TIME  => 0,
+                self::CPU_TIME_KERNEL => 0,
+                self::CPU_TIME_USER   => 0,
             ];
         }
     }

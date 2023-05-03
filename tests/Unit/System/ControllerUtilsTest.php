@@ -24,7 +24,7 @@ final class ControllerUtilsTest extends TestCase
     public function testCreateExceptionData(): void
     {
         self::assertEquals(
-            '{"status":"INTERNAL_SERVER_ERROR","error_code":400,"type":"Exception","message":"Ups, something went wrong"}',
+            '{"error_code":400,"message":"Ups, something went wrong","status":"INTERNAL_SERVER_ERROR","type":"Exception"}',
             ControllerUtils::createExceptionData(new Exception('Ups, something went wrong', 400)),
         );
     }
@@ -45,12 +45,12 @@ final class ControllerUtilsTest extends TestCase
         $headers['result-detail'] = 'detail';
         self::assertEquals(
             [
-                'result-code'    => 400,
-                'result-message' => 'Ups, something went wrong',
-                'result-detail'  => 'detail',
-                'content-type'      => 'text/html',
                 'Accept'          => 'text/html',
                 'Accept-Language' => 'en-us',
+                'content-type'      => 'text/html',
+                'result-code'    => 400,
+                'result-detail'  => 'detail',
+                'result-message' => 'Ups, something went wrong',
             ],
             $headers,
         );

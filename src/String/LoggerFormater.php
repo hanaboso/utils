@@ -87,11 +87,11 @@ final class LoggerFormater
         }
 
         return [
+            'code'      => $e->getCode(),
+            'debugInfo' => $debugInfo,
             'exception' => $e,
             'message'   => $e->getMessage(),
             'trace'     => $e->getTraceAsString(),
-            'code'      => $e->getCode(),
-            'debugInfo' => $debugInfo,
         ];
     }
 

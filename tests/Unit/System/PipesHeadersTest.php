@@ -14,7 +14,7 @@ final class PipesHeadersTest extends TestCase
 {
 
     /**
-     * @covers \Hanaboso\Utils\System\PipesHeaders::get()
+     * @covers \Hanaboso\Utils\System\PipesHeaders::get
      */
     public function testGet(): void
     {
@@ -30,28 +30,28 @@ final class PipesHeadersTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\System\PipesHeaders::debugInfo()
+     * @covers \Hanaboso\Utils\System\PipesHeaders::debugInfo
      */
     public function testDebugInfo(): void
     {
         self::assertSame(
             [
-                'node-id'        => '123',
                 'correlation-id' => '456',
+                'node-id'        => '123',
             ],
             PipesHeaders::debugInfo(
                 [
                     'content-type'      => 'application/json',
+                    'correlation-id' => '456',
                     'node-id'        => '123',
                     'token'          => '456',
-                    'correlation-id' => '456',
                 ],
             ),
         );
     }
 
     /**
-     * @covers \Hanaboso\Utils\System\PipesHeaders::decorateLimitKey()
+     * @covers \Hanaboso\Utils\System\PipesHeaders::decorateLimitKey
      */
     public function testDecorateLimitKey(): void
     {
@@ -59,7 +59,7 @@ final class PipesHeadersTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\System\PipesHeaders::decorateLimitKey()
+     * @covers \Hanaboso\Utils\System\PipesHeaders::decorateLimitKey
      */
     public function testDecorateLimitKeySame(): void
     {
@@ -67,7 +67,7 @@ final class PipesHeadersTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\System\PipesHeaders::parseLimitKey()
+     * @covers \Hanaboso\Utils\System\PipesHeaders::parseLimitKey
      */
     public function testParseKey(): void
     {
@@ -75,8 +75,8 @@ final class PipesHeadersTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\System\PipesHeaders::getLimiterKey()
-     * @covers \Hanaboso\Utils\System\PipesHeaders::parseLimitKey()
+     * @covers \Hanaboso\Utils\System\PipesHeaders::getLimiterKey
+     * @covers \Hanaboso\Utils\System\PipesHeaders::parseLimitKey
      */
     public function testGetAndParseLimitKey(): void
     {
@@ -87,18 +87,16 @@ final class PipesHeadersTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\System\PipesHeaders::getLimiterKeyWithGroup()
-     * @covers \Hanaboso\Utils\System\PipesHeaders::parseLimitKey()
+     * @covers \Hanaboso\Utils\System\PipesHeaders::getLimiterKeyWithGroup
+     * @covers \Hanaboso\Utils\System\PipesHeaders::parseLimitKey
      */
     public function testGetAndParseLimitKeyWithGroup(): void
     {
         $limiterKey = PipesHeaders::getLimiterKeyWithGroup('limiterKey',60,10,'groupLimiterKey',61,11);
         self::assertSame('limiterKey|;60;10;groupLimiterKey|;61;11', $limiterKey);
         $parsedKey = PipesHeaders::parseLimitKey($limiterKey);
-        self::assertSame([
-            'limiterKey|' => 'limiterKey|;60;10',
-            'groupLimiterKey|' => 'groupLimiterKey|;61;11',
-            ], $parsedKey);
+        // @codingStandardsIgnoreLine
+        self::assertSame(['limiterKey|' => 'limiterKey|;60;10', 'groupLimiterKey|' => 'groupLimiterKey|;61;11'], $parsedKey);
     }
 
 }

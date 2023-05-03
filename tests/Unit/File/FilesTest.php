@@ -21,7 +21,7 @@ final class FilesTest extends TestCase
     public const GET_NAME = 'r_name.txt';
 
     /**
-     * @covers \Hanaboso\Utils\File\File::putContent()
+     * @covers \Hanaboso\Utils\File\File::putContent
      */
     public function testPutContentFailed(): void
     {
@@ -37,7 +37,7 @@ final class FilesTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\File\File::putContent()
+     * @covers \Hanaboso\Utils\File\File::putContent
      */
     public function testPutContent(): void
     {
@@ -48,8 +48,8 @@ final class FilesTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\File\File::putContent()
-     * @covers \Hanaboso\Utils\File\File::getContent()
+     * @covers \Hanaboso\Utils\File\File::putContent
+     * @covers \Hanaboso\Utils\File\File::getContent
      */
     public function testGetContent(): void
     {
@@ -62,7 +62,7 @@ final class FilesTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\File\File::getContent()
+     * @covers \Hanaboso\Utils\File\File::getContent
      */
     public function testGetContentNotFound(): void
     {

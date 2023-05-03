@@ -39,22 +39,6 @@ final class ValidationsTest extends KernelTestCaseAbstract
     }
 
     /**
-     * @return mixed[]
-     */
-    public function checkParamsProvider(): array
-    {
-        return [
-            [['param0', 'param1'], ['param0' => 0, 'param1' => 1], TRUE],
-            [['param0'], ['param0'], FALSE],
-            [['param0' => ['param1']], ['param0' => ['param1' => 1]], TRUE],
-            [['param0' => ['param1']], ['param0' => []], FALSE],
-            [['param0' => ['param1']], [], FALSE],
-            [['param0' => ['param1' => ['param2']]], ['param0' => ['param1' => ['param2' => 2]]], TRUE],
-            [['param0' => 'param1'], ['param0' => ['param1' => ['param2' => 2]]], FALSE],
-        ];
-    }
-
-    /**
      * @covers       \Hanaboso\Utils\Validations\Validations::checkParamsAny
      *
      * @dataProvider checkParamsAnyProvider
@@ -74,27 +58,11 @@ final class ValidationsTest extends KernelTestCaseAbstract
     }
 
     /**
-     * @return mixed[]
-     */
-    public function checkParamsAnyProvider(): array
-    {
-        return [
-            [['param0', 'param1'], ['param1' => 1], TRUE],
-            [['param0'], ['param0'], FALSE],
-            [['param0' => ['param1', 'param2']], ['param0' => ['param2' => 1]], TRUE],
-            [['param1', 'param0' => ['param1', 'param2']], ['param0' => ['param2' => 1]], TRUE],
-            [['param0' => ['param1']], ['param1' => ['param1'], 'param0' => []], FALSE],
-            [['param0' => ['param1']], [], FALSE],
-            [['param0' => ['param1' => ['param2']]], ['param0' => ['param1' => ['param2' => 2]]], TRUE],
-            [['param0' => 'param1'], ['param0' => ['param1' => ['param2' => 2]]], FALSE],
-        ];
-    }
-
-    /**
      * @covers \Hanaboso\Utils\Validations\Validations::prepareTestParams
      */
     public function testPrepareTestParams(): void
     {
+        // @codingStandardsIgnoreLine
         $attrs = ['a', 'b' => ['c' => [['d', 'e']]], 'f'];
 
         $data = Validations::prepareTestParams($attrs);
@@ -115,6 +83,40 @@ final class ValidationsTest extends KernelTestCaseAbstract
             ],
             $data,
         );
+    }
+
+    /**
+     * @return mixed[]
+     */
+    public static function checkParamsProvider(): array
+    {
+        return [
+            [['param0', 'param1'], ['param0' => 0, 'param1' => 1], TRUE],
+            [['param0'], ['param0'], FALSE],
+            [['param0' => ['param1']], ['param0' => ['param1' => 1]], TRUE],
+            [['param0' => ['param1']], ['param0' => []], FALSE],
+            [['param0' => ['param1']], [], FALSE],
+            [['param0' => ['param1' => ['param2']]], ['param0' => ['param1' => ['param2' => 2]]], TRUE],
+            [['param0' => 'param1'], ['param0' => ['param1' => ['param2' => 2]]], FALSE],
+        ];
+    }
+
+    /**
+     * @return mixed[]
+     */
+    public static function checkParamsAnyProvider(): array
+    {
+        return [
+            [['param0', 'param1'], ['param1' => 1], TRUE],
+            [['param0'], ['param0'], FALSE],
+            [['param0' => ['param1', 'param2']], ['param0' => ['param2' => 1]], TRUE],
+            // @codingStandardsIgnoreLine
+            [['param1', 'param0' => ['param1', 'param2']], ['param0' => ['param2' => 1]], TRUE],
+            [['param0' => ['param1']], ['param1' => ['param1'], 'param0' => []], FALSE],
+            [['param0' => ['param1']], [], FALSE],
+            [['param0' => ['param1' => ['param2']]], ['param0' => ['param1' => ['param2' => 2]]], TRUE],
+            [['param0' => 'param1'], ['param0' => ['param1' => ['param2' => 2]]], FALSE],
+        ];
     }
 
 }

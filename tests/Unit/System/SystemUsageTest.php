@@ -17,7 +17,7 @@ final class SystemUsageTest extends TestCase
     use PrivateTrait;
 
     /**
-     * @covers \Hanaboso\Utils\System\SystemUsage::getCurrentTimestamp()
+     * @covers \Hanaboso\Utils\System\SystemUsage::getCurrentTimestamp
      */
     public function testGetCurrentTimestamp(): void
     {
@@ -29,8 +29,8 @@ final class SystemUsageTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\System\SystemUsage::getCpuTimes()
-     * @covers \Hanaboso\Utils\System\SystemUsage::getCpuUsage()
+     * @covers \Hanaboso\Utils\System\SystemUsage::getCpuTimes
+     * @covers \Hanaboso\Utils\System\SystemUsage::getCpuUsage
      */
     public function testGetCpuTimes(): void
     {

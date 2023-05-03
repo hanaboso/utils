@@ -34,7 +34,7 @@ final class ControllerTraitTest extends TestCase
         $test = new TestTraits();
         $test->setLogger(new Logger());
         self::assertEquals(
-            '{"status":"INTERNAL_SERVER_ERROR","error_code":0,"type":"Exception","message":""}',
+            '{"error_code":0,"message":"","status":"INTERNAL_SERVER_ERROR","type":"Exception"}',
             $test->getErrorResponseForTest(new Exception())->getContent(),
         );
     }

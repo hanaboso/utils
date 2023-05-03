@@ -93,8 +93,8 @@ final class Arrays
                     $changedItem = self::diff($old[$key], $changedItem);
                 } else {
                     $changedItem = [
-                        'old' => $old[$key],
                         'new' => $changedItem,
+                        'old' => $old[$key],
                     ];
                 }
             },

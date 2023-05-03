@@ -18,8 +18,8 @@ final class UriParams
     public static function parseOrderBy(?string $orderBy = NULL): array
     {
         $convertTable = [
-            '-' => 'DESC',
             '+' => 'ASC',
+            '-' => 'DESC',
         ];
 
         $sort = [];

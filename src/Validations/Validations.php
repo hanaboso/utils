@@ -22,7 +22,7 @@ final class Validations
     {
         foreach ($params as $key => $param) {
             if (is_array($param)) {
-                Validations::checkParams($param, $data[$key] ?? []);
+                self::checkParams($param, $data[$key] ?? []);
 
                 continue;
             }
@@ -51,7 +51,7 @@ final class Validations
         foreach ($params as $key => $param) {
             $searched[] = $param;
             if (is_array($param)) {
-                Validations::checkParamsAny($param, $data[$key] ?? []);
+                self::checkParamsAny($param, $data[$key] ?? []);
                 $found = TRUE;
 
                 continue;

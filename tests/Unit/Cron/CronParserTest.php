@@ -70,7 +70,7 @@ final class CronParserTest extends KernelTestCaseAbstract
     /**
      * @return mixed[]
      */
-    public function cronDataProvider(): array
+    public static function cronDataProvider(): array
     {
         return [
             // valid values

@@ -30,7 +30,7 @@ final class StringsTest extends TestCase
      * @param string $assert
      * @param bool   $firstUpper
      *
-     * @covers       \Hanaboso\Utils\String\Strings::toCamelCase()
+     * @covers       \Hanaboso\Utils\String\Strings::toCamelCase
      */
     public function testToCamelCase(string $string, string $assert, bool $firstUpper): void
     {
@@ -39,31 +39,7 @@ final class StringsTest extends TestCase
     }
 
     /**
-     * @return mixed[]
-     */
-    public function toCamelCaseDataProvider(): array
-    {
-        return [
-            [
-                'some_group',
-                'SomeGroup',
-                FALSE,
-            ],
-            [
-                'some_group',
-                'someGroup',
-                TRUE,
-            ],
-            [
-                'some_group_some_group',
-                'someGroupSomeGroup',
-                TRUE,
-            ],
-        ];
-    }
-
-    /**
-     * @covers \Hanaboso\Utils\String\Strings::getShortClassName()
+     * @covers \Hanaboso\Utils\String\Strings::getShortClassName
      */
     public function testGetShortClassName(): void
     {
@@ -113,6 +89,30 @@ final class StringsTest extends TestCase
         $method->setAccessible(TRUE);
 
         self::assertEquals('Nas produkt', $method->invokeArgs(NULL, ['Naš produkt']));
+    }
+
+    /**
+     * @return mixed[]
+     */
+    public static function toCamelCaseDataProvider(): array
+    {
+        return [
+            [
+                'some_group',
+                'SomeGroup',
+                FALSE,
+            ],
+            [
+                'some_group',
+                'someGroup',
+                TRUE,
+            ],
+            [
+                'some_group_some_group',
+                'someGroupSomeGroup',
+                TRUE,
+            ],
+        ];
     }
 
 }

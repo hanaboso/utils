@@ -55,9 +55,9 @@ final class DsnParser
             }
 
             $result = [
-                self::USER     => $parsedUrl[1],
-                self::PASSWORD => $parsedUrl[2],
                 self::HOST     => $parsedUrl[3],
+                self::PASSWORD => $parsedUrl[2],
+                self::USER     => $parsedUrl[1],
             ];
 
             if (!empty($queryArr)) {

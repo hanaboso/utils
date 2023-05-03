@@ -25,12 +25,12 @@ final class DsnParserTest extends TestCase
         $result = DsnParser::genericParser('https://guest:heslo@dev.company:1000/sss.qa');
         self::assertEquals(
             [
+                'pass'          => 'heslo',
+                'path'          => '/sss.qa',
                 'scheme'        => 'https',
                 DsnParser::HOST => 'dev.company',
                 DsnParser::PORT => 1_000,
                 DsnParser::USER => 'guest',
-                'pass'          => 'heslo',
-                'path'          => '/sss.qa',
             ],
             $result,
         );
@@ -47,10 +47,10 @@ final class DsnParserTest extends TestCase
         $result = DsnParser::rabbitParser('amqp://guest:heslo@dev.company:1000/sss.qa');
         self::assertEquals(
             [
-                DsnParser::USER     => 'guest',
-                DsnParser::PASSWORD => 'heslo',
                 DsnParser::HOST     => 'dev.company',
+                DsnParser::PASSWORD => 'heslo',
                 DsnParser::PORT     => 1_000,
+                DsnParser::USER     => 'guest',
                 DsnParser::VHOST    => 'sss.qa',
             ],
             $result,
@@ -59,12 +59,12 @@ final class DsnParserTest extends TestCase
         $result = DsnParser::rabbitParser('amqp://guest:heslo@dev.company:1001?heartbeat=10&connection_timeout=10000');
         self::assertEquals(
             [
-                DsnParser::USER      => 'guest',
-                DsnParser::PASSWORD  => 'heslo',
-                DsnParser::HOST      => 'dev.company',
-                'heartbeat'          => 10,
                 'connection_timeout' => 10_000,
+                'heartbeat'          => 10,
+                DsnParser::HOST      => 'dev.company',
+                DsnParser::PASSWORD  => 'heslo',
                 DsnParser::PORT      => 1_001,
+                DsnParser::USER      => 'guest',
             ],
             $result,
         );
@@ -72,9 +72,9 @@ final class DsnParserTest extends TestCase
         $result = DsnParser::rabbitParser('amqp://dev.company:8080/vhost?heartbeat=10&connection_timeout=10000');
         self::assertEquals(
             [
-                DsnParser::HOST      => 'dev.company',
-                'heartbeat'          => 10,
                 'connection_timeout' => 10_000,
+                'heartbeat'          => 10,
+                DsnParser::HOST      => 'dev.company',
                 DsnParser::PORT      => 8_080,
                 DsnParser::VHOST     => DsnParser::VHOST,
             ],
@@ -104,9 +104,9 @@ final class DsnParserTest extends TestCase
         self::assertEquals(
             [
                 DsnParser::HOST     => 'dev-company-rabbit.cz',
+                DsnParser::PASSWORD => 'pass',
                 DsnParser::PORT     => '5672',
                 DsnParser::USER     => 'dev-company',
-                DsnParser::PASSWORD => 'pass',
                 DsnParser::VHOST    => 'dev-company',
             ],
             $result,
@@ -125,10 +125,10 @@ final class DsnParserTest extends TestCase
         );
         self::assertEquals(
             [
-                DsnParser::USER     => 'env_RABBITMQ_USER_000',
-                DsnParser::PASSWORD => 'env_RABBITMQ_PASS_111',
                 DsnParser::HOST     => 'env_RABBITMQ_HOST_222',
+                DsnParser::PASSWORD => 'env_RABBITMQ_PASS_111',
                 DsnParser::PORT     => 'env_RABBITMQ_PORT_333',
+                DsnParser::USER     => 'env_RABBITMQ_USER_000',
                 DsnParser::VHOST    => 'env_RABBITMQ_VHOST_444',
             ],
             $result,
@@ -238,83 +238,6 @@ final class DsnParserTest extends TestCase
     }
 
     /**
-     * @return mixed[]
-     */
-    public function parseRedisDsnProvider(): array
-    {
-        return [
-            [
-                'redis://localhost:6379/5',
-                [
-                    DsnParser::TLS      => FALSE,
-                    DsnParser::DATABASE => 5,
-                    DsnParser::HOST     => 'localhost',
-                    DsnParser::PORT     => 6_379,
-                ],
-            ],
-            [
-                'redis://pw@[::1]:63790/10',
-                [
-                    DsnParser::TLS      => FALSE,
-                    DsnParser::PASSWORD => 'pw',
-                    DsnParser::DATABASE => 10,
-                    DsnParser::HOST     => '::1',
-                    DsnParser::PORT     => 63_790,
-                ],
-            ],
-            [
-                'redis://%redis_pass%@%redis_host%:%redis_port%/%redis_db%',
-                [
-                    DsnParser::TLS      => FALSE,
-                    DsnParser::PASSWORD => '%redis_pass%',
-                    DsnParser::DATABASE => '%redis_db%',
-                    DsnParser::HOST     => '%redis_host%',
-                    DsnParser::PORT     => '%redis_port%',
-                ],
-            ],
-            [
-                'redis://p:pw@[::1]:63790/10',
-                [
-                    DsnParser::TLS      => FALSE,
-                    DsnParser::PASSWORD => 'pw',
-                    DsnParser::DATABASE => 10,
-                    DsnParser::HOST     => '::1',
-                    DsnParser::PORT     => 63_790,
-                ],
-            ],
-            [
-                'redis://pw@/var/run/redis/redis-1.sock:63790/10',
-                [
-                    DsnParser::TLS      => FALSE,
-                    DsnParser::PASSWORD => 'pw',
-                    DsnParser::DATABASE => 10,
-                    DsnParser::SOCKET   => '/var/run/redis/redis-1.sock',
-                ],
-            ],
-            [
-                'redis://pw@/redis.sock/10?weight=8&alias=master',
-                [
-                    DsnParser::TLS      => FALSE,
-                    DsnParser::PASSWORD => 'pw',
-                    DsnParser::WEIGHT   => 8,
-                    DsnParser::ALIAS    => 'master',
-                    DsnParser::DATABASE => 10,
-                    DsnParser::SOCKET   => '/redis.sock',
-                ],
-            ],
-            [
-                'rediss://pw@/redis.sock/10?asd=',
-                [
-                    DsnParser::TLS      => TRUE,
-                    DsnParser::PASSWORD => 'pw',
-                    DsnParser::DATABASE => 10,
-                    DsnParser::SOCKET   => '/redis.sock',
-                ],
-            ],
-        ];
-    }
-
-    /**
      * @covers \Hanaboso\Utils\String\DsnParser::parseElasticDsn
      *
      * @dataProvider parseElasticDsnProvider
@@ -358,7 +281,84 @@ final class DsnParserTest extends TestCase
     /**
      * @return mixed[]
      */
-    public function parseElasticDsnProvider(): array
+    public static function parseRedisDsnProvider(): array
+    {
+        return [
+            [
+                'redis://localhost:6379/5',
+                [
+                    DsnParser::DATABASE => 5,
+                    DsnParser::HOST     => 'localhost',
+                    DsnParser::PORT     => 6_379,
+                    DsnParser::TLS      => FALSE,
+                ],
+            ],
+            [
+                'redis://pw@[::1]:63790/10',
+                [
+                    DsnParser::DATABASE => 10,
+                    DsnParser::HOST     => '::1',
+                    DsnParser::PASSWORD => 'pw',
+                    DsnParser::PORT     => 63_790,
+                    DsnParser::TLS      => FALSE,
+                ],
+            ],
+            [
+                'redis://%redis_pass%@%redis_host%:%redis_port%/%redis_db%',
+                [
+                    DsnParser::DATABASE => '%redis_db%',
+                    DsnParser::HOST     => '%redis_host%',
+                    DsnParser::PASSWORD => '%redis_pass%',
+                    DsnParser::PORT     => '%redis_port%',
+                    DsnParser::TLS      => FALSE,
+                ],
+            ],
+            [
+                'redis://p:pw@[::1]:63790/10',
+                [
+                    DsnParser::DATABASE => 10,
+                    DsnParser::HOST     => '::1',
+                    DsnParser::PASSWORD => 'pw',
+                    DsnParser::PORT     => 63_790,
+                    DsnParser::TLS      => FALSE,
+                ],
+            ],
+            [
+                'redis://pw@/var/run/redis/redis-1.sock:63790/10',
+                [
+                    DsnParser::DATABASE => 10,
+                    DsnParser::PASSWORD => 'pw',
+                    DsnParser::SOCKET   => '/var/run/redis/redis-1.sock',
+                    DsnParser::TLS      => FALSE,
+                ],
+            ],
+            [
+                'redis://pw@/redis.sock/10?weight=8&alias=master',
+                [
+                    DsnParser::ALIAS    => 'master',
+                    DsnParser::DATABASE => 10,
+                    DsnParser::PASSWORD => 'pw',
+                    DsnParser::SOCKET   => '/redis.sock',
+                    DsnParser::TLS      => FALSE,
+                    DsnParser::WEIGHT   => 8,
+                ],
+            ],
+            [
+                'rediss://pw@/redis.sock/10?asd=',
+                [
+                    DsnParser::DATABASE => 10,
+                    DsnParser::PASSWORD => 'pw',
+                    DsnParser::SOCKET   => '/redis.sock',
+                    DsnParser::TLS      => TRUE,
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * @return mixed[]
+     */
+    public static function parseElasticDsnProvider(): array
     {
         return [
             [
@@ -388,9 +388,9 @@ final class DsnParserTest extends TestCase
             [
                 'elasticsearch://foo:bar@localhost:1234',
                 [
-                    DsnParser::USERNAME => 'foo',
                     DsnParser::PASSWORD => 'bar',
                     DsnParser::SERVERS  => [[DsnParser::HOST => 'localhost', DsnParser::PORT => 1_234]],
+                    DsnParser::USERNAME => 'foo',
                 ],
             ],
             [
@@ -412,9 +412,9 @@ final class DsnParserTest extends TestCase
             [
                 'elasticsearch:foo:bar@?host[localhost:9201]',
                 [
-                    DsnParser::USERNAME => 'foo',
                     DsnParser::PASSWORD => 'bar',
                     DsnParser::SERVERS  => [[DsnParser::HOST => 'localhost', DsnParser::PORT => 9_201]],
+                    DsnParser::USERNAME => 'foo',
                 ],
             ],
             [
