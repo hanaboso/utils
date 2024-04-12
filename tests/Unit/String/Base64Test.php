@@ -3,6 +3,7 @@
 namespace UtilsTests\Unit\String;
 
 use Hanaboso\Utils\String\Base64;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -10,11 +11,12 @@ use PHPUnit\Framework\TestCase;
  *
  * @package UtilsTests\Unit\String
  */
+#[CoversClass(Base64::class)]
 final class Base64Test extends TestCase
 {
 
     /**
-     * @covers \Hanaboso\Utils\String\Base64::base64UrlEncode
+     * @return void
      */
     public function testBase64UrlEncode(): void
     {
@@ -22,7 +24,7 @@ final class Base64Test extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\String\Base64::base64UrlDecode
+     * @return void
      */
     public function testBase64UrlDecode(): void
     {

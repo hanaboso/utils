@@ -3,6 +3,8 @@
 namespace UtilsTests\Unit\String;
 
 use Hanaboso\Utils\String\Strings;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use ReflectionException;
@@ -12,11 +14,12 @@ use ReflectionException;
  *
  * @package UtilsTests\Unit\String
  */
+#[CoversClass(Strings::class)]
 final class StringsTest extends TestCase
 {
 
     /**
-     * @covers \Hanaboso\Utils\String\Strings::trim
+     * @return void
      */
     public function testTrim(): void
     {
@@ -24,14 +27,11 @@ final class StringsTest extends TestCase
     }
 
     /**
-     * @dataProvider toCamelCaseDataProvider
-     *
      * @param string $string
      * @param string $assert
      * @param bool   $firstUpper
-     *
-     * @covers       \Hanaboso\Utils\String\Strings::toCamelCase
      */
+    #[DataProvider('toCamelCaseDataProvider')]
     public function testToCamelCase(string $string, string $assert, bool $firstUpper): void
     {
         $camelCase = Strings::toCamelCase($string, $firstUpper);
@@ -39,7 +39,7 @@ final class StringsTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\String\Strings::getShortClassName
+     * @return void
      */
     public function testGetShortClassName(): void
     {
@@ -47,7 +47,7 @@ final class StringsTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\String\Strings::endsWith
+     * @return void
      */
     public function testEndsWith(): void
     {
@@ -55,8 +55,7 @@ final class StringsTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\String\Strings::webalize
-     * @covers \Hanaboso\Utils\String\Strings::toAscii
+     * @return void
      */
     public function testWebalize(): void
     {
@@ -64,8 +63,6 @@ final class StringsTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\String\Strings::glibc
-     *
      * @throws ReflectionException
      */
     public function testGlibc(): void
@@ -78,8 +75,6 @@ final class StringsTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\String\Strings::iconv
-     *
      * @throws ReflectionException
      */
     public function testIconv(): void

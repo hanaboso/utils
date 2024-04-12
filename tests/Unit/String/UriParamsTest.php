@@ -3,6 +3,7 @@
 namespace UtilsTests\Unit\String;
 
 use Hanaboso\Utils\String\UriParams;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -10,11 +11,12 @@ use PHPUnit\Framework\TestCase;
  *
  * @package UtilsTests\Unit\String
  */
+#[CoversClass(UriParams::class)]
 final class UriParamsTest extends TestCase
 {
 
     /**
-     * @covers \Hanaboso\Utils\String\UriParams::parseOrderBy
+     * @return void
      */
     public function testParseOrderBy(): void
     {

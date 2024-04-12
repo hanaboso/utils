@@ -3,6 +3,7 @@
 namespace UtilsTests\Unit\String;
 
 use Hanaboso\Utils\String\Json;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -10,11 +11,12 @@ use PHPUnit\Framework\TestCase;
  *
  * @package UtilsTests\Unit\String
  */
+#[CoversClass(Json::class)]
 final class JsonTest extends TestCase
 {
 
     /**
-     * @covers \Hanaboso\Utils\String\Json::encode
+     * @return void
      */
     public function testEncode(): void
     {
@@ -22,7 +24,7 @@ final class JsonTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\String\Json::decode
+     * @return void
      */
     public function testDecode(): void
     {

@@ -3,6 +3,7 @@
 namespace UtilsTests\Unit\System;
 
 use Hanaboso\Utils\System\PipesHeaders;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -10,11 +11,12 @@ use PHPUnit\Framework\TestCase;
  *
  * @package UtilsTests\Unit\System
  */
+#[CoversClass(PipesHeaders::class)]
 final class PipesHeadersTest extends TestCase
 {
 
     /**
-     * @covers \Hanaboso\Utils\System\PipesHeaders::get
+     * @return void
      */
     public function testGet(): void
     {
@@ -30,7 +32,7 @@ final class PipesHeadersTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\System\PipesHeaders::debugInfo
+     * @return void
      */
     public function testDebugInfo(): void
     {
@@ -51,7 +53,7 @@ final class PipesHeadersTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\System\PipesHeaders::decorateLimitKey
+     * @return void
      */
     public function testDecorateLimitKey(): void
     {
@@ -59,7 +61,7 @@ final class PipesHeadersTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\System\PipesHeaders::decorateLimitKey
+     * @return void
      */
     public function testDecorateLimitKeySame(): void
     {
@@ -67,7 +69,7 @@ final class PipesHeadersTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\System\PipesHeaders::parseLimitKey
+     * @return void
      */
     public function testParseKey(): void
     {
@@ -75,8 +77,7 @@ final class PipesHeadersTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\System\PipesHeaders::getLimiterKey
-     * @covers \Hanaboso\Utils\System\PipesHeaders::parseLimitKey
+     * @return void
      */
     public function testGetAndParseLimitKey(): void
     {
@@ -87,8 +88,7 @@ final class PipesHeadersTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\System\PipesHeaders::getLimiterKeyWithGroup
-     * @covers \Hanaboso\Utils\System\PipesHeaders::parseLimitKey
+     * @return void
      */
     public function testGetAndParseLimitKeyWithGroup(): void
     {

@@ -3,6 +3,7 @@
 namespace UtilsTests\Unit\Traits;
 
 use Exception;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpKernel\Log\Logger;
 
@@ -11,11 +12,12 @@ use Symfony\Component\HttpKernel\Log\Logger;
  *
  * @package UtilsTests\Unit\Traits
  */
+#[CoversClass(TestTraits::class)]
 final class ControllerTraitTest extends TestCase
 {
 
     /**
-     * @covers \UtilsTests\Unit\Traits\TestTraits::getResponse
+     * @return void
      */
     public function testGetResponseArr(): void
     {
@@ -26,8 +28,7 @@ final class ControllerTraitTest extends TestCase
     }
 
     /**
-     * @covers \UtilsTests\Unit\Traits\TestTraits::getErrorResponse
-     * @covers \UtilsTests\Unit\Traits\TestTraits::setLogger
+     * @return void
      */
     public function testGetErrorResponse(): void
     {

@@ -4,6 +4,7 @@ namespace UtilsTests\Unit\Cron;
 
 use Hanaboso\Utils\Cron\CronParser;
 use LogicException;
+use PHPUnit\Framework\Attributes\DataProvider;
 use UtilsTests\KernelTestCaseAbstract;
 
 /**
@@ -15,7 +16,7 @@ final class CronParserTest extends KernelTestCaseAbstract
 {
 
     /**
-     *
+     * @return void
      */
     public function testIsValid(): void
     {
@@ -24,7 +25,7 @@ final class CronParserTest extends KernelTestCaseAbstract
     }
 
     /**
-     *
+     * @return void
      */
     public function testMapping(): void
     {
@@ -38,7 +39,7 @@ final class CronParserTest extends KernelTestCaseAbstract
     }
 
     /**
-     *
+     * @return void
      */
     public function testGetters(): void
     {
@@ -52,11 +53,10 @@ final class CronParserTest extends KernelTestCaseAbstract
     }
 
     /**
-     * @dataProvider cronDataProvider
-     *
      * @param string $expr
      * @param bool   $success
      */
+    #[DataProvider('cronDataProvider')]
     public function testParse(string $expr, bool $success): void
     {
         if (!$success) {

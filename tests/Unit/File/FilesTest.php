@@ -5,6 +5,7 @@ namespace UtilsTests\Unit\File;
 use Hanaboso\Utils\File\File;
 use LogicException;
 use phpmock\phpunit\PHPMock;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -12,6 +13,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @package UtilsTests\Unit\File
  */
+#[CoversClass(File::class)]
 final class FilesTest extends TestCase
 {
 
@@ -21,7 +23,7 @@ final class FilesTest extends TestCase
     public const GET_NAME = 'r_name.txt';
 
     /**
-     * @covers \Hanaboso\Utils\File\File::putContent
+     * @return void
      */
     public function testPutContentFailed(): void
     {
@@ -37,7 +39,7 @@ final class FilesTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\File\File::putContent
+     * @return void
      */
     public function testPutContent(): void
     {
@@ -48,8 +50,7 @@ final class FilesTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\File\File::putContent
-     * @covers \Hanaboso\Utils\File\File::getContent
+     * @return void
      */
     public function testGetContent(): void
     {
@@ -62,7 +63,7 @@ final class FilesTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\File\File::getContent
+     * @return void
      */
     public function testGetContentNotFound(): void
     {

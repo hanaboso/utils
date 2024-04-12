@@ -5,29 +5,27 @@ namespace UtilsTests\Unit\Validations;
 use Hanaboso\PhpCheckUtils\PhpUnit\Traits\CustomAssertTrait;
 use Hanaboso\Utils\Validations\Validations;
 use LogicException;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use UtilsTests\KernelTestCaseAbstract;
 
 /**
  * Class ValidationsTest
  *
  * @package UtilsTests\Unit\Validations
- *
- * @covers  \Hanaboso\Utils\Validations\Validations
  */
+#[CoversClass(Validations::class)]
 final class ValidationsTest extends KernelTestCaseAbstract
 {
 
     use CustomAssertTrait;
 
     /**
-     * @covers       \Hanaboso\Utils\Validations\Validations::checkParams
-     *
-     * @dataProvider checkParamsProvider
-     *
      * @param mixed[] $params
      * @param mixed[] $data
      * @param bool    $shouldBeOk
      */
+    #[DataProvider('checkParamsProvider')]
     public function testCheckParams(array $params, array $data, bool $shouldBeOk): void
     {
         if (!$shouldBeOk) {
@@ -39,14 +37,11 @@ final class ValidationsTest extends KernelTestCaseAbstract
     }
 
     /**
-     * @covers       \Hanaboso\Utils\Validations\Validations::checkParamsAny
-     *
-     * @dataProvider checkParamsAnyProvider
-     *
      * @param mixed[] $params
      * @param mixed[] $data
      * @param bool    $shouldBeOk
      */
+    #[DataProvider('checkParamsAnyProvider')]
     public function testCheckParamsAny(array $params, array $data, bool $shouldBeOk): void
     {
         if (!$shouldBeOk) {
@@ -58,7 +53,7 @@ final class ValidationsTest extends KernelTestCaseAbstract
     }
 
     /**
-     * @covers \Hanaboso\Utils\Validations\Validations::prepareTestParams
+     * @return void
      */
     public function testPrepareTestParams(): void
     {

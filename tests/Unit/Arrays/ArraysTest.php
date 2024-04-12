@@ -3,6 +3,7 @@
 namespace UtilsTests\Unit\Arrays;
 
 use Hanaboso\Utils\Arrays\Arrays;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -10,11 +11,12 @@ use PHPUnit\Framework\TestCase;
  *
  * @package UtilsTests\Unit\Arrays
  */
+#[CoversClass(Arrays::class)]
 final class ArraysTest extends TestCase
 {
 
     /**
-     * @covers \Hanaboso\Utils\Arrays\Arrays::isList
+     * @return void
      */
     public function testIsList(): void
     {
@@ -22,10 +24,7 @@ final class ArraysTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\Arrays\Arrays::diff
-     * @covers \Hanaboso\Utils\Arrays\Arrays::getCreatedKeys
-     * @covers \Hanaboso\Utils\Arrays\Arrays::getUpdatedKeys
-     * @covers \Hanaboso\Utils\Arrays\Arrays::getRemovedKeys
+     * @return void
      */
     public function testDiff(): void
     {

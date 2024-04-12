@@ -6,6 +6,7 @@ use DateTime;
 use DateTimeImmutable;
 use Hanaboso\Utils\Date\DateTimeUtils;
 use Hanaboso\Utils\Exception\DateTimeException;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -13,12 +14,11 @@ use PHPUnit\Framework\TestCase;
  *
  * @package UtilsTests\Unit\Date
  */
+#[CoversClass(DateTimeUtils::class)]
 final class DateTimeUtilsTest extends TestCase
 {
 
     /**
-     * @covers \Hanaboso\Utils\Date\DateTimeUtils::getUtcDateTime
-     *
      * @throws DateTimeException
      */
     public function testGetUtcDateTime(): void
@@ -27,8 +27,6 @@ final class DateTimeUtilsTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\Date\DateTimeUtils::getUtcDateTime
-     *
      * @throws DateTimeException
      */
     public function testGetUtcDateTimeError(): void
@@ -38,7 +36,7 @@ final class DateTimeUtilsTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\Date\DateTimeUtils::getUtcDateTimeFromTimeStamp
+     * @return void
      */
     public function testGetUtcDateTimeFromTimeStamp(): void
     {
@@ -46,8 +44,6 @@ final class DateTimeUtilsTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\Date\DateTimeUtils::getUtcDateTimeImmutable
-     *
      * @throws DateTimeException
      */
     public function testGetUtcDateTimeImmutable(): void
@@ -56,8 +52,6 @@ final class DateTimeUtilsTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\Date\DateTimeUtils::getUtcDateTimeImmutable
-     *
      * @throws DateTimeException
      */
     public function testGetUtcDateTimeImmutableError(): void

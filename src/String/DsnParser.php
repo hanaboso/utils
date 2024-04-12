@@ -358,8 +358,8 @@ final class DsnParser
     }
 
     /**
-     * @param string[] $matches
-     * @param string[] $result
+     * @param string[]             $matches
+     * @param array<string, mixed> $result
      */
     private static function parseRedisParameters(array $matches, array &$result): void
     {

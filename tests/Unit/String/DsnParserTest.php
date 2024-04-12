@@ -4,21 +4,21 @@ namespace UtilsTests\Unit\String;
 
 use Hanaboso\Utils\String\DsnParser;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class DsnParserTest
  *
  * @package UtilsTests\Unit\String
- *
- * @covers  \Hanaboso\Utils\String\DsnParser
  */
+#[CoversClass(DsnParser::class)]
 final class DsnParserTest extends TestCase
 {
 
     /**
-     * @covers \Hanaboso\Utils\String\DsnParser::genericParser
-     * @covers \Hanaboso\Utils\String\DsnParser::regExWithUsersCredentials
+     * @return void
      */
     public function testGenericParser(): void
     {
@@ -37,10 +37,7 @@ final class DsnParserTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\String\DsnParser::rabbitParser
-     * @covers \Hanaboso\Utils\String\DsnParser::getQueryParamsArr
-     * @covers \Hanaboso\Utils\String\DsnParser::regExWithoutUsersCredentials
-     * @covers \Hanaboso\Utils\String\DsnParser::regExWithUsersCredentials
+     * @return void
      */
     public function testRabbitParser(): void
     {
@@ -114,9 +111,7 @@ final class DsnParserTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\String\DsnParser::rabbitParser
-     * @covers \Hanaboso\Utils\String\DsnParser::isValidRabbitDsn
-     * @covers \Hanaboso\Utils\String\DsnParser::regExWithoutUsersCredentials
+     * @return void
      */
     public function testRabbitParserEnv(): void
     {
@@ -136,7 +131,7 @@ final class DsnParserTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\String\DsnParser::rabbitParser
+     * @return void
      */
     public function testRabbitParserError(): void
     {
@@ -145,9 +140,7 @@ final class DsnParserTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\String\DsnParser::isValidRabbitDsn
-     * @covers \Hanaboso\Utils\String\DsnParser::regExWithUsersCredentials
-     * @covers \Hanaboso\Utils\String\DsnParser::regExWithoutUsersCredentials
+     * @return void
      */
     public function test1IsValidDsn(): void
     {
@@ -165,8 +158,7 @@ final class DsnParserTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\String\DsnParser::isValidRabbitDsn
-     * @covers \Hanaboso\Utils\String\DsnParser::regExWithUsersCredentials
+     * @return void
      */
     public function test2IsValidDsn(): void
     {
@@ -175,8 +167,7 @@ final class DsnParserTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\String\DsnParser::isValidRabbitDsn
-     * @covers \Hanaboso\Utils\String\DsnParser::regExWithUsersCredentials
+     * @return void
      */
     public function test3IsValidDsn(): void
     {
@@ -185,8 +176,7 @@ final class DsnParserTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\String\DsnParser::isValidRabbitDsn
-     * @covers \Hanaboso\Utils\String\DsnParser::regExWithUsersCredentials
+     * @return void
      */
     public function test4IsValidDsn(): void
     {
@@ -195,8 +185,7 @@ final class DsnParserTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\String\DsnParser::isValidRabbitDsn
-     * @covers \Hanaboso\Utils\String\DsnParser::regExWithoutUsersCredentials
+     * @return void
      */
     public function test5IsValidDsn(): void
     {
@@ -205,8 +194,7 @@ final class DsnParserTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\String\DsnParser::isValidRabbitDsn
-     * @covers \Hanaboso\Utils\String\DsnParser::regExWithoutUsersCredentials
+     * @return void
      */
     public function test6IsValidDsn(): void
     {
@@ -215,7 +203,7 @@ final class DsnParserTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\String\DsnParser::isValidRabbitDsn
+     * @return void
      */
     public function test8IsValidDsn(): void
     {
@@ -224,13 +212,10 @@ final class DsnParserTest extends TestCase
     }
 
     /**
-     * @covers       \Hanaboso\Utils\String\DsnParser::parseRedisDsn
-     *
-     * @dataProvider parseRedisDsnProvider
-     *
      * @param string  $dsn
      * @param mixed[] $exp
      */
+    #[DataProvider('parseRedisDsnProvider')]
     public function testParseRedisDsn(string $dsn, array $exp): void
     {
         $res = DsnParser::parseRedisDsn($dsn);
@@ -238,13 +223,10 @@ final class DsnParserTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\String\DsnParser::parseElasticDsn
-     *
-     * @dataProvider parseElasticDsnProvider
-     *
      * @param string  $dsn
      * @param mixed[] $exp
      */
+    #[DataProvider('parseElasticDsnProvider')]
     public function testParseElasticDsn(string $dsn, array $exp): void
     {
         $res = DsnParser::parseElasticDsn($dsn);
@@ -252,7 +234,7 @@ final class DsnParserTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\String\DsnParser::parseElasticDsn
+     * @return void
      */
     public function testParseElasticWrongDsn(): void
     {
@@ -261,7 +243,7 @@ final class DsnParserTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\String\DsnParser::parseElasticDsn
+     * @return void
      */
     public function testParseElasticDsnHostsNotArray(): void
     {
@@ -270,7 +252,7 @@ final class DsnParserTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\String\DsnParser::parseElasticDsn
+     * @return void
      */
     public function testParseElasticDsnErr(): void
     {

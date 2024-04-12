@@ -3,6 +3,7 @@
 namespace UtilsTests\Unit\System;
 
 use Hanaboso\Utils\System\NodeGeneratorUtils;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -10,13 +11,12 @@ use PHPUnit\Framework\TestCase;
  *
  * @package UtilsTests\Unit\System
  */
+#[CoversClass(NodeGeneratorUtils::class)]
 final class NodeGeneratorUtilsTest extends TestCase
 {
 
     /**
-     * @covers \Hanaboso\Utils\System\NodeGeneratorUtils::createServiceName
-     * @covers \Hanaboso\Utils\System\NodeGeneratorUtils::createNormalizedServiceName
-     * @covers \Hanaboso\Utils\System\NodeGeneratorUtils::normalizeName
+     * @return void
      */
     public function testCreateServiceName(): void
     {
@@ -24,10 +24,7 @@ final class NodeGeneratorUtilsTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\System\NodeGeneratorUtils::generateQueueName
-     * @covers \Hanaboso\Utils\System\NodeGeneratorUtils::createServiceName
-     * @covers \Hanaboso\Utils\System\NodeGeneratorUtils::createNormalizedServiceName
-     * @covers \Hanaboso\Utils\System\NodeGeneratorUtils::normalizeName
+     * @return void
      */
     public function testGenerateQueueName(): void
     {
@@ -35,10 +32,7 @@ final class NodeGeneratorUtilsTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\System\NodeGeneratorUtils::generateQueueNameFromStrings
-     * @covers \Hanaboso\Utils\System\NodeGeneratorUtils::createServiceName
-     * @covers \Hanaboso\Utils\System\NodeGeneratorUtils::createNormalizedServiceName
-     * @covers \Hanaboso\Utils\System\NodeGeneratorUtils::normalizeName
+     * @return void
      */
     public function testGenerateQueueNameFromStrings(): void
     {

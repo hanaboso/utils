@@ -4,6 +4,7 @@ namespace UtilsTests\Unit\String;
 
 use Exception;
 use Hanaboso\Utils\String\LoggerFormater;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -11,11 +12,12 @@ use PHPUnit\Framework\TestCase;
  *
  * @package UtilsTests\Unit\String
  */
+#[CoversClass(LoggerFormater::class)]
 final class LoggerFormaterTest extends TestCase
 {
 
     /**
-     * @covers \Hanaboso\Utils\String\LoggerFormater::headersToString
+     * @return void
      */
     public function testHeadersToString(): void
     {
@@ -30,7 +32,7 @@ final class LoggerFormaterTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\String\LoggerFormater::requestToString
+     * @return void
      */
     public function testRequestToString(): void
     {
@@ -46,7 +48,7 @@ final class LoggerFormaterTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\String\LoggerFormater::responseToString
+     * @return void
      */
     public function testResponseToString(): void
     {
@@ -62,7 +64,7 @@ final class LoggerFormaterTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\String\LoggerFormater::getContextForLogger
+     * @return void
      */
     public function testGetContextForLogger(): void
     {
@@ -73,7 +75,7 @@ final class LoggerFormaterTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\String\LoggerFormater::getContextForLogger
+     * @return void
      */
     public function testGetContextForLoggerNull(): void
     {

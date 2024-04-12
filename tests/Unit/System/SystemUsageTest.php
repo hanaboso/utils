@@ -4,6 +4,7 @@ namespace UtilsTests\Unit\System;
 
 use Hanaboso\PhpCheckUtils\PhpUnit\Traits\PrivateTrait;
 use Hanaboso\Utils\System\SystemUsage;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -11,13 +12,14 @@ use PHPUnit\Framework\TestCase;
  *
  * @package UtilsTests\Unit\System
  */
+#[CoversClass(SystemUsage::class)]
 final class SystemUsageTest extends TestCase
 {
 
     use PrivateTrait;
 
     /**
-     * @covers \Hanaboso\Utils\System\SystemUsage::getCurrentTimestamp
+     * @return void
      */
     public function testGetCurrentTimestamp(): void
     {
@@ -29,8 +31,7 @@ final class SystemUsageTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\System\SystemUsage::getCpuTimes
-     * @covers \Hanaboso\Utils\System\SystemUsage::getCpuUsage
+     * @return void
      */
     public function testGetCpuTimes(): void
     {

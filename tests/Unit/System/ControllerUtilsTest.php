@@ -6,6 +6,7 @@ use Exception;
 use Hanaboso\PhpCheckUtils\PhpUnit\Traits\CustomAssertTrait;
 use Hanaboso\Utils\Exception\PipesFrameworkException;
 use Hanaboso\Utils\System\ControllerUtils;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -13,13 +14,14 @@ use PHPUnit\Framework\TestCase;
  *
  * @package UtilsTests\Unit\System
  */
+#[CoversClass(ControllerUtils::class)]
 final class ControllerUtilsTest extends TestCase
 {
 
     use CustomAssertTrait;
 
     /**
-     * @covers \Hanaboso\Utils\System\ControllerUtils::createExceptionData
+     * @return void
      */
     public function testCreateExceptionData(): void
     {
@@ -30,7 +32,7 @@ final class ControllerUtilsTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\System\ControllerUtils::createHeaders
+     * @return void
      */
     public function testCreateHeader(): void
     {
@@ -57,7 +59,6 @@ final class ControllerUtilsTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\System\ControllerUtils::checkParameters
      * @throws PipesFrameworkException
      */
     public function testCheckParametersErr(): void
@@ -67,7 +68,6 @@ final class ControllerUtilsTest extends TestCase
     }
 
     /**
-     * @covers \Hanaboso\Utils\System\ControllerUtils::checkParameters
      * @throws PipesFrameworkException
      */
     public function testCheckParameters(): void
