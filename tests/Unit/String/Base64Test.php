@@ -20,7 +20,7 @@ final class Base64Test extends TestCase
      */
     public function testBase64UrlEncode(): void
     {
-        self::assertEquals('ZXhhbXBsZQ,,', Base64::base64UrlEncode('example'));
+        self::assertSame('ZXhhbXBsZQ,,', Base64::base64UrlEncode('example'));
     }
 
     /**
@@ -28,7 +28,7 @@ final class Base64Test extends TestCase
      */
     public function testBase64UrlDecode(): void
     {
-        self::assertEquals('example', Base64::base64UrlDecode('ZXhhbXBsZQ,,'));
+        self::assertSame('example', Base64::base64UrlDecode('ZXhhbXBsZQ,,'));
     }
 
 }

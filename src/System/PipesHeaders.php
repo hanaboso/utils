@@ -11,38 +11,38 @@ class PipesHeaders
 {
 
     // Framework headers
-    public const CORRELATION_ID     = 'correlation-id';
-    public const PROCESS_ID         = 'process-id';
-    public const PARENT_ID          = 'parent-id';
-    public const SEQUENCE_ID        = 'sequence-id';
-    public const NODE_ID            = 'node-id';
-    public const NODE_NAME          = 'node-name';
-    public const TOPOLOGY_ID        = 'topology-id';
-    public const TOPOLOGY_NAME      = 'topology-name';
-    public const APPLICATION        = 'application';
-    public const USER               = 'user';
-    public const WORKER_FOLLOWERS   = 'worker-followers';
-    public const FORCE_TARGET_QUEUE = 'force-target-queue';
+    public const string CORRELATION_ID     = 'correlation-id';
+    public const string PROCESS_ID         = 'process-id';
+    public const string PARENT_ID          = 'parent-id';
+    public const string SEQUENCE_ID        = 'sequence-id';
+    public const string NODE_ID            = 'node-id';
+    public const string NODE_NAME          = 'node-name';
+    public const string TOPOLOGY_ID        = 'topology-id';
+    public const string TOPOLOGY_NAME      = 'topology-name';
+    public const string APPLICATION        = 'application';
+    public const string USER               = 'user';
+    public const string WORKER_FOLLOWERS   = 'worker-followers';
+    public const string FORCE_TARGET_QUEUE = 'force-target-queue';
 
     // Result headers
-    public const RESULT_CODE    = 'result-code';
-    public const RESULT_MESSAGE = 'result-message';
-    public const RESULT_DETAIL  = 'result-detail';
+    public const string RESULT_CODE    = 'result-code';
+    public const string RESULT_MESSAGE = 'result-message';
+    public const string RESULT_DETAIL  = 'result-detail';
 
     // Repeater headers
-    public const REPEAT_QUEUE    = 'repeat-queue';
-    public const REPEAT_INTERVAL = 'repeat-interval';
-    public const REPEAT_MAX_HOPS = 'repeat-max-hops';
-    public const REPEAT_HOPS     = 'repeat-hops';
+    public const string REPEAT_QUEUE    = 'repeat-queue';
+    public const string REPEAT_INTERVAL = 'repeat-interval';
+    public const string REPEAT_MAX_HOPS = 'repeat-max-hops';
+    public const string REPEAT_HOPS     = 'repeat-hops';
 
     // Limiter headers
-    public const LIMITER_KEY = 'limiter-key';
+    public const string LIMITER_KEY = 'limiter-key';
 
     // Batch headers
-    public const BATCH_CURSOR = 'cursor';
+    public const string BATCH_CURSOR = 'cursor';
 
     // --- MicroTimestamp because Bunny
-    public const TIMESTAMP = 'published-timestamp';
+    public const string TIMESTAMP = 'published-timestamp';
 
     /**
      * @param string  $key

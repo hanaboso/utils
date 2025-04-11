@@ -14,17 +14,17 @@ use Throwable;
 class ControllerUtils
 {
 
-    public const INTERNAL_SERVER_ERROR = 'INTERNAL_SERVER_ERROR';
-    public const BAD_CREDENTIALS       = 'BAD_CREDENTIALS';
-    public const UNAUTHORIZED          = 'UNAUTHORIZED';
-    public const NOT_LOGGED            = 'NOT_LOGGED';
-    public const INVALID_REQUEST       = 'INVALID_REQUEST';
-    public const SERVICE_UNAVAILABLE   = 'SERVICE_UNAVAILABLE';
-    public const EMPTY                 = 'EMPTY';
-    public const NOT_FOUND             = 'NOT_FOUND';
-    public const INVALID_OPERATION     = 'INVALID_OPERATION';
-    public const ENTITY_ALREADY_EXISTS = 'ENTITY_ALREADY_EXISTS';
-    public const NOT_ALLOWED           = 'NOT_ALLOWED';
+    public const string INTERNAL_SERVER_ERROR = 'INTERNAL_SERVER_ERROR';
+    public const string BAD_CREDENTIALS       = 'BAD_CREDENTIALS';
+    public const string UNAUTHORIZED          = 'UNAUTHORIZED';
+    public const string NOT_LOGGED            = 'NOT_LOGGED';
+    public const string INVALID_REQUEST       = 'INVALID_REQUEST';
+    public const string SERVICE_UNAVAILABLE   = 'SERVICE_UNAVAILABLE';
+    public const string EMPTY                 = 'EMPTY';
+    public const string NOT_FOUND             = 'NOT_FOUND';
+    public const string INVALID_OPERATION     = 'INVALID_OPERATION';
+    public const string ENTITY_ALREADY_EXISTS = 'ENTITY_ALREADY_EXISTS';
+    public const string NOT_ALLOWED           = 'NOT_ALLOWED';
 
     /**
      * @param Throwable $e

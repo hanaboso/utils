@@ -20,7 +20,7 @@ final class NodeGeneratorUtilsTest extends TestCase
      */
     public function testCreateServiceName(): void
     {
-        self::assertEquals('1-nas-pro', NodeGeneratorUtils::createNormalizedServiceName('1', 'Náše produkty'));
+        self::assertSame('1-nas-pro', NodeGeneratorUtils::createNormalizedServiceName('1', 'Náše produkty'));
     }
 
     /**
@@ -28,7 +28,7 @@ final class NodeGeneratorUtilsTest extends TestCase
      */
     public function testGenerateQueueName(): void
     {
-        self::assertEquals('pipes.1.2-nas-pro', NodeGeneratorUtils::generateQueueName('1', '2', 'Náše produkty'));
+        self::assertSame('pipes.1.2-nas-pro', NodeGeneratorUtils::generateQueueName('1', '2', 'Náše produkty'));
     }
 
     /**
@@ -36,7 +36,7 @@ final class NodeGeneratorUtilsTest extends TestCase
      */
     public function testGenerateQueueNameFromStrings(): void
     {
-        self::assertEquals(
+        self::assertSame(
             'pipes.topology.node-nas-pro',
             NodeGeneratorUtils::generateQueueNameFromStrings('topology', 'node', 'Náše produkty'),
         );

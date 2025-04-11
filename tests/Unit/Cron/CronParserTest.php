@@ -31,11 +31,11 @@ final class CronParserTest extends KernelTestCaseAbstract
     {
         $c = CronParser::parse('@weekly');
 
-        self::assertEquals('0', $c->getMinute());
-        self::assertEquals('0', $c->getHour());
-        self::assertEquals('*', $c->getDayOfMonth());
-        self::assertEquals('*', $c->getMonth());
-        self::assertEquals('0', $c->getDayOfWeek());
+        self::assertSame('0', $c->getMinute());
+        self::assertSame('0', $c->getHour());
+        self::assertSame('*', $c->getDayOfMonth());
+        self::assertSame('*', $c->getMonth());
+        self::assertSame('0', $c->getDayOfWeek());
     }
 
     /**
@@ -45,11 +45,11 @@ final class CronParserTest extends KernelTestCaseAbstract
     {
         $c = CronParser::parse('5 4 15 JUN MON');
 
-        self::assertEquals('5', $c->getMinute());
-        self::assertEquals('4', $c->getHour());
-        self::assertEquals('15', $c->getDayOfMonth());
-        self::assertEquals('6', $c->getMonth());
-        self::assertEquals('1', $c->getDayOfWeek());
+        self::assertSame('5', $c->getMinute());
+        self::assertSame('4', $c->getHour());
+        self::assertSame('15', $c->getDayOfMonth());
+        self::assertSame('6', $c->getMonth());
+        self::assertSame('1', $c->getDayOfWeek());
     }
 
     /**

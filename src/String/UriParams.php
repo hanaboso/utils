@@ -24,7 +24,7 @@ final class UriParams
 
         $sort = [];
 
-        if (!empty($orderBy)) {
+        if ($orderBy !== NULL && $orderBy !== '') {
             foreach (explode(',', $orderBy) as $item) {
                 $name        = substr($item, 0, -1);
                 $direction   = substr($item, -1);

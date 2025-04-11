@@ -13,14 +13,14 @@ use Hanaboso\Utils\File\File;
 final class SystemUsage
 {
 
-    public const CPU_TIME_USER   = 'cpu_user_code_time';
-    public const CPU_TIME_KERNEL = 'cpu_kernel_code_time';
-    public const CPU_START_TIME  = 'cpu_start_time';
+    public const string CPU_TIME_USER   = 'cpu_user_code_time';
+    public const string CPU_TIME_KERNEL = 'cpu_kernel_code_time';
+    public const string CPU_START_TIME  = 'cpu_start_time';
 
-    private const HERTZ = 100;
+    private const int HERTZ = 100;
 
-    private const FILE_PROC_UPTIME = '/proc/uptime';
-    private const FILE_PROC_STAT   = '/proc/%s/stat';
+    private const string FILE_PROC_UPTIME = '/proc/uptime';
+    private const string FILE_PROC_STAT   = '/proc/%s/stat';
 
     /**
      * Returns current CPU usage in percents

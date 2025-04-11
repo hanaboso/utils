@@ -23,7 +23,7 @@ final class StringsTest extends TestCase
      */
     public function testTrim(): void
     {
-        self::assertEquals('These are a few words', Strings::trim('        These are a few words//', ' //'));
+        self::assertSame('These are a few words', Strings::trim('        These are a few words//', ' //'));
     }
 
     /**
@@ -51,7 +51,7 @@ final class StringsTest extends TestCase
      */
     public function testEndsWith(): void
     {
-        self::assertEquals(TRUE, Strings::endsWith('name', 'me'));
+        self::assertTrue(Strings::endsWith('name', 'me'));
     }
 
     /**
@@ -59,7 +59,7 @@ final class StringsTest extends TestCase
      */
     public function testWebalize(): void
     {
-        self::assertEquals('nas-produkt', Strings::webalize('Náš produkt'));
+        self::assertSame('nas-produkt', Strings::webalize('Náš produkt'));
     }
 
     /**

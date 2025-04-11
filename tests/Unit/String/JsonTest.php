@@ -20,7 +20,7 @@ final class JsonTest extends TestCase
      */
     public function testEncode(): void
     {
-        self::assertEquals('{"1":"example1","2":"example2"}', Json::encode([1 => 'example1', 2 => 'example2']));
+        self::assertSame('{"1":"example1","2":"example2"}', Json::encode([1 => 'example1', 2 => 'example2']));
     }
 
     /**

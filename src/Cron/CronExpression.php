@@ -144,7 +144,7 @@ final class CronExpression
     {
         $month = str_ireplace(
             ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
-            range(1, 12),
+            array_map(static fn($n) => (string) $n, range(1, 12)),
             $month,
         );
 
@@ -160,7 +160,11 @@ final class CronExpression
      */
     private function setDayOfWeek(string $day): void
     {
-        $day = str_ireplace(['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'], range(0, 6), $day);
+        $day = str_ireplace(
+            ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'],
+            array_map(static fn($n) => (string) $n, range(0, 6)),
+            $day,
+        );
 
         if (!self::isValidDayOfWeek($day)) {
             throw new LogicException(sprintf('"%s" is not valid for hour part.', $day));

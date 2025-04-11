@@ -10,8 +10,8 @@ namespace Hanaboso\Utils\Exception;
 class PipesFrameworkException extends PipesFrameworkExceptionAbstract
 {
 
-    public const UNKNOWN_ERROR                = 1;
-    public const REQUIRED_PARAMETER_NOT_FOUND = 2;
-    public const WRONG_VALUE                  = 3;
+    public const int UNKNOWN_ERROR                = 1;
+    public const int REQUIRED_PARAMETER_NOT_FOUND = 2;
+    public const int WRONG_VALUE                  = 3;
 
 }

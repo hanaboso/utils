@@ -12,20 +12,20 @@ use InvalidArgumentException;
 final class DsnParser
 {
 
-    public const USER     = 'user';
-    public const HOST     = 'host';
-    public const VHOST    = 'vhost';
-    public const PORT     = 'port';
-    public const PASSWORD = 'password';
-    public const DATABASE = 'database';
-    public const TLS      = 'tls';
-    public const SOCKET   = 'socket';
-    public const WEIGHT   = 'weight';
-    public const ALIAS    = 'alias';
-    public const QUERY    = 'query';
-    public const PATH     = 'path';
-    public const SERVERS  = 'servers';
-    public const USERNAME = 'username';
+    public const string USER     = 'user';
+    public const string HOST     = 'host';
+    public const string VHOST    = 'vhost';
+    public const string PORT     = 'port';
+    public const string PASSWORD = 'password';
+    public const string DATABASE = 'database';
+    public const string TLS      = 'tls';
+    public const string SOCKET   = 'socket';
+    public const string WEIGHT   = 'weight';
+    public const string ALIAS    = 'alias';
+    public const string QUERY    = 'query';
+    public const string PATH     = 'path';
+    public const string SERVERS  = 'servers';
+    public const string USERNAME = 'username';
 
     /**
      * @param string $dsn

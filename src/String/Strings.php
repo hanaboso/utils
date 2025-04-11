@@ -12,7 +12,7 @@ use Transliterator;
 final class Strings
 {
 
-    public const TRIM_CHARACTERS = " \t\n\r\0\x0B\u{A0}";
+    public const string TRIM_CHARACTERS = " \t\n\r\0\x0B\u{A0}";
 
     /**
      * @param string $s

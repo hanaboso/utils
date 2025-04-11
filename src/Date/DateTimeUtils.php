@@ -16,11 +16,11 @@ use Throwable;
 class DateTimeUtils
 {
 
-    public const DATE_TIME     = 'Y-m-d H:i:s';
-    public const DATE_TIME_UTC = 'Y-m-d\TH:i:s\Z';
-    public const DATE          = 'Y-m-d';
-    public const MYSQL_DATE    = '%Y-%m-%d';
-    public const DATE_TIME_GO  = 'Y-m-d\TH:i:s.u\Z';
+    public const string DATE_TIME     = 'Y-m-d H:i:s';
+    public const string DATE_TIME_UTC = 'Y-m-d\TH:i:s\Z';
+    public const string DATE          = 'Y-m-d';
+    public const string MYSQL_DATE    = '%Y-%m-%d';
+    public const string DATE_TIME_GO  = 'Y-m-d\TH:i:s.u\Z';
 
     /**
      * @param string $dateTime

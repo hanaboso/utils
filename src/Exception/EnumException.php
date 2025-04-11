@@ -10,8 +10,8 @@ namespace Hanaboso\Utils\Exception;
 final class EnumException extends PipesFrameworkExceptionAbstract
 {
 
-    public const INVALID_CHOICE = self::OFFSET + 1;
+    public const int INVALID_CHOICE = self::OFFSET + 1;
 
-    protected const OFFSET = 2_000;
+    protected const int OFFSET = 2_000;
 
 }

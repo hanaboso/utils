@@ -2,7 +2,6 @@ includes:
 	- vendor/hanaboso/php-check-utils/phpstan.neon # hanaboso rules
 
 parameters:
-	excludes_analyse:
 	ignoreErrors:
 		-
 			message: '#Calling json_encode\(\) is forbidden, use Hanaboso\\Utils\\String\\Json::encode\(\) instead#'
@@ -17,14 +16,17 @@ parameters:
 			message: '#Error suppression via "@" should not be used.#'
 			path:  src/File/File.php
 		-
-		    message: '#Calling file_get_contents\(\) is forbidden, use Hanaboso\\Utils\\File\\File::getContent\(\) instead#'
-		    path: src/File/File.php
+			message: '#Calling file_get_contents\(\) is forbidden, use Hanaboso\\Utils\\File\\File::getContent\(\) instead#'
+			path: src/File/File.php
 		-
-		    message: '#Calling file_put_contents\(\) is forbidden, use Hanaboso\\Utils\\File\\File::putContent\(\) or logger instead#'
-		    path: src/File/File.php
+			message: '#Calling file_put_contents\(\) is forbidden, use Hanaboso\\Utils\\File\\File::putContent\(\) or logger instead#'
+			path: src/File/File.php
+		-
+			message: '#Construct empty\(\) is not allowed. Use more strict comparison#'
+			path: src/String/DsnParser.php
 
 	symfony:
-		container_xml_path: %rootDir%/../../../var/cache/test/UtilsTests_KernelTestDebugContainer.xml
+		containerXmlPath: %rootDir%/../../../var/cache/test/UtilsTests_KernelTestDebugContainer.xml
 	ergebnis:
 		classesNotRequiredToBeAbstractOrFinal:
 			- Hanaboso\Utils\Date\DateTimeUtils

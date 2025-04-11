@@ -35,15 +35,15 @@ final class Arrays
         $updated = self::getUpdatedKeys($old, $new);
         $deleted = self::getRemovedKeys($old, $new);
 
-        if (!empty($created)) {
+        if ($created !== []) {
             $res['created'] = $created;
         }
 
-        if (!empty($updated)) {
+        if ($updated !== []) {
             $res['updated'] = $updated;
         }
 
-        if (!empty($deleted)) {
+        if ($deleted !== []) {
             $res['deleted'] = $deleted;
         }
 

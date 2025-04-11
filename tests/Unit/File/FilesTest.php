@@ -19,8 +19,8 @@ final class FilesTest extends TestCase
 
     use PHPMock;
 
-    public const PUT_NAME = 'w_name.txt';
-    public const GET_NAME = 'r_name.txt';
+    public const string PUT_NAME = 'w_name.txt';
+    public const string GET_NAME = 'r_name.txt';
 
     /**
      * @return void
@@ -44,7 +44,7 @@ final class FilesTest extends TestCase
     public function testPutContent(): void
     {
         $res = File::putContent(self::PUT_NAME, 'awdad');
-        self::assertEquals(5, $res);
+        self::assertSame(5, $res);
 
         unlink(self::PUT_NAME);
     }
@@ -57,7 +57,7 @@ final class FilesTest extends TestCase
         $content = 'awdad';
         File::putContent(self::GET_NAME, $content);
         $res = File::getContent(self::GET_NAME);
-        self::assertEquals($content, $res);
+        self::assertSame($content, $res);
 
         unlink(self::GET_NAME);
     }
