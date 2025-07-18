@@ -2,7 +2,6 @@
 
 namespace UtilsTests\Unit\Traits;
 
-use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -10,7 +9,6 @@ use PHPUnit\Framework\TestCase;
  *
  * @package UtilsTests\Unit\Traits
  */
-#[CoversClass(TestTraits::class)]
 final class UrlBuilderTraitTest extends TestCase
 {
 

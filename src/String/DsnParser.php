@@ -64,11 +64,11 @@ final class DsnParser
                 $result = array_merge($result, $queryArr);
             }
 
-            if ((isset($parsedUrl[6]) && !empty($parsedUrl[6])) || (isset($parsedUrl[4]) && !empty($parsedUrl[4]))) {
-                $result[self::PORT] = isset($parsedUrl[6]) && !empty($parsedUrl[6]) ? $parsedUrl[6] : $parsedUrl[4];
+            if (!empty($parsedUrl[6]) || (!empty($parsedUrl[4]))) {
+                $result[self::PORT] = !empty($parsedUrl[6]) ? $parsedUrl[6] : $parsedUrl[4];
             }
 
-            if (isset($parsedUrl[5]) && !empty($parsedUrl[5])) {
+            if (!empty($parsedUrl[5])) {
                 $result[self::VHOST] = $parsedUrl[5];
             }
 
@@ -87,11 +87,11 @@ final class DsnParser
                 $result = array_merge($result, $queryArr);
             }
 
-            if ((isset($parsedUrl[2]) && !empty($parsedUrl[2])) || (isset($parsedUrl[4]) && !empty($parsedUrl[4]))) {
-                $result[self::PORT] = isset($parsedUrl[2]) && !empty($parsedUrl[2]) ? $parsedUrl[2] : $parsedUrl[4];
+            if (!empty($parsedUrl[2]) || (!empty($parsedUrl[4]))) {
+                $result[self::PORT] = !empty($parsedUrl[2]) ? $parsedUrl[2] : $parsedUrl[4];
             }
 
-            if ((isset($parsedUrl[3]) && !empty($parsedUrl[3]))) {
+            if (!empty($parsedUrl[3])) {
                 $result[self::VHOST] = $parsedUrl[3];
             }
 

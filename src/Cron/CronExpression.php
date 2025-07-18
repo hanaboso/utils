@@ -222,13 +222,8 @@ final class CronExpression
     private static function isValidChunk(string $day, string $delimiter): bool
     {
         $chunks = explode($delimiter, $day);
-        foreach ($chunks as $chunk) {
-            if (!self::isValidDayOfMonth($chunk)) {
-                return FALSE;
-            }
-        }
 
-        return TRUE;
+        return array_all($chunks, static fn($chunk) => self::isValidDayOfMonth($chunk));
     }
 
     /**
@@ -238,13 +233,10 @@ final class CronExpression
      */
     private static function isValidDayOfWeek(string $day): bool
     {
-        foreach (explode(',', $day) as $expr) {
-            if (!preg_match('/^(\*|[0-7](L?|#[1-5]))([\/,\-][0-7]+)*$/', $expr)) {
-                return FALSE;
-            }
-        }
-
-        return TRUE;
+        return array_all(
+            explode(',', $day),
+            static fn(string $expr) => (bool) preg_match('/^(\*|[0-7](L?|#[1-5]))([\/,\-][0-7]+)*$/', $expr),
+        );
     }
 
 }

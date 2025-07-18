@@ -31,7 +31,7 @@ class DateTimeUtils
     public static function getUtcDateTime(string $dateTime = 'NOW'): DateTime
     {
         try {
-            return (new DateTime($dateTime))->setTimezone(new DateTimeZone('UTC'));
+            return new DateTime($dateTime)->setTimezone(new DateTimeZone('UTC'));
         } catch (Throwable $t) {
             throw new DateTimeException($t->getMessage(), $t->getCode(), $t);
         }
@@ -59,7 +59,7 @@ class DateTimeUtils
     public static function getUtcDateTimeImmutable(string $dateTime = 'NOW'): DateTimeImmutable
     {
         try {
-            return (new DateTimeImmutable($dateTime))->setTimezone(new DateTimeZone('UTC'));
+            return new DateTimeImmutable($dateTime)->setTimezone(new DateTimeZone('UTC'));
         } catch (Throwable $t) {
             throw new DateTimeException($t->getMessage(), $t->getCode(), $t);
         }
