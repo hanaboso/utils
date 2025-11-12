@@ -41,6 +41,9 @@ class PipesHeaders
     // Batch headers
     public const string BATCH_CURSOR = 'cursor';
 
+    // Audit headers
+    public const string AUDIT_ENTITY = 'audit-entity';
+
     // --- MicroTimestamp because Bunny
     public const string TIMESTAMP = 'published-timestamp';
 
