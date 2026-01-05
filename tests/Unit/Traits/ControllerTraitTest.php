@@ -4,7 +4,7 @@ namespace UtilsTests\Unit\Traits;
 
 use Exception;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\HttpKernel\Log\Logger;
+use Psr\Log\NullLogger;
 
 /**
  * Class ControllerTraitTest
@@ -31,7 +31,7 @@ final class ControllerTraitTest extends TestCase
     public function testGetErrorResponse(): void
     {
         $test = new TestTraits();
-        $test->setLogger(new Logger());
+        $test->setLogger(new NullLogger());
         self::assertEquals(
             '{"error_code":0,"message":"","status":"INTERNAL_SERVER_ERROR","type":"Exception"}',
             $test->getErrorResponseForTest(new Exception())->getContent(),

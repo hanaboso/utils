@@ -4,8 +4,12 @@
     <rule ref="./vendor/hanaboso/php-check-utils/ruleset.xml"/>
     <rule ref="SlevomatCodingStandard.Files.TypeNameMatchesFileName">
         <properties>
-            <property name="rootNamespaces" type="array" value="src=>Hanaboso\Utils,tests=>UtilsTests"/>
+            <property name="rootNamespaces" type="array">
+                <element key="src" value="Hanaboso\Utils"/>
+                <element key="tests" value="UtilsTests"/>
+            </property>
         </properties>
     </rule>
 
+    <exclude-pattern>tests/testApp/config/reference.php</exclude-pattern>
 </ruleset>
