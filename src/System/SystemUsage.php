@@ -52,7 +52,7 @@ final class SystemUsage
     public static function getCpuTimes(): array
     {
         try {
-            $pid         = getmypid();
+            $pid         = (string) getmypid();
             $statFile    = sprintf(self::FILE_PROC_STAT, $pid);
             $statContent = File::getContent($statFile);
             $stats       = explode(' ', $statContent);

@@ -24,7 +24,9 @@ parameters:
 		-
 			message: '#Construct empty\(\) is not allowed. Use more strict comparison#'
 			path: src/String/DsnParser.php
-
+		-
+			message: '#.*#'
+			path: tests/testApp/config/reference.php
 	symfony:
 		containerXmlPath: %rootDir%/../../../var/cache/test/UtilsTests_KernelTestDebugContainer.xml
 	ergebnis:

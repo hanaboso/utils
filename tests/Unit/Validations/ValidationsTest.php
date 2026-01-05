@@ -57,8 +57,7 @@ final class ValidationsTest extends KernelTestCaseAbstract
      */
     public function testPrepareTestParams(): void
     {
-        // @codingStandardsIgnoreLine
-        $attrs = ['a', 'b' => ['c' => [['d', 'e']]], 'f'];
+        $attrs = [0 => 'a', 'b' => ['c' => [[0 => 'd', 1 => 'e']]], 2 => 'f'];
 
         $data = Validations::prepareTestParams($attrs);
 
@@ -105,8 +104,7 @@ final class ValidationsTest extends KernelTestCaseAbstract
             [['param0', 'param1'], ['param1' => 1], TRUE],
             [['param0'], ['param0'], FALSE],
             [['param0' => ['param1', 'param2']], ['param0' => ['param2' => 1]], TRUE],
-            // @codingStandardsIgnoreLine
-            [['param1', 'param0' => ['param1', 'param2']], ['param0' => ['param2' => 1]], TRUE],
+            [[0 => 'param1', 'param0' => ['param1', 'param2']], ['param0' => ['param2' => 1]], TRUE],
             [['param0' => ['param1']], ['param1' => ['param1'], 'param0' => []], FALSE],
             [['param0' => ['param1']], [], FALSE],
             [['param0' => ['param1' => ['param2']]], ['param0' => ['param1' => ['param2' => 2]]], TRUE],

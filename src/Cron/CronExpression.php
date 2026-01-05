@@ -97,7 +97,7 @@ final class CronExpression
         return $this->dayOfWeek;
     }
 
-    /**
+    /*
      * ----------------------------------------------- HELPERS -------------------------------------
      */
 

@@ -95,8 +95,10 @@ final class PipesHeadersTest extends TestCase
         $limiterKey = PipesHeaders::getLimiterKeyWithGroup('limiterKey',60,10,'groupLimiterKey',61,11);
         self::assertSame('limiterKey|;60;10;groupLimiterKey|;61;11', $limiterKey);
         $parsedKey = PipesHeaders::parseLimitKey($limiterKey);
-        // @codingStandardsIgnoreLine
-        self::assertSame(['limiterKey|' => 'limiterKey|;60;10', 'groupLimiterKey|' => 'groupLimiterKey|;61;11'], $parsedKey);
+        self::assertSame(
+            ['limiterKey|' => 'limiterKey|;60;10', 'groupLimiterKey|' => 'groupLimiterKey|;61;11'],
+            $parsedKey,
+        );
     }
 
 }
