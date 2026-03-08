@@ -79,6 +79,7 @@ class PipesHeaders
                 [
                     self::CORRELATION_ID,
                     self::NODE_ID,
+                    self::NODE_NAME,
                     self::TOPOLOGY_ID,
                     self::TOPOLOGY_NAME,
                     self::USER,
