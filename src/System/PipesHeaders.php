@@ -21,6 +21,7 @@ class PipesHeaders
     public const string TOPOLOGY_NAME      = 'topology-name';
     public const string APPLICATION        = 'application';
     public const string USER               = 'user';
+    public const string SDK                = 'sdk';
     public const string WORKER_FOLLOWERS   = 'worker-followers';
     public const string FORCE_TARGET_QUEUE = 'force-target-queue';
 
@@ -84,6 +85,7 @@ class PipesHeaders
                     self::TOPOLOGY_NAME,
                     self::USER,
                     self::APPLICATION,
+                    self::SDK,
                 ],
                 TRUE,
             ),
