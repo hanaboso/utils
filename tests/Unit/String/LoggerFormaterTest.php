@@ -79,7 +79,7 @@ final class LoggerFormaterTest extends TestCase
      */
     public function testGetContextForLoggerNull(): void
     {
-        self::assertEmpty(LoggerFormater::getContextForLogger());
+        self::assertSame([], LoggerFormater::getContextForLogger());
     }
 
 }
