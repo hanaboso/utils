@@ -29,7 +29,7 @@ final class FilesTest extends TestCase
     {
         $this
             ->getFunctionMock('Hanaboso\Utils\File', 'file_put_contents')
-            ->expects(self::any())
+            ->expects(self::once())
             ->willReturnCallback(static fn() => FALSE);
 
         self::expectException(LogicException::class);

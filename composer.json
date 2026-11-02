@@ -2,7 +2,7 @@
     "name": "hanaboso/utils",
     "description": "Hanaboso - utils",
     "license": "Apache-2.0",
-    "version": "2.0.2",
+    "version": "2.1.0",
     "authors": [
         {
             "name": "Hanaboso s.r.o.",
@@ -21,16 +21,16 @@
         }
     ],
     "require": {
-        "php": "^8.4",
+        "php": "^8.5",
         "ext-iconv": "*",
         "ext-intl": "*",
         "ext-json": "*",
         "psr/log": "^3",
-        "symfony/http-foundation": "^8.0"
+        "symfony/http-foundation": "^8.1"
     },
     "require-dev": {
-        "hanaboso/php-check-utils": "^2.0",
-        "symfony/yaml": "^8.0"
+        "hanaboso/php-check-utils": "^2.1",
+        "symfony/yaml": "^8.1"
     },
     "autoload": {
         "psr-4": {

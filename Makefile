@@ -1,9 +1,9 @@
 .PHONY: init-dev test
 
-DC=docker-compose
-DE=docker-compose exec -T app
-DM=docker-compose exec -T mariadb
-DEC=docker-compose exec -T app composer
+DC=docker compose
+DE=docker compose exec -T app
+DM=docker compose exec -T mariadb
+DEC=docker compose exec -T app composer
 
 .env:
 	sed -e "s/{DEV_UID}/$(shell if [ "$(shell uname)" = "Linux" ]; then echo $(shell id -u); else echo '1001'; fi)/g" \

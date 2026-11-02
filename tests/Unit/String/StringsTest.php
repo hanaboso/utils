@@ -69,7 +69,6 @@ final class StringsTest extends TestCase
     {
         $strings = new ReflectionClass(Strings::class);
         $method  = $strings->getMethod('glibc');
-        $method->setAccessible(TRUE);
 
         self::assertEquals('Nas produkt', $method->invokeArgs(NULL, ['Naš produkt']));
     }
@@ -81,7 +80,6 @@ final class StringsTest extends TestCase
     {
         $strings = new ReflectionClass(Strings::class);
         $method  = $strings->getMethod('iconv');
-        $method->setAccessible(TRUE);
 
         self::assertEquals('Nas produkt', $method->invokeArgs(NULL, ['Naš produkt']));
     }
